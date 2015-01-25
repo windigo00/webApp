@@ -1,0 +1,26 @@
+"Actions","Události"
+"Are you sure?","Jste si jisti?"
+"Date Added","Přidáno datum"
+"Error while marking as read. Please try again later.","Chyba při označování jako přečteno. Prosím zkuste to později."
+Error while marking. Please try again later.,Chyba při označování. Prosím zkuste opakovat později.
+Error while removing. Please try again later.,Chyba při odstraňování. Prosím zkuste opakovat později.
+"Last update","Poslední aktualizace"
+Mark as Read,Označit jako přečtené
+"Message","Zpráva"
+"Message was successfully marked as read","Zpráva byla úspěšně označena jakou přečtená"
+"Message was successfully removed","Zpráva byla úspěšně odebrána"
+"Messages Inbox","Přijaté zprávy"
+"Notifications","Upozornění"
+"Please select messages","Prosím vyberte zprávy"
+"Read Details","Číst podrobnosti"
+"Remove","Odstranit"
+"Severity","Důležitost"
+"Total of %d record(s) were successfully marked as read","Celkem %d záznamů úspěšně označeno jako přečtené"
+"Total of %d record(s) were successfully removed","Celkem %d záznamů úspěšně odstraněno"
+"Unable to proceed. Please, try again",Nelze pokračovat. Prosím zkuste znovu opakovat
+"Update frequency","Frekvence aktualizací"
+"Use HTTPS to get feed","Použít HTTPS pro zprávy"
+"critical","kritická"
+"major","vysoká"
+"minor","nízká"
+"notice","upozornění"

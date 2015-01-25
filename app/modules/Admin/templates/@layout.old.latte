@@ -1,0 +1,50 @@
+{**
+ * @param string   $basePath web base path
+ * @param array    $flashes  flash messages
+*}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>{ifset #title}{include title|striptags} | {/ifset}CM5</title>
+
+        <!-- Core CSS - Include with every page -->
+        <link href="{$basePath}/admin/css/sb-admin-v2/bootstrap.min.css" rel="stylesheet">
+        <link href="{$basePath}/admin/css/sb-admin-v2/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+        <!-- Page-Level Plugin CSS - Blank -->
+
+        <!-- SB Admin CSS - Include with every page -->
+        <link href="{$basePath}/admin/css/sb-admin-v2/sb-admin.css" rel="stylesheet">
+        
+        <!--<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/bootstrap.min.css">-->
+        <!--<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/bootstrap-theme.min.css">-->
+        <!--<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/theme/spacelab-bootstrap.min.css">-->
+        <!--<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/admin/screen.css">-->
+        <!--<link rel="stylesheet" media="print" href="{$basePath}/admin/css/print.css">-->
+        <!--<link rel="shortcut icon" href="{$basePath}/favicon2.ico">-->
+        {block head}{/block}
+    </head>
+
+    <body>
+        <script> document.documentElement.className += ' js'</script>
+        <div id="wrap">
+        <div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
+
+        {include content}
+        </div>
+        <div id="footer" class="navbar-fixed-bottom">
+        <footer>PHP {=PHP_VERSION} |
+		{ifset $_SERVER['SERVER_SOFTWARE']}Server {$_SERVER['SERVER_SOFTWARE']}{/ifset} |
+		Nette Framework {=Nette\Framework::VERSION}</footer>
+        </div>
+        {block scripts}
+        <script src="{$basePath}/js/jquery-2.1.1.min.js"></script>
+        <script src="{$basePath}/js/bootstrap.min.js"></script>
+        <script src="{$basePath}/js/netteForms.js"></script>
+        <script src="{$basePath}/js/main.js"></script>
+        {/block}
+    </body>
+</html>

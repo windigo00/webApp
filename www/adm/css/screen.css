@@ -1,0 +1,126 @@
+body {
+	font-size: 12px;
+	font-family: tahoma;
+}
+
+span.glyphicon {
+	vertical-align: middle;
+	font-size: 14px;
+}
+
+#page-wrapper {
+	padding-top: 20px;
+}
+
+#wrap {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+#push,
+#footer {
+    /*height: 60px;*/
+    
+}
+#footer {
+    background-color: #f5f5f5;
+}
+#footer footer {
+    padding: 15px;
+}
+
+.navbar-brand { padding: 0; }
+.navbar-brand img{
+    margin-top: 1px;
+    margin-left: 1px;
+    height: 50px;
+    width: 50px;
+}
+
+.tree {
+    min-height:20px;
+    padding:19px;
+    margin-bottom:20px;
+	overflow-x: auto;
+}
+
+.tree > ul {
+    padding-left: 0;
+}
+
+.tree ul {
+    padding-left: 5px;
+	/*line-height: 1;*/
+	/*margin-bottom: 0px;*/
+	/*margin-top: -12px;*/
+}
+.tree li {
+    list-style-type:none;
+    margin:0;
+    padding:10px 0 0 5px;
+    position:relative
+}
+.tree li::before, .tree li::after {
+    content:'';
+    left:-20px;
+    position:absolute;
+    right:auto
+}
+.tree li::before {
+    border-left:1px solid #999;
+    bottom:50px;
+    height:100%;
+    top:0;
+    width:1px;
+    left: -1px;
+}
+.tree li::after {
+    border-top: 1px solid #999;
+    height: 20px;
+    top: 29px;
+    width: 5px;
+    left: 0;
+}
+.tree li span.item {
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border:1px solid #999;
+    border-radius:5px;
+    display:inline-block;
+    padding:3px 8px;
+    text-decoration:none
+}
+
+.tree .parent_li span {
+	/*font-size: 12px;*/
+	white-space: nowrap;
+}
+
+.tree li span.glyphicon {
+    padding-left: 5px; 
+}
+.tree li.parent_li>span {
+    cursor:pointer
+}
+.tree>ul>li::before, .tree>ul>li::after {
+    border:0
+}
+.tree li:last-child::before {
+    height:30px
+}
+.tree li.parent_li>span.item:hover, 
+.tree li.parent_li>span.item:hover+ul li span.item {
+    background:#eee;
+    border:1px solid #94a0b4;
+    color:#000
+}
+
+table .action { width: 50px; }
+table .action a {
+	white-space: nowrap;
+	display: inline-block;
+	margin-right: 3px;
+}
+
+.nav .fa {
+	font-size: 14px;
+}

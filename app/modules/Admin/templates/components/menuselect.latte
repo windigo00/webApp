@@ -1,0 +1,27 @@
+{?$id = ''}
+<input type="hidden" name="{$input->name}" value="{$input->value}"/>
+<ul class="menu_select">
+{block #menuselect}
+{$path.'aa'}
+{if !isset($path)}{?$path = ''}{/if}
+{foreach $tree as $k => $option}
+	{?$id = strpos($k,'.')?$k:$id}
+	{if $itemId != $id}
+		{if is_array($option)}
+			<ul>
+			{include #menuselect, tree => $option, path => ($path . (!empty($path)?'_':'') . $id), itemId => $itemId}
+			</ul>
+		{else}
+			<li value="{$path . (!empty($path)?'_':'') . $k}">{$option}</li>
+		{/if}
+	{/if}
+{/foreach}
+{/block}
+</ul>
+<script type="text/javascript">
+	$('.menu_select li').click(function (){
+		var newParent = $(this).attr('value').split('_')
+		newParent = newParent[newParent.length - 2]
+		$('.menu_select').prev('input:hidden').val(newParent);
+	})
+</script>
