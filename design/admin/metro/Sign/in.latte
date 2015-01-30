@@ -1,6 +1,59 @@
+{block #head}
+<style type="text/css">
+	body { background: url(/www/metro-dashboard/img/bg-login.jpg) !important; }
+</style>
+{/block}
+
 {block content}
-<div class="row">
-    {$user->getId()}
-    dsflh lskjaf dj 
-</div>
+<div class="container-fluid-full">
+		<div class="row-fluid">
+					
+			<div class="row-fluid">
+				<div class="login-box">
+					<div class="icons">
+						<a href="{link default}"><i class="halflings-icon home"></i></a>
+						<a href="{link default}"><i class="halflings-icon cog"></i></a>
+					</div>
+					{if $flashes}
+					<div class="box-content">
+					<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">{_$flash->message}</div>
+					</div>
+					{/if}
+					<h2>Login to your account</h2>
+					<form class="form-horizontal" action="{link in}" method="post">
+						<fieldset>
+							
+							<div class="input-prepend" title="{_"Username"}">
+								<span class="add-on"><i class="halflings-icon user"></i></span>
+								<input class="input-large span10" name="username" id="username" type="text" placeholder="{_"type username"}"/>
+							</div>
+							<div class="clearfix"></div>
+
+							<div class="input-prepend" title="{_"Password"}">
+								<span class="add-on"><i class="halflings-icon lock"></i></span>
+								<input class="input-large span10" name="password" id="password" type="password" placeholder="{_"type password"}"/>
+							</div>
+							<div class="clearfix"></div>
+							
+							<label class="remember" for="remember"><input type="checkbox" id="remember" />{_"Remember me"}</label>
+
+							<div class="button-login">
+								<button type="submit" class="btn btn-primary">{_"Login"}</button>
+								<input type="hidden" name="do" value="signInForm-submit">
+							</div>
+							<div class="clearfix"></div>
+					</form>
+					{*control signInForm*}
+					<hr>
+					<h2>{_"Forgot Password?"}</h2>
+					<p>
+						{!_'No problem, <a href="#">click here</a> to get a new password.'}
+					</p>	
+				</div><!--/span-->
+			</div><!--/row-->
+			
+
+	</div><!--/.fluid-container-->
+	
+		</div><!--/fluid-row-->
 {/block}

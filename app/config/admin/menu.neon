@@ -1,0 +1,14 @@
+parameters:
+	menu:
+		dashboard:
+			presenter: Dashboard
+			icon: icon-bar-chart
+			text: Dashboard
+		messages:
+			presenter: Messages
+			icon: icon-envelope
+			text: Messages
+		settings:
+			text: Settings
+			presenter: Settings
+			icon: icon-wrench

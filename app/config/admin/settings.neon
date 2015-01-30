@@ -5,26 +5,10 @@
 # http://nette.org/security-warning
 #
 parameters:
-	locales:
-		default: cs_CZ
-	templates: /design/default/
-
-php:
-	date.timezone: Europe/Prague
-
-
-nette:
-	application:
-		errorPresenter: Error
-		mapping:
-			*: App\Modules\*\Presenters\*Presenter
-
-	session:
-		expiration: 14 days
-
+	templates: /design/admin/metro/
+	admin:
+		baseUrl: /
 
 services:
-	- App\Model\UserManager
-	- App\RouterFactory
-	router: @App\RouterFactory::createRouter
-	authenticator: @App\model\UserManager
+	- App\Admin\Model\UserManager
+	authenticator: @App\Admin\Model\UserManager

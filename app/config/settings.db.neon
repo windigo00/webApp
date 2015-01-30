@@ -1,0 +1,21 @@
+parameters:
+	doctrine:
+		entityDir: %appDir%/lib/models
+		connection:
+			host: localhost
+#			port: 3600
+			dbname: system5
+			driver: pdo_mysql
+			user: root
+			password: 1111
+			metadata:
+				App: %appDir%
+
+nette:
+	database:
+		default:
+			dsn: 'mysql:host=127.0.0.1;dbname=system5'
+			user: root
+			password: 1111
+			options:
+				lazy: yes

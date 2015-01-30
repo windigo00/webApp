@@ -1,0 +1,5 @@
+parameters:
+	imageThumbs:
+		cart:
+			width: 90
+			height: 90

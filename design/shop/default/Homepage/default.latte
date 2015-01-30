@@ -9,8 +9,8 @@
         </div>
     </div>
     <!-- /.row -->
-    {dump $document}
-    {(is_a($document, 'App\Model\Document\Document') ? $document->renderTemplate() : '-') |noescape}
-    {include 'footer.latte'}
+    {*dump $document}
+    {(is_a($document, 'App\Model\Document\Document') ? $document->renderTemplate() : '-') |noescape*}
+    {include '../page/footer.latte'}
 </div>
 {/block}

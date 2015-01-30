@@ -1,11 +1,4 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace App\Model\Component;
 
 use Nette,
@@ -17,7 +10,6 @@ use Nette,
  * @author KuBik
  */
 class MenuComponent extends EditableControl {
-	const TPL_PATH = '/../../FrontModule/templates/';
 	/**
 	 *
 	 * @var App\Model\DBObject
@@ -34,10 +26,8 @@ class MenuComponent extends EditableControl {
 		parent::render();
 	}
 
-	protected function setTpl() {
-		$this->template
-			->setFile(static::getFilePath('components/menu.latte', __DIR__));
-//		$this->template->table = array_keys($this->data->fetchPairs());
+	protected function setTpl($tplFile = '') {
+		return parent::setTpl('menu.latte');
 	}
 
 }

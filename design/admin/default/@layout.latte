@@ -26,8 +26,6 @@
         <!--<link rel="stylesheet" media="print" href="{$basePath}/admin/css/print.css">-->
         <link rel="shortcut icon" href="{$basePath}/favicon2.ico">
         
-        <script src="{$basePath}/adm/js/sb-admin-v2/jquery-1.10.2.js"></script>
-        <script src="{$basePath}/adm/js/sb-admin-v2/bootstrap.min.js"></script>
         
         {block head}{/block}
     </head>
@@ -42,13 +40,13 @@
             </nav>
             {/block}
             <div id="page-wrapper">
-				<div n:if="count($flashes)>0" id="flashmessages">
-					<div n:foreach="$flashes as $flash"
-						 class='flashmessage {$flash->type}'>{$flash->message}
-					</div>
-				</div>
                 <div class="row">
                     <div class="col-lg-12">
+						<div n:if="count($flashes)>0" id="flashmessages">
+							<div n:foreach="$flashes as $flash"
+								 class='flashmessage {$flash->type}'>{$flash->message}
+							</div>
+						</div>
                         <div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
                         {include content}
                     </div>
@@ -64,6 +62,7 @@
         <script src="{$basePath}/js/jquery-2.1.1.min.js"></script>
         <!-- SB Admin Scripts - Include with every page -->
         <script src="{$basePath}/adm/js/sb-admin-v2/sb-admin.js"></script>
+		<script src="{$basePath}/www/sb-admin-v2/bower_components/metisMenu/dist/metisMenu.min.js"></script>
         <script src="{$basePath}/js/bootstrap.min.js"></script>
         <script src="{$basePath}/js/netteForms.js"></script>
         <script src="{$basePath}/js/main.js"></script>

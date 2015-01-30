@@ -1,0 +1,4 @@
+parameters:
+	doctrine:
+		connection:
+			dbname: system5

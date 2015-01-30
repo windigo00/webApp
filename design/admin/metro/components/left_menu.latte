@@ -1,42 +1,16 @@
-<div class="navbar-default navbar-static-side" role="navigation">
-    <div class="sidebar-collapse">
-        <ul class="nav" id="side-menu">
-            <li class="sidebar-search">
-                <div class="input-group custom-search-form">
-                    <input type="text" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-                <!-- /input-group -->
-            </li>
-            <li>
-                <a href="{plink Dashboard:}"><i class="fa fa-dashboard fa-fw"></i>{_'Dashboard'}</a>
-            </li>
-            <li>
-                <a href="{plink Document:}"><i class="fa fa-table fa-fw"></i> {_'Documents'}</a>
-            </li>
-            <li>
-                <a href="{plink CmsMenu:}"><i class="fa fa-edit fa-fw"></i> {_'Menu'}</a>
-				{control cmsMenu}
-            </li>
-<!--            <li>
-                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="flot.html">Flot Charts</a>
-                    </li>
-                    <li>
-                        <a href="morris.html">Morris.js Charts</a>
-                    </li>
-                </ul>
-                 /.nav-second-level 
-            </li>-->
-        </ul>
-        <!-- /#side-menu -->
-    </div>
-    <!-- /.sidebar-collapse -->
+<div class="nav-collapse sidebar-nav">
+	<ul class="nav nav-tabs nav-stacked main-menu">
+		{foreach $menu as $item}
+		<li>
+			<a {if $item->hasChildren()}class="dropmenu" {/if}{if $item->presenter}href="{plink $item->presenter.':'}"{/if}><i class="{$item->icon}"></i><span class="hidden-tablet"> {_$item->text}</span></a>
+			{if $item->hasChildren()}
+			<ul>
+			{foreach $item->children as $subitem}
+			<li><a class="submenu" {if $subitem->presenter}href="{plink $subitem->presenter.':'}"{/if}><i class="{$subitem->icon}"></i><span class="hidden-tablet"> {_$subitem->text}</span></a></li>
+			{/foreach}
+			</ul>
+			{/if}
+		</li>
+		{/foreach}
+	</ul>
 </div>
-<!-- /.navbar-static-side -->

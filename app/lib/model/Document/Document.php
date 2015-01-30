@@ -3,31 +3,32 @@
 namespace App\Model\Document;
 
 use Nette,
-	App\Model\DBObject,
 	App\Model\Document\View,
 	App\Model\SitePath,
-	App\Model\User\User
-		;
+	App\Model\User\User,
+	Doctrine\ORM\Mapping AS ORM,
+	Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Description of Document
- *
+ * @ORM\Entity
+ * @Table(name="document")
  * @author KuBik
  */
-class Document extends DBObject {
+class Document {
 
-	const
-			TABLE_NAME = 'document',
-			
-			COLUMN_NAME = 'docname',
-			COLUMN_TEMPLATE = 'template',
-			COLUMN_AUTHOR = 'autor',
-			COLUMN_RIGHTS = 'rights',
-			COLUMN_TYPE = 'typ',
-			COLUMN_LANG = 'lang',
-			COLUMN_CREATED = 'created',
-			COLUMN_EDITED = 'edited',
-			COLUMN_VIEWS = 'views';
+//	const
+//			TABLE_NAME = 'document',
+//			
+//			COLUMN_NAME = 'docname',
+//			COLUMN_TEMPLATE = 'template',
+//			COLUMN_AUTHOR = 'autor',
+//			COLUMN_RIGHTS = 'rights',
+//			COLUMN_TYPE = 'typ',
+//			COLUMN_LANG = 'lang',
+//			COLUMN_CREATED = 'created',
+//			COLUMN_EDITED = 'edited',
+//			COLUMN_VIEWS = 'views';
 
 	protected $author;
 	// getters
@@ -104,17 +105,23 @@ class Document extends DBObject {
 	 * @return null
 	 */
 	public static function getByPath($path, $limit = 1) {
-		$selection = static::getTable()
-				->where(static::TABLE_NAME.'.'.static::COLUMN_ID.'=document_site_path.document_id')
-				->where(SitePath::TABLE_NAME.'.id=document_site_path.site_path_id')
-				->where(SitePath::TABLE_NAME.'.path=\''.$path)
-				->limit($limit);
+		/**
+		 * @var \Doctrine\ORM\EntityManager
+		 */
+		global $entityManager;
+		$r = $entityManager->getRepository('Menu');
+		$res = $r->findAll();
+//		$selection = static::getTable()
+//				->where(static::TABLE_NAME.'.'.static::COLUMN_ID.'=document_site_path.document_id')
+//				->where(SitePath::TABLE_NAME.'.id=document_site_path.site_path_id')
+//				->where(SitePath::TABLE_NAME.'.path=\''.$path)
+//				->limit($limit);
 //		$sql =	'SELECT '.static::TABLE_NAME.'.* FROM '.static::TABLE_NAME.
 //				' LEFT JOIN document_site_path ON '.static::TABLE_NAME.'.'.static::COLUMN_ID.'=document_site_path.document_id'.
 //				' LEFT JOIN site_path ON '.SitePath::TABLE_NAME.'.id=document_site_path.site_path_id'.
 //				' WHERE '.SitePath::TABLE_NAME.'.path=\''.$path.'\' LIMIT '.intval($limit);
 //				;
-		$docs = $limit > 1 ? array() : NULL;
+//		$docs = $limit > 1 ? array() : NULL;
 //		$res = static::getDB()->query($sql);
 		while($tmp = $selection->fetch()){
 			var_dump($tmp);

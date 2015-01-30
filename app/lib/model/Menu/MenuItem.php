@@ -1,20 +1,22 @@
 <?php
 namespace App\Model\Menu;
 
-use App\Model\DBObject;
+use Doctrine\ORM\Mapping AS ORM,
+	Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Description of MenuItem
- *
+ * @ORM\Entity
+ * @Table(name="menu")
  * @author KuBik
  */
-class MenuItem extends DBObject {
-	const 
-		TABLE_NAME = 'menu',
-
-		COLUMN_NAME		= 'name',
-		COLUMN_PARENT	= 'parent_id'
-			;
+class MenuItem {
+//	const 
+//		TABLE_NAME = 'menu',
+//
+//		COLUMN_NAME		= 'name',
+//		COLUMN_PARENT	= 'parent_id'
+//			;
 	protected $parent;
 	protected $children;
 	protected $childrenIds;

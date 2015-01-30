@@ -1,0 +1,14 @@
+parameters:
+	menu:
+		modules:
+			text: Modules
+			icon: icon-folder-close-alt
+			items:
+				ashp :
+					presenter: AdminShop
+					icon: icon-bar-chart
+					text: Shop
+				acms :
+					presenter: AdminCms
+					icon: icon-bar-chart
+					text: CMS

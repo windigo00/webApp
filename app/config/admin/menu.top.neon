@@ -1,0 +1,29 @@
+parameters:
+	menu-top:
+		events:
+			text: System events
+			presenter: SystemEvents
+			icon: warning-sign
+		messages:
+			text: Messages
+			presenter: Messages
+			icon: envelope
+		settings:
+			text: Settings
+			presenter: Settings
+			icon: wrench
+		user:
+			title: Account Settings
+			items:
+				acc: 
+					text: User Account
+					presenter: UserAccount
+					icon: user
+				off: 
+					text: Logout
+					presenter: Sign
+					icon: off
+		xaasdajklh:
+			text: something else
+			presenter: Settings
+			icon: wrench

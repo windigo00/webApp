@@ -1,0 +1,187 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+
+common:
+
+	parameters:
+
+		dateFormat: j.n.Y
+		dateTimeFormat: j.n.Y H:i	# vychozi format data a casu
+
+		isAdmin: false
+
+		defaultLangCode: cs
+
+		defaultCurrency: czk
+
+		mainMenuUid: 'main'
+
+		mainContactEmail: cizek@igloonet.cz
+
+		logDir: %appDir%/log/
+		dataDir: %appDir%/data/
+
+		admin:
+			baseUrl: http://cms5.my-workspace/admin
+			baseDir: %appDir%/../www/
+
+		security:
+			newPasswordHashExpiration: '+ 1 hour'
+
+		mailing:
+			mainContactMail: 'admin@my-workspace'
+			from:
+				registration: 'register-cms5@my-workspace'
+				forgotPassword: %mailing.from.registration%
+
+
+
+		homepage:
+			news: 
+				cnt: 4
+			recentOrders:
+				cnt: 6
+				priceLimit: 500
+			uidActivityMapping: # mapovani homepage_modules.uid na activity_feed_items.event_type
+				new_products: 'new'
+				recommended: 'recommended'
+
+		textPage:
+			routeActions:
+				suplement-plan: suplementPlan
+
+		order:
+			freeDeliveryTagUid: 'free-delivery'
+
+		facebook:
+			appId: '919707258039873'
+			version: 'v2.2' 
+			locale: cs_CZ
+
+		payu:
+			config:
+				procedureBaseUrl: https://secure.payu.com/paygw
+				procedureEncoding: UTF
+				newPaymentUrl: %payu.config.procedureBaseUrl%/%payu.config.procedureEncoding%/NewPayment
+				transactionDataUrl: %payu.config.procedureBaseUrl%/%payu.config.procedureEncoding%/Payment/get
+			pos:
+				184330: # Aktin.cz test CZK
+					id: 184330
+					authKey: 'qbinwSU'
+					md5Key: '3de97d830bf379427b41290ccfff1d1c'
+					md5Key2: 'e11fc2efca7b0a382f9f02214852f3fb'
+			currencyPos:
+				czk: 184330
+				eur: 123456
+
+
+	php:
+		date.timezone: Europe/Prague
+		iconv.internal_encoding: UTF-8
+		mbstring.internal_encoding: UTF-8
+		# zlib.output_compression: yes
+
+
+	nette:
+		application:
+			catchExceptions: true
+			errorPresenter: Error
+			mapping:
+				*: *Module\Presenters\*Presenter
+
+		session:
+			autoStart: true
+			expiration: 14 days
+			savePath: '%appDir%/_sessions'
+
+		debugger:
+			maxDepth: 5
+
+
+	services:
+
+		application: 
+			class: Eshop\Application\SiteApplication
+			arguments:
+				config: @config
+				contextManager: @contextManager
+
+		#doctrine.cache: Doctrine\Common\Cache\ApcCache
+		doctrine.cache: Doctrine\Common\Cache\FilesystemCache(%tempDir%/doctrine_fscache)
+
+		config: 
+			class: Eshop\Application\Config
+			factory: Eshop\Application\Config::create
+
+		contextManager:
+			class: Eshop\Application\ContextManager
+			factory: Eshop\Application\ContextManager::create
+			arguments:
+				- @container
+				- %debugMode%
+
+		databaseManager: Eshop\Application\DatabaseManager
+
+		activityListener: Eshop\Application\ActivityListener
+
+	doctrine:
+		
+		connection:
+			charset: utf8
+			host: mysql.igloonet.cz
+			driver: pdo_mysql
+			user: aktin_cz_beta
+			password: tIxj3dYfdE
+			dbname: aktin_cz_beta
+			debugger: false
+			
+		entityDirs:	[ %appDir%/models ]
+		proxy:
+			dir: %appDir%/proxies
+			namespace: Eshop\Proxies
+			autogenerate: false
+		metadataCacheDriver: @doctrine.cache
+		queryCacheDriver: @doctrine.cache
+		resultCacheDriver: @doctrine.cache
+
+development < common:
+
+	parameters:
+		facebook:
+			appId: '919712854705980'
+
+
+	nette:
+		application:
+			catchExceptions: false
+
+	doctrine:
+		connection:
+			debugger: true
+		proxy:
+			autogenerate: true
+
+production < common:
+
+
+console < common:
+	
+	nette:
+		application:
+			catchExceptions: false
+
+	doctrine:
+		connection:
+			debugger: true
+		proxy:
+			autogenerate: true
+
+	services:
+		
+		doctrine.cache: Doctrine\Common\Cache\ArrayCache
+		
+		cacheStorage: Nette\Caching\Storages\DevNullStorage

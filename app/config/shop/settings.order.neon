@@ -1,0 +1,5 @@
+parameters:
+	imageThumbs:
+		order:
+			width: 150
+			height: 150

@@ -7,7 +7,7 @@
 parameters:
 	locales:
 		default: cs_CZ
-	templates: /design/default/
+	templates: /design/front/default/
 
 php:
 	date.timezone: Europe/Prague
@@ -24,7 +24,8 @@ nette:
 
 
 services:
-	- App\Model\UserManager
+#	- App\Model\UserManager
 	- App\RouterFactory
 	router: @App\RouterFactory::createRouter
-	authenticator: @App\model\UserManager
+#	authenticator: @App\model\UserManager
+	databaseManager: App\Management\DatabaseManager

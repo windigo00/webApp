@@ -16,7 +16,7 @@ use Nette,
  *
  * @author KuBik
  */
-class MenuComponent extends EditableControl {
+class DBMenuComponent extends EditableControl {
 	const TPL_PATH = '/../../FrontModule/templates/';
 	/**
 	 *
@@ -34,9 +34,8 @@ class MenuComponent extends EditableControl {
 		parent::render();
 	}
 
-	protected function setTpl() {
-		$this->template
-			->setFile(static::getFilePath('components/menu.latte', __DIR__));
+	protected function setTpl($tplFile = '') {
+		return parent::setTpl('menu.latte');
 //		$this->template->table = array_keys($this->data->fetchPairs());
 	}
 

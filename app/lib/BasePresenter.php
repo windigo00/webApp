@@ -14,7 +14,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	public function __construct(Nette\Database\Context $database) {
 		try {
 			parent::__construct();
-			Model\DBObject::setDB($database);
+//			Model\DBObject::setDB($database);
 		} catch (\Exception $ex) {
 			$this->flashMessage($ex->getMessage());
 			$this->redirect('Error:', array('backlink' => $this->storeRequest()));
@@ -25,10 +25,14 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	 */
 	public function formatLayoutTemplateFiles() {
 		$layout = $this->layout ? $this->layout : 'layout';
-		$dir = dirname($this->getReflection()->getFileName());
+		$presenter = explode(':', $this->getName());
+		$tpls = $this->context->parameters['templates'];
+		$file = realpath(getcwd()."/..{$tpls}");
 		return array(
-			"$dir/../templates/@$layout.latte",
-			"$dir/../templates/@$layout.phtml",
+//			"{$file}/../@{$layout}.latte",
+//			"{$file}/../@{$layout}.phtml",
+			"{$file}/@$layout.latte",
+			"{$file}/@$layout.phtml",
 		);
 	}
 	/**
@@ -36,10 +40,14 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	 */
 	public function formatTemplateFiles() {
 		$presenter = explode(':', $this->getName());
-		$dir = dirname($this->getReflection()->getFileName());
+		$tpls = $this->context->parameters['templates'];
+		$file = realpath("..{$tpls}{$presenter[1]}");
+		$file2 = realpath("..{$tpls}../base/{$presenter[1]}");
 		return array(
-			"$dir/../templates/{$presenter[1]}/$this->view.latte",
-			"$dir/../templates/{$presenter[1]}/$this->view.phtml",
+			"{$file}/{$this->view}.latte",
+			"{$file}/{$this->view}.phtml",
+			"{$file2}/{$this->view}.latte",
+			"{$file2}/{$this->view}.phtml",
 		);
 	}
 	
