@@ -10,10 +10,10 @@ use Nette,
 		;
 
 /**
- * @Entity(repositoryClass="App\Model\UserRepository")
+ * @Entity
  * @Table(name="user")
  **/
-class User extends \App\Model\Entity{
+class User extends \App\Model\Entity {
 	/** 
 	 * @Id @Column(type="integer")
 	 * @GeneratedValue 
@@ -38,15 +38,5 @@ class User extends \App\Model\Entity{
 	/** @Column(type="string") **/
 	protected $role;
 	
-	public $needRehash = false;
 
-}
-
-class UserRepository extends \Doctrine\ORM\EntityRepository
-{
-    public function getAllAdminUsers()
-    {
-        return $this->_em->createQuery('SELECT u FROM MyDomain\Model\User u WHERE u.status = "admin"')
-                         ->getResult();
-    }
 }

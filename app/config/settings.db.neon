@@ -1,5 +1,6 @@
 parameters:
 	doctrine:
+		devmode: true
 		entityDir: %appDir%/lib/models
 		connection:
 			host: localhost
@@ -12,10 +13,10 @@ parameters:
 				App: %appDir%
 
 nette:
-	database:
-		default:
-			dsn: 'mysql:host=127.0.0.1;dbname=system5'
-			user: root
-			password: 1111
-			options:
-				lazy: yes
+	
+#		default:
+#			dsn: 'mysql:host=127.0.0.1;dbname=system5'
+#			user: root
+#			password: 1111
+#			options:
+#				lazy: yes

@@ -8,24 +8,37 @@ use Doctrine\ORM\Tools\Setup;
  *
  * @author KuBik
  */
-class EntityManager {
+class EntityManager extends \Nette\Database\Context{
+
 	/**
 	 *
 	 * @var \Doctrine\ORM\EntityManager
 	 */
+	protected $_em;
+	/**
+	 *
+	 * @var EntityManager
+	 */
 	public static $_instance;
 	
-	public static function set(\SystemContainer $cfg) {
-		$p = $cfg->getParameters();
-		$config = Setup::createAnnotationMetadataConfiguration(array($p['doctrine']['entityDir']), false);
-		$connection_cfg = $p['doctrine']['connection'];
-		self::$_instance = \Doctrine\ORM\EntityManager::create($connection_cfg, $config);
+	public function __construct($connection, $entityDir, $devmode = FALSE) {
+		$config = Setup::createAnnotationMetadataConfiguration(array($entityDir), $devmode);
+		$this->_em = \Doctrine\ORM\EntityManager::create($connection, $config);
+	}
+	
+	public static function set($cfg) {
+		if (!self::$_instance)
+			self::$_instance = new self($cfg);
+//		return self::$_instance->ge;
 	}
 	/**
 	 * 
 	 * @return \Doctrine\ORM\EntityManager
 	 */
-	public static function get() {
-		return self::$_instance;
+	public function get() {
+		return $this->_em;
+	}
+	public function getRepository($classStr) {
+		return $this->_em->getRepository($classStr);
 	}
 }

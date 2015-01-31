@@ -10,8 +10,7 @@ use Nette\Application\UI\Control
  */
 class LeftMenu extends Menu{
 	
-	public function setTpl() {
-		$this->template
-			->setFile(dirname(__DIR__).'/../templates/components/left_menu.latte');
+	protected function setTpl($tplFile = '') {
+		return parent::setTpl('left_menu.latte');
 	}
 }

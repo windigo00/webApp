@@ -1,9 +1,10 @@
 <?php
-namespace App\Modules\Front\Model\Component;
+namespace App\Modules\Front\Components;
 
 use Nette,
 	Nette\Environment,
-	App\Model\Menu\Menu
+	App\Model\Menu\Menu,
+	App\Model\Component
 		;
 
 /**
@@ -11,7 +12,7 @@ use Nette,
  *
  * @author KuBik
  */
-class MenuComponent extends App\Model\Component\MenuComponent {
+class MenuComponent extends Component\MenuComponent {
 //	const TPL_PATH = '/../../../../design/default/navigation/';
 	/**
 	 *
@@ -31,8 +32,8 @@ class MenuComponent extends App\Model\Component\MenuComponent {
 		parent::render();
 	}
 
-	protected function setTpl() {
-		$this->template->setFile($this->getTplPath(Environment::getContext()->parameters['templates'].'navigation/menu.latte'));
+	protected function setTpl($tplFile = '') {
+		return parent::setTpl('../navigation/menu.latte');
 	}
 
 }

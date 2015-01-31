@@ -71,15 +71,8 @@
 			<!-- start: Content -->
 			<div id="content" class="span10">
 			
+				{control breacrumbs}
 			
-			<ul class="breadcrumb">
-				<li>
-					<i class="icon-home"></i>
-					<a href="index.html">Home</a> 
-					<i class="icon-angle-right"></i>
-				</li>
-				<li><a href="#">Dashboard</a></li>
-			</ul>
 <div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
 		{include content}
 	</div><!--/.fluid-container-->

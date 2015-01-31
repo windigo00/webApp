@@ -1,22 +1,11 @@
 <?php
+/**
+ * @var \Nette\Configurator $configurator
+ */
+$cfg = glob(__DIR__ . '/../../config/admin/*.neon');
 
-require __DIR__ . '/../vendor/autoload.php';
-
-$configurator = new Nette\Configurator;
-
-$configurator->setDebugMode(TRUE);  // debug mode MUST NOT be enabled on production server
-$configurator->enableDebugger(__DIR__ . '/../log');
-
-$configurator->setTempDirectory(__DIR__ . '/../temp');
-
-$configurator->createRobotLoader()
-	->addDirectory(__DIR__)
-	->addDirectory(__DIR__ . '/../vendor/others')
-	->register();
-
-$configurator->addConfig(__DIR__ . '/config/config.neon');
-$configurator->addConfig(__DIR__ . '/config/config.local.neon');
-
-$container = $configurator->createContainer();
-
-return $container;
+if (is_array($cfg))
+	foreach ($cfg as $cfg_file) {
+		$configurator->addConfig($cfg_file);
+	}
+//$configurator->addConfig(__DIR__ . '/../../config/admin/settings.db.neon');

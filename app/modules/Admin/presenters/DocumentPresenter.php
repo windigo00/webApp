@@ -11,7 +11,7 @@ use Nette,
  *
  * @author KuBik
  */
-class DocumentPresenter extends BasePresenterAdmin {
+class DocumentPresenter extends BaseAdminPresenter {
 	protected function createComponentAdminTable() {
 //		var_dump(func_get_args());exit;
 		$table = new AdminTable();

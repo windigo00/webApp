@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Front\Presenters;
+namespace App\Modules\Shop\Presenters;
 
 use Nette,
     App\Model
@@ -10,10 +10,11 @@ use Nette,
 /**
  * Homepage presenter.
  */
-class HomepagePresenter extends BasePresenterFront
+class HomepagePresenter extends BasePresenterShop
 {
 	public function renderDefault()
 	{
+		
 //		$this->template->setFile('1column.latte');
 		$this->template->anyVariable = 'any value';
 	}

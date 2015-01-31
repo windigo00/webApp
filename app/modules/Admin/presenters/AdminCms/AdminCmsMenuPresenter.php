@@ -11,7 +11,7 @@ use App\Model\Menu\Menu,
  *
  * @author KuBik
  */
-class CmsMenuPresenter extends BasePresenterAdmin {
+class AdminCmsMenuPresenter extends AdminCmsPresenter {
 	
 	protected function createComponentCmsMenu() {
 		return new CmsMenu($this);

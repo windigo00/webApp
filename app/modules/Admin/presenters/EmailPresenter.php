@@ -15,6 +15,6 @@ use Nette;
  *
  * @author KuBik
  */
-class EmailPresenter extends SecurePresenter {
+class EmailPresenter extends BaseAdminPresenter {
 	
 }

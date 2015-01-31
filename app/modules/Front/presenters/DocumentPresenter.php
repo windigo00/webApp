@@ -22,17 +22,17 @@ class DocumentPresenter extends BasePresenterFront {
 		return $document;
 	}
 	
-	protected function startup() {
-		parent::startup();
-	}
-	
-	protected function beforeRender() {
-		
-		parent::beforeRender();
-		$tpl = isset($this->params['category']) || isset($this->params['name']) ? 'default' : $this->request->parameters['action'];
-		$this->template->setFile($this->getTplPath(Environment::getContext()->parameters['templates']. 'page/'.$tpl.'.latte'));
-		
-	}
+//	protected function startup() {
+//		parent::startup();
+//	}
+//	
+//	protected function beforeRender() {
+//		
+//		parent::beforeRender();
+//		$tpl = isset($this->params['category']) || isset($this->params['name']) ? 'default' : $this->request->parameters['action'];
+//		$this->template->setFile($this->getTplPath(Environment::getContext()->parameters['templates']. 'page/'.$tpl.'.latte'));
+//		
+//	}
 	
 	public function renderDefault() {
 		$params = $this->getRequest()->getParameters();

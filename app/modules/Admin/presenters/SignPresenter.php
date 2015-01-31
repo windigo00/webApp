@@ -11,9 +11,12 @@ use Nette,
 /**
  * Sign in/out presenters.
  */
-class SignPresenter extends BasePresenterAdmin
+class SignPresenter extends BaseAdminPresenter
 {
-
+	protected function startup() {
+		$this->goingToLog = TRUE;
+		parent::startup();
+	}
 
 	/**
 	 * Sign-in form factory.
@@ -22,11 +25,12 @@ class SignPresenter extends BasePresenterAdmin
 	protected function createComponentSignInForm()
 	{
 		$form = new Nette\Application\UI\Form;
-		$form->addText('username', 'Username:')
+		
+		$form->addText('username', 'Username')
 			->getControlPrototype()->setClass('form-control')
 			->setRequired('Please enter your username.');
 
-		$form->addPassword('password', 'Password:')
+		$form->addPassword('password', 'Password')
 			->getControlPrototype()->setClass('form-control')
 			->setRequired('Please enter your password.');
 
@@ -45,13 +49,14 @@ class SignPresenter extends BasePresenterAdmin
 	public function signInFormSucceeded($form, $values)
 	{
 		if ($values->remember) {
-			$this->getUser()->setExpiration('14 days', FALSE);
+			$this->user->setExpiration('14 days', FALSE);
 		} else {
-			$this->getUser()->setExpiration('20 minutes', TRUE);
+			$this->user->setExpiration('20 minutes', TRUE);
 		}
 
 		try {
-			$this->getUser()->login($values->username, $values->password);
+			$this->user->login($values->username, $values->password);
+			
 			$this->redirect('Dashboard:');
 
 		} catch (Nette\Security\AuthenticationException $e) {
@@ -59,10 +64,22 @@ class SignPresenter extends BasePresenterAdmin
 		}
 	}
 
-
-	public function actionOut()
+	public function actionDefault()
 	{
-		$this->getUser()->logout();
+		if ($this->user->loggedIn)
+			$this->redirect('out');
+		$this->redirect('in');
+	}
+
+	public function renderIn()
+	{
+		if ($this->user->loggedIn)
+			$this->redirect('Dashboard:');
+		$this->layout = 'layout2';
+	}
+	public function renderOut()
+	{
+		$this->getUser()->logout(TRUE);
 		$this->flashMessage('You have been signed out.');
 		$this->redirect('in');
 	}

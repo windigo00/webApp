@@ -1,5 +1,5 @@
 <?php
-namespace App\Modules\Front\Model\Component;
+namespace App\Modules\Shop\Components;
 
 use Nette,
 	Nette\Environment,
@@ -12,8 +12,8 @@ use Nette,
  */
 class Breadcrumbs extends TranslatedControl {
 	
-	protected function setTpl() {
-		$this->template->setFile($this->getTplPath(Environment::getContext()->parameters['templates'].'navigation/breadcrumbs.latte'));
+	protected function setTpl($tplFile = '') {
+		return parent::setTpl('breadcrumbs.latte');
 	}
 	
 	public function render() {

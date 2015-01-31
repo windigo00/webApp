@@ -14,6 +14,7 @@ parameters:
 			icon: wrench
 		user:
 			title: Account Settings
+			icon: user
 			items:
 				acc: 
 					text: User Account
@@ -23,7 +24,3 @@ parameters:
 					text: Logout
 					presenter: Sign
 					icon: off
-		xaasdajklh:
-			text: something else
-			presenter: Settings
-			icon: wrench

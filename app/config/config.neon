@@ -22,10 +22,19 @@ nette:
 	session:
 		expiration: 14 days
 
-
 services:
 #	- App\Model\UserManager
 	- App\RouterFactory
 	router: @App\RouterFactory::createRouter
+	database: App\Management\EntityManager(%doctrine.connection%, %doctrine.entityDir%, %doctrine.devmode%)
 #	authenticator: @App\model\UserManager
-	databaseManager: App\Management\DatabaseManager
+#	databaseManager: App\Management\DatabaseManager
+
+#tracy:
+#	bar: # panely do Debugger baru
+#		- Nette\DI\Diagnostics\ContainerPanel # alias DI Container baru
+#		- IncludePanel
+#		- XDebugHelper('myIdeKey')
+#		- MyPanel(@MyService)
+#	blueScreen: # panely do Laděnky
+#		- DoctrinePanel::renderException

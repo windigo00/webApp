@@ -3,19 +3,20 @@
 namespace App\Modules\Admin\Presenters;
 
 use Nette,
-    App\Model
-        ;
+    App\Model,
+	Model\Document\Document,
+	App\Admin\Model\Language
+		;
 
 
 /**
  * Dashboard presenter.
  */
-class DashboardPresenter extends BasePresenterAdmin
+class DashboardPresenter extends BaseAdminPresenter
 {
-
 	public function renderDefault()
 	{
-		$tmp = Model\Document\Document::getById(1);
+		$tmp = Language::getAll();
 		$this->template->anyVariable = $tmp;
 	}
 

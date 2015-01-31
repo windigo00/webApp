@@ -10,7 +10,7 @@ use Nette,
  *
  * @author KuBik
  */
-class UserPresenter extends SecurePresenter {
+class UserPresenter extends BaseAdminPresenter {
 	public function renderProfile() {
 		$this->template->user = $this->getUser();
 	}

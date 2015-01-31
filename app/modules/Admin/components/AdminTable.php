@@ -9,9 +9,8 @@ use App\Model\Component\TableComponent
  * @author KuBik
  */
 class AdminTable extends TableComponent {
-	protected function setTpl() {
-		$this->template
-			->setFile(dirname(__DIR__).'/templates/components/table.latte');
+	protected function setTpl($tplFile = '') {
 		$this->template->table = $this->data;
+		return parent::setTpl('table.latte');
 	}
 }

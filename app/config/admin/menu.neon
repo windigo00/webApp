@@ -12,3 +12,19 @@ parameters:
 			text: Settings
 			presenter: Settings
 			icon: icon-wrench
+		users:
+			icon: icon-group
+			text: User admin
+			items:
+				users:
+					presenter: User
+					icon: icon-user
+					text: Users
+				groups:
+					presenter: UserGroups
+					icon: icon-group
+					text: User groups
+				privileges:
+					presenter: UserPriviliges
+					icon: icon-lock
+					text: Privileges

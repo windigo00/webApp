@@ -10,8 +10,7 @@ use Nette\Application\UI\Control,
  * @author KuBik
  */
 class CmsMenu  extends Menu{
-	public function setTpl() {
-		$this->template
-			->setFile(dirname(__DIR__).'/../templates/components/cms_menu.latte');
+	protected function setTpl($tplFile = '') {
+		return parent::setTpl('cms_menu.latte');
 	}
 }

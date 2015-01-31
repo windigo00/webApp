@@ -24,6 +24,9 @@ class RouterFactory
                 
 		$router[] = $adminRouter = new RouteList('Admin');
 		$adminRouter[] = new Route('admin/<presenter>/<action>/[<id>]', 'Dashboard:default');
+		$router[] = $adminRouter = new RouteList('Shop');
+		$adminRouter[] = new Route('shop/[<presenter>/][<action>/][<id>]', 'Homepage:default');
+		$adminRouter[] = new Route('shop/<presenter>/<action>/[<id>]', 'Homepage:default');
 
 		$router[] = $frontRouter = new RouteList('Front');
 		$frontRouter[] = new Route('[<lang [a-z]{2}>[-<sublang>]/][<category>/]<name>[/page-<page=0>]', 'Document:default');
