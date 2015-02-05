@@ -11,7 +11,7 @@ use Nette,
 /**
  * Sign in/out presenters.
  */
-class SignPresenter extends BasePresenterFront
+class SignPresenter extends BaseFrontPresenter
 {
 
 

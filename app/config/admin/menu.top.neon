@@ -15,6 +15,7 @@ parameters:
 		user:
 			title: Account Settings
 			icon: user
+			text: user.nick
 			items:
 				acc: 
 					text: User Account

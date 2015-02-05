@@ -1,0 +1,4 @@
+<li>
+	<a {if $item->presenter}href="{plink $item->presenter.':'}"{/if}>
+		{if $item->icon}<i class="halflings-icon {$item->icon}"></i>{/if} {_$item->text}</a>
+</li>

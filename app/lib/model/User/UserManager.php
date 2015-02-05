@@ -10,6 +10,7 @@ use Nette,
  */
 class UserManager extends Nette\Object implements Nette\Security\IAuthenticator, \Nette\Security\IAuthorizator
 {
+	private static $_inst;
 	protected $database;
 	protected $users = array();
 	protected $active = array();
@@ -17,6 +18,7 @@ class UserManager extends Nette\Object implements Nette\Security\IAuthenticator,
 	public function __construct(Nette\Database\Context $database)
 	{
 		$this->database = \App\Model\User::getRepository($database)->repo;
+		self::$_inst = $this;
 	}
 
 	/**
@@ -56,6 +58,12 @@ class UserManager extends Nette\Object implements Nette\Security\IAuthenticator,
 			static::COLUMN_PASSWORD_HASH => Passwords::hash($password),
 		));
 	}
+	
+	public static function getList() {
+		return self::$_inst->database->findAll();
+	}
+
+
 	/**
 	 * Performs a role-based authorization.
 	 * @param  string  role

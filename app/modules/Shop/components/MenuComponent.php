@@ -12,11 +12,7 @@ use Nette,
  * @author KuBik
  */
 class MenuComponent extends \App\Model\Component\MenuComponent {
-//	const TPL_PATH = '/../../../../design/default/navigation/';
-	/**
-	 *
-	 * @var App\Model\DBObject
-	 */
+	
 	protected $data;
 	public function render() {
 		$data = func_get_args();

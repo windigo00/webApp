@@ -22,7 +22,6 @@ abstract class Menu extends AdminControl{
 		return $data;
 	}
 
-
 	public function render() {
 		$data = \App\Configs\AppConfig::getParameter($this->getMenu());
 		$this->template->menu = self::process($data);
@@ -42,6 +41,14 @@ class MenuItem {
 		elseif ($param == 'name'){
 			return $this->name;
 		}
+//		elseif ($param == 'text'){
+//			if (isset($this->data[$param]) && strpos($this->data[$param], '.') > 0) {
+//				$tmp = explode('.', $this->data[$param]);
+//				$prop = ucfirst($tmp[1]);
+//				$this->data[$param] = $this->template->{$tmp[0]}->get{$prop}();
+//			}
+//			return $this->data[$param];
+//		}
 		elseif (isset ($this->data[$param])){
 //			if ($param == 'presenter' && !empty($this->data[$param]))
 //			{

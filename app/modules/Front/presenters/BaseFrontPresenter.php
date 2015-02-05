@@ -15,7 +15,7 @@ use Nette\Environment,
  *
  * @author KuBik
  */
-abstract class BasePresenterFront extends BasePresenter {
+abstract class BaseFrontPresenter extends BasePresenter {
 
 	public function createComponentNavigation() {
 		$ctrl = new MenuComponent();

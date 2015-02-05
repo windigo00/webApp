@@ -24,6 +24,7 @@ class EntityManager extends \Nette\Database\Context{
 	public function __construct($connection, $entityDir, $devmode = FALSE) {
 		$config = Setup::createAnnotationMetadataConfiguration(array($entityDir), $devmode);
 		$this->_em = \Doctrine\ORM\EntityManager::create($connection, $config);
+		self::$_instance = $this;
 	}
 	
 	public static function set($cfg) {
@@ -35,8 +36,8 @@ class EntityManager extends \Nette\Database\Context{
 	 * 
 	 * @return \Doctrine\ORM\EntityManager
 	 */
-	public function get() {
-		return $this->_em;
+	public static function getEm() {
+		return self::$_instance->_em;
 	}
 	public function getRepository($classStr) {
 		return $this->_em->getRepository($classStr);

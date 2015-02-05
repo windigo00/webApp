@@ -1,26 +1,11 @@
 <div class="nav-no-collapse header-nav">
 	<ul class="nav pull-right">
-
 		{foreach $menu as $item}
 			<li {if $item->hasChildren()}class="dropdown" {else}class="hidden-phone" {/if}>
 				{if $item->hasChildren()}
-					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" title="{_$item->text}" {if $item->presenter}href="{plink $item->presenter.':'}"{/if}>
-						<i class="halflings-icon white {$item->icon}"></i> {$user->getNick()} <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						{if $item->title}
-							<li class="dropdown-menu-title">
-								<span>{$item->title}</span>
-							</li>
-						{/if}
-						{foreach $item->children as $subitem}
-							<li><a {if $subitem->presenter}href="{plink $subitem->presenter.':'}"{/if}><i class="halflings-icon {$subitem->icon}"></i> {_$subitem->text}</a></li>
-
-						{/foreach}
-					</ul>
+					{include 'top-menu/submenu.latte', item => $item}
 				{else}
-					<a class="btn" {if $item->presenter}href="{plink $item->presenter.':'}"{/if} title="{_$item->text}">
-						<i class="halflings-icon white {$item->icon}"></i>
-					</a>
+					{include 'top-menu/item.latte', item => $item}
 				{/if}
 			</li>
 		{/foreach}

@@ -1,4 +1,10 @@
 $(function(){
+	//init grido
+	$('.grido').grido({ajax: true});
+//	$.nette.init();
+});
+
+$(function(){
 
 });
 

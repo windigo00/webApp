@@ -9,3 +9,4 @@ vendor/*
 !web.config
 /!--dev--!/
 /www/doctrine-example/
+/www/js/grido/

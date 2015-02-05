@@ -1,6 +1,7 @@
 <?php
 namespace App\Model;
 
+use Grido\DataSources\IDataSource;
 /**
  * Description of Entity
  *
@@ -14,6 +15,19 @@ class Entity{
 		$this->repo = $repo;
 	}
 
+	public function __get($name) {
+		if (property_exists($this, $name)){
+			return $this->$name;
+		}
+		throw new \Exception('property \''.$name.'\' not exist!');
+	}
+	public function __set($name, $value) {
+		if (property_exists($this, $name)){
+			$this->$name = $value;
+		} else {
+			throw new \Exception('property \''.$name.'\' not exist!');
+		}
+	}
 	public function __call($method, $params) {
 
 		$getset = substr($method, 0, 3);
@@ -43,17 +57,49 @@ class Entity{
 	public static function get($id, $lockMode = \Doctrine\DBAL\LockMode::NONE, $lockVersion = null) {
 		return static::$_em->getRepository(get_called_class())->find($id, $lockMode, $lockVersion);
 	}
+	/**
+	 * 
+	 * @param \App\Management\EntityManager $cnt
+	 * @return \static
+	 */
 	public static function getRepository(\App\Management\EntityManager $cnt = null) {
-		if (self::$_em) {
-			if (!$cnt) {
+		if ($cnt == NULL) {
+			if (self::$_em == NULL) {
+				$cnt = self::$_em = \App\Management\EntityManager::getEm();
+			} else {
 				$cnt = self::$_em;
 			}
 		} else {
-			if ($cnt) {
-				self::$_em = $cnt;
-			}
+			self::$_em = $cnt;
 		}
+		
+		dump($cnt);
 		$ret = new static($cnt->getRepository(get_called_class()));
 		return $ret;
 	}
+
+//	public function filter(array $condition) {
+//		if (empty($condition)) return $this;
+//	}
+//
+//	public function getCount() {
+//		return 5;
+//	}
+//
+//	public function getData() {
+//		
+//	}
+//
+//	public function limit($offset, $limit) {
+//		throw new \Nette\NotImplementedException;
+//	}
+//
+//	public function sort(array $sorting) {
+//		throw new \Nette\NotImplementedException;
+//	}
+//
+//	public function suggest($column, array $conditions, $limit) {
+//		throw new \Nette\NotImplementedException;
+//	}
+
 }

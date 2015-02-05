@@ -13,24 +13,23 @@ use Nette,
  * @author KuBik
  */
 class MenuComponent extends Component\MenuComponent {
-//	const TPL_PATH = '/../../../../design/default/navigation/';
 	/**
 	 *
-	 * @var App\Model\DBObject
+	 * @var App\Model\Entity
 	 */
 	protected $data;
-	public function render() {
-		$data = func_get_args();
-		if (!empty($data)) {
-			$data = $data[0];
-		}
-		$params = $this->presenter->request->parameters;
-		$path = (!empty($params['category']) ? $params['category'].'/':'').
-				(!empty($params['name']) ? $params['name']:'');
-		$menu = Menu::getByPath($path);
-		$this->template->menu = $menu->getRoot();
-		parent::render();
-	}
+//	public function render() {
+//		$data = func_get_args();
+//		if (!empty($data)) {
+//			$data = $data[0];
+//		}
+//		$params = $this->presenter->request->parameters;
+//		$path = (!empty($params['category']) ? $params['category'].'/':'').
+//				(!empty($params['name']) ? $params['name']:'');
+//		$menu = Menu::getByPath($path);
+//		$this->template->menu = $menu;
+//		parent::render();
+//	}
 
 	protected function setTpl($tplFile = '') {
 		return parent::setTpl('../navigation/menu.latte');

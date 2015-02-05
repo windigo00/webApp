@@ -73,7 +73,9 @@
 			
 				{control breacrumbs}
 			
-<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
+		<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">
+			<button type="button" class="close" data-dismiss="alert">×</button>{_$flash->message}</div>
+		
 		{include content}
 	</div><!--/.fluid-container-->
 	
@@ -115,7 +117,6 @@
 		<script src="{$basePath}/metro-dashboard/js/jquery-ui-1.10.0.custom.min.js"></script>
 
 		<script src="{$basePath}/metro-dashboard/js/jquery.ui.touch-punch.js"></script>
-
 		<script src="{$basePath}/metro-dashboard/js/modernizr.js"></script>
 
 		<script src="{$basePath}/metro-dashboard/js/bootstrap.min.js"></script>
@@ -164,6 +165,7 @@
 
 		<script src="{$basePath}/metro-dashboard/js/custom.js"></script>
 		<!-- end: JavaScript-->
+		<!--<script>jQuery.noConflict();</script>-->
         
         <!--script src="{*$basePath*}/js/netteForms.js"></script>
         <script src="{*$basePath*}/js/main.js"></script>-->

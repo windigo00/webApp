@@ -10,7 +10,7 @@ use Nette,
 /**
  * Homepage presenter.
  */
-class HomepagePresenter extends BasePresenterFront
+class HomepagePresenter extends BaseFrontPresenter
 {
 	public function renderDefault()
 	{

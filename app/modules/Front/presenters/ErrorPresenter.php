@@ -10,4 +10,8 @@ use Nette,
 /**
  * Homepage presenter.
  */
-class ErrorPresenter extends BasePresenterFront{}
+class ErrorPresenter extends BaseFrontPresenter{
+	public function renderDefault() {
+//		$this->template->setFile($file)
+	}
+}

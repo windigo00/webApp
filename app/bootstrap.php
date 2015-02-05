@@ -28,11 +28,15 @@ $configurator->addConfig(__DIR__ . '/config/settings.neon');
 $configurator->addConfig(__DIR__ . '/config/settings.db.neon');
 $tmp = explode('/', $_SERVER['REQUEST_URI']);
 $module = strtolower($tmp[1]);
+if (!in_array($module, array('front','shop','admin'))) {
+	$module = 'front';
+}
 
 //$moduleCfg = __DIR__ . '/config/'.$module.'/settings.neon';
 //if (file_exists($moduleCfg)) $configurator->addConfig($moduleCfg);
 //$moduleCfg = __DIR__ . '/config/'.$module.'/settings.db.neon';
 //if (file_exists($moduleCfg)) $configurator->addConfig($moduleCfg);
+$module = $module == '' ? 'front' : $module;
 $modCfg = __DIR__.'/modules/'.  ucfirst($module).'/bootstrap.php';
 if (file_exists($modCfg))
 	require $modCfg;

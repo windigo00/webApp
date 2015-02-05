@@ -11,7 +11,7 @@ use Nette\Environment,
  *
  * @author KuBik
  */
-class DocumentPresenter extends BasePresenterFront {
+class DocumentPresenter extends BaseFrontPresenter {
 	
 	protected function getDocument($path) {
 		$document = Document::getByPath($path);
