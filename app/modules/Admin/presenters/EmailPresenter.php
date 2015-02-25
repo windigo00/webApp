@@ -16,5 +16,5 @@ use Nette;
  * @author KuBik
  */
 class EmailPresenter extends BaseAdminPresenter {
-	
+	public function renderList() {}
 }

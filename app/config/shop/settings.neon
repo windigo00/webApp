@@ -6,7 +6,7 @@
 #
 parameters:
 	templates: /design/shop/default/
-
+	scriptPath: /www/coat/shop/default/
 services:
 	- App\Shop\Model\UserManager
 	authenticator: @App\Shop\model\UserManager

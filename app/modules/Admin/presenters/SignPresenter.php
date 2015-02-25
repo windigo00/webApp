@@ -3,8 +3,7 @@
 namespace App\Modules\Admin\Presenters;
 
 use Nette,
-    App\Model,
-    App\Model\Presenters\BasePresenter
+	App\Model\TranslatedForm
         ;
 
 
@@ -13,32 +12,43 @@ use Nette,
  */
 class SignPresenter extends BaseAdminPresenter
 {
-	protected function startup() {
-		$this->goingToLog = TRUE;
-		parent::startup();
-	}
 
+	/**
+	 * password reset form factory.
+	 * @return Nette\Application\UI\Form
+	 */
+	protected function createComponentResetForm()
+	{
+		$form = new TranslatedForm;
+		$trans = $form->getTranslator();
+		$form->addText('email', 'Email')
+			->getControlPrototype()->addAttributes(array('placeholder'=> $trans->translate('Please enter your email.')))
+			->setRequired('Please enter your email.');
+		$form->addSubmit('send', 'Send reset email');
+		
+		// call method signInFormSucceeded() on success
+		$form->onSuccess[] = $this->resetFormSucceeded;
+		return $form;
+	}
 	/**
 	 * Sign-in form factory.
 	 * @return Nette\Application\UI\Form
 	 */
 	protected function createComponentSignInForm()
 	{
-		$form = new Nette\Application\UI\Form;
-		
+		$form = new TranslatedForm;
+		$trans = $form->getTranslator();
 		$form->addText('username', 'Username')
-			->getControlPrototype()->setClass('form-control')
-			->setRequired('Please enter your username.');
+			->getControlPrototype()->addAttributes(array('placeholder'=> $trans->translate('type username')))
+			->setRequired($trans->translate('Please enter your username.'));
 
 		$form->addPassword('password', 'Password')
-			->getControlPrototype()->setClass('form-control')
-			->setRequired('Please enter your password.');
+			->getControlPrototype()->addAttributes(array('placeholder'=> 'type password'))
+			->setRequired($trans->translate('Please enter your password.'));
 
-		$form->addCheckbox('remember', 'Keep me signed in')
-				->getControlPrototype()->setClass('checkbox');
+		$form->addCheckbox('remember', $trans->translate('Remember Me'));
 
-		$form->addSubmit('send', 'Sign in')
-				->getControlPrototype()->setClass('btn btn-lg btn-success btn-block');
+		$form->addSubmit('send', $trans->translate('Sign in'));
 
 		// call method signInFormSucceeded() on success
 		$form->onSuccess[] = $this->signInFormSucceeded;
@@ -56,12 +66,23 @@ class SignPresenter extends BaseAdminPresenter
 
 		try {
 			$this->user->login($values->username, $values->password);
-			
-			$this->redirect('Dashboard:');
+			if ($this->getParam('backlink')) {
+				$this->getApplication()->restoreRequest($this->getParam('backlink'));
+			} else {
+				$this->redirect('Dashboard:');
+			}
 
 		} catch (Nette\Security\AuthenticationException $e) {
 			$form->addError($e->getMessage());
+			$this->redirect('this');
 		}
+	}
+	public function resetFormSucceeded($form, $values)
+	{
+		//try send email
+		
+		$this->flashMessage('A new password was sent to your email address. Please check your email and click Back to Login.');
+		$this->redirect('in');
 	}
 
 	public function actionDefault()
@@ -70,11 +91,17 @@ class SignPresenter extends BaseAdminPresenter
 			$this->redirect('out');
 		$this->redirect('in');
 	}
+	public function actionReset()
+	{
+		$this->layout = 'layout2';
+	}
 
 	public function renderIn()
 	{
-		if ($this->user->loggedIn)
+		if ($this->user->loggedIn) {
 			$this->redirect('Dashboard:');
+		}
+		
 		$this->layout = 'layout2';
 	}
 	public function renderOut()

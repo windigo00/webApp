@@ -1,0 +1,3 @@
+<a {if $item->presenter}href="{plink $item->presenter.':'}"{/if} title="{if $item->label}{_$item->label}{else}{_$item->text}{/if}">
+	<i class="icon-{$item->icon} white"></i><span class="hidden-tablet"> {_$item->text}</span>
+</a>

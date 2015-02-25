@@ -1,7 +1,7 @@
 <?php
 namespace App\Admin\Model;
-use Doctrine\ORM\Mapping AS ORM,
-	Doctrine\Common\Collections\ArrayCollection;
+
+use Doctrine\ORM\Mapping AS ORM;
 
 /**
  * Description of Language

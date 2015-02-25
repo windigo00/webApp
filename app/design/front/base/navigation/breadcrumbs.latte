@@ -1,0 +1,8 @@
+<!-- Page Heading/Breadcrumbs -->
+<ol class="breadcrumb">
+    <li><a href="{plink Homepage:}">{_'Home'}</a>
+    </li>
+    {foreach $breadcrumbs as $item}
+    <li class="{if $item->isActive()}active{/if}">{_$item->getLabel()}</li>
+    {/foreach}
+</ol>

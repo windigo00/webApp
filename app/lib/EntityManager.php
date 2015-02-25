@@ -14,32 +14,29 @@ class EntityManager extends \Nette\Database\Context{
 	 *
 	 * @var \Doctrine\ORM\EntityManager
 	 */
-	protected $_em;
-	/**
-	 *
-	 * @var EntityManager
-	 */
-	public static $_instance;
+	public static $config;
 	
 	public function __construct($connection, $entityDir, $devmode = FALSE) {
-		$config = Setup::createAnnotationMetadataConfiguration(array($entityDir), $devmode);
-		$this->_em = \Doctrine\ORM\EntityManager::create($connection, $config);
-		self::$_instance = $this;
+		if (self::$config === NULL) {
+			$config = Setup::createAnnotationMetadataConfiguration(array($entityDir), $devmode);
+			self::$config = \Doctrine\ORM\EntityManager::create($connection, $config);
+			
+		}
 	}
 	
-	public static function set($cfg) {
-		if (!self::$_instance)
-			self::$_instance = new self($cfg);
+//	public static function set($cfg) {
+//		if (!self::$_instance)
+//			self::$_instance = new self($cfg);
 //		return self::$_instance->ge;
-	}
+//	}
 	/**
 	 * 
 	 * @return \Doctrine\ORM\EntityManager
 	 */
-	public static function getEm() {
-		return self::$_instance->_em;
+	public static function get() {
+		return self::$config;
 	}
 	public function getRepository($classStr) {
-		return $this->_em->getRepository($classStr);
+		return self::get()->getRepository($classStr);
 	}
 }

@@ -25,7 +25,7 @@ nette:
 services:
 #	- App\Model\UserManager
 	- App\RouterFactory
-	router: @App\RouterFactory::createRouter
+	router: @App\RouterFactory::createRouter(%routes%)
 	database: App\Management\EntityManager(%doctrine.connection%, %doctrine.entityDir%, %doctrine.devmode%)
 #	authenticator: @App\model\UserManager
 #	databaseManager: App\Management\DatabaseManager

@@ -1,19 +1,20 @@
 <?php
 namespace App\Model;
 
-use Grido\DataSources\IDataSource;
+use App\Management\EntityManager;
+//use Grido\DataSources\IDataSource;
 /**
  * Description of Entity
  *
  * @author KuBik
  */
-class Entity{
-	protected static $_em;
-	public $repo;
+class Entity {
+//	protected static $_em;
+//	protected $repo;
 
-	public function __construct($repo = NULL) {
-		$this->repo = $repo;
-	}
+//	public function __construct($repo = NULL) {
+//		$this->repo = $repo;
+//	}
 
 	public function __get($name) {
 		if (property_exists($this, $name)){
@@ -42,40 +43,65 @@ class Entity{
 				break;
 			case 'set':
 				if (property_exists($this, $rest)){
-					$this->$rest = $params;
+					$this->$rest = $params[0];
 					return $this;
 				} else {
 					throw new \Exception("name '{$rest}' not defied in ".get_class($this)."!");
 				}
 				break;
 			default :
-				return $this->$method($params);
+				// call native methods of repository
+				// shortcut
+//				dump($this);exit;
+				return call_user_func($this->resource->$method, $params);
+
 				break;
 		}
 	}
 	
 	public static function get($id, $lockMode = \Doctrine\DBAL\LockMode::NONE, $lockVersion = null) {
-		return static::$_em->getRepository(get_called_class())->find($id, $lockMode, $lockVersion);
+		return static::getRepository()->find($id, $lockMode, $lockVersion);
 	}
 	/**
 	 * 
 	 * @param \App\Management\EntityManager $cnt
 	 * @return \static
 	 */
-	public static function getRepository(\App\Management\EntityManager $cnt = null) {
+	public static function getRepository(EntityManager $cnt = null) {
 		if ($cnt == NULL) {
-			if (self::$_em == NULL) {
-				$cnt = self::$_em = \App\Management\EntityManager::getEm();
-			} else {
-				$cnt = self::$_em;
-			}
-		} else {
-			self::$_em = $cnt;
+			$cnt = EntityManager::get();
 		}
 		
-		dump($cnt);
-		$ret = new static($cnt->getRepository(get_called_class()));
+//		dump($cnt);
+		$ret = $cnt->getRepository(get_called_class());
 		return $ret;
+	}
+	/**
+	 * Creates Query builder
+	 * @return \Doctrine\ORM\QueryBuilder
+	 */
+	public static function createQB(){
+		$em = EntityManager::get();
+		return $em->createQueryBuilder();
+	}
+	
+	public static function getClass() {
+		return get_called_class();
+	}
+	
+	public function flush() {
+		EntityManager::get()->flush();
+	}
+	public function persist($autoFlush = TRUE) {
+		EntityManager::get()->persist($this);
+		if ($autoFlush) {
+			$this->flush();
+		}
+		return $this;
+	}
+	
+	public function create() {
+		$em = EntityManager::get();
 	}
 
 //	public function filter(array $condition) {

@@ -2,12 +2,9 @@
 
 namespace App\Modules\Front\Presenters;
 
-use Nette\Environment,
-	Nette\Database\Context,
-	App\Modules\Front\Components\MenuComponent,
+use App\Modules\Front\Components\MenuComponent,
 	App\Modules\Front\Components\Breadcrumbs,
 	App\Model\Presenters\BasePresenter
-
 ;
 
 /**

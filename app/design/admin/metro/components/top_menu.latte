@@ -1,0 +1,16 @@
+<div class="nav-no-collapse header-nav">
+	<ul class="nav pull-right">
+		{foreach $menu as $item}
+			<li class="{if $item->hasChildren() || $item->component}dropdown{/if} hidden-phone">
+				{if $item->hasChildren()}
+					{include 'top-menu/submenu.latte', item => $item}
+				{elseif $item->component}
+					{include 'top-menu/component.latte', item => $item}
+				{else}
+					{include 'top-menu/item.latte', item => $item}
+				{/if}
+			</li>
+		{/foreach}
+	</ul>
+</div>
+<!-- end: Header Menu -->

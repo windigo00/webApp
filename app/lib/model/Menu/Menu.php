@@ -1,11 +1,8 @@
 <?php
 namespace App\Model\Menu;
 
-use Nette,
-	App\Model\SitePath,
-	Doctrine\ORM\Mapping AS ORM,
-	Doctrine\Common\Collections\ArrayCollection
-		;
+use Doctrine\ORM\Mapping AS ORM
+	;
 /**
  * @ORM\Entity
  * @Table(name="menu_site_path")

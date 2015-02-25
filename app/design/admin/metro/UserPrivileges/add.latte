@@ -1,0 +1,39 @@
+{block #content}
+<div class="row-fluid sortable">
+	<div class="box span12">
+		<div class="box-header" data-original-title>
+			<h2><i class="halflings-icon edit"></i><span class="break"></span>{_'Add new item'}</h2>
+			
+		</div>
+		<div class="box-content">
+			{form addForm, 'class'=>"form-horizontal"}
+				<fieldset>
+					{foreach $form->controls as $input}
+						{if $input->control->type == 'hidden'}
+							{input $input}
+						{elseif $input->control->type == 'submit'}
+					<div class="form-actions">
+						{input $input, class=>'btn btn-primary'}
+						<button class="btn">Cancel</button>
+					</div>
+						{else}
+					<div class="control-group">
+						{label $input, class=>'control-label' /}
+						<div class="controls">
+							{if $input->required}<div class="input-append">{/if}
+								{input $input ,class=>'input-xlarge'}
+							{if $input->required}<span class="add-on blue">*</span>
+							</div>{/if}
+						</div>
+					</div>
+						{/if}
+					{/foreach}
+					
+				</fieldset>
+			{/form}
+
+		</div>
+	</div><!--/span-->
+
+</div><!--/row-->
+{/block}

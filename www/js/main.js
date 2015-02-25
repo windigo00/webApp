@@ -1,7 +1,13 @@
 $(function(){
 	//init grido
 	$('.grido').grido({ajax: true});
-//	$.nette.init();
+	
+	$("a.ajax").live("click", function (event) {
+		event.preventDefault();
+		$.get(this.href);
+	});
+	
+	$.nette.init();
 });
 
 $(function(){

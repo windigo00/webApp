@@ -1,0 +1,48 @@
+{block #head}
+<style type="text/css">
+	body {
+		background-image: url({$basePath}/img/calm-sea-wallpaper.jpg) !important; 
+		background-position: center;
+	}
+</style>
+{/block}
+
+{block content}
+<div class="container-fluid-full">
+		<div class="row-fluid">
+					
+			<div class="row-fluid">
+				<div class="login-box">
+					<div class="icons">
+						<a href="{link default}"><i class="halflings-icon home"></i></a>
+						<a href="{link default}"><i class="halflings-icon cog"></i></a>
+					</div>
+					{if $flashes}
+					<div class="box-content">
+					<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">{_$flash->message}</div>
+					</div>
+					{/if}
+					<h2>{_'Reset password to your account'}</h2>
+					{form resetForm, class=>"form-horizontal"}
+						<fieldset>
+							
+							<div class="input-prepend" title="{_"Email"}">
+								<span class="add-on"><i class="halflings-icon email"></i></span>
+								{input email, class=>'form-control input-large span10'}
+							</div>
+							<div class="clearfix"></div>
+							<div class="button-login">
+								{input send, class=>"btn btn-lg btn-primary"}
+								{input do}
+							</div>
+							<div class="clearfix"></div>
+					{/form}
+					
+				</div><!--/span-->
+			</div><!--/row-->
+			
+
+	</div><!--/.fluid-container-->
+	
+		</div><!--/fluid-row-->
+{/block}

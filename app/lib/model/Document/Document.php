@@ -1,22 +1,11 @@
 <?php
 
-namespace App\Model\Document;
+namespace App\Model;
 
-use Nette,
-	App\Model\Document\View,
-	App\Model\SitePath,
-	App\Model\User\User,
-	Doctrine\ORM\Mapping\Entity,
-	Doctrine\ORM\Mapping\Column,
-	Doctrine\ORM\Mapping\OneToOne,
-	Doctrine\ORM\Mapping\ManyToOne,
-	Doctrine\ORM\Mapping\Id,
-	Doctrine\Common\Collections\ArrayCollection
-		;
 
 /**
  * @Entity
- * @Table(name="document")
+ * @Table(name="documents")
  **/
 class Document extends \App\Model\Entity {
 	/** 
@@ -25,29 +14,25 @@ class Document extends \App\Model\Entity {
 	**/
 	protected $id;
 	/** @Column(type="string") **/
-	protected $docname;
+	protected $uid; //Unique id of document
 	/** @Column(type="text") **/
-	protected $template;
+//	protected $template;
 	/**
      * @OneToOne(targetEntity="User")
-     * @JoinColumn(name="author", referencedColumnName="id")
+     * @JoinColumn(name="autor", referencedColumnName="id")
      **/
-	protected $autor;
-	/**
-     * @ManyToOne(targetEntity="Acl")
-     * @JoinColumn(name="rights", referencedColumnName="user_id")
-     **/
-	protected $rights;
+//	protected $autor;
+	
 	/** @Column(type="integer") **/
-	protected $typ;
+//	protected $type;
 	/** @Column(type="integer") **/
-	protected $lang;
+//	protected $lang;
 	/** @Column(type="datetimetz") **/
-	protected $created;
+//	protected $created;
 	/** @Column(type="datetimetz") **/
-	protected $edited;
+//	protected $edited;
 	/** @Column(type="integer") **/
-	protected $views;
+//	protected $views;
 
 	/**
 	 * adds one view for document
@@ -64,7 +49,7 @@ class Document extends \App\Model\Entity {
 		/**
 		 * @var \Doctrine\ORM\EntityManager
 		 */
-		$sel = self::getRepository()->repo->findByPath($path);
+		$sel = self::getRepository()->findByPath($path);
 		foreach($sel as $tmp){
 			var_dump($tmp);
 		}

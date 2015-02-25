@@ -1,0 +1,58 @@
+{form $form}
+<ul class=error n:if="$form->ownErrors">
+	<li n:foreach="$form->ownErrors as $error">{$error}</li>
+</ul>
+
+<table class="table table-hover">
+    {foreach $form->controls as $input}
+		{if $input instanceof \Nette\Forms\Controls\SelectBox && $input->name == 'parent'}
+<tr n:class="$input->required ? required">
+	<th>{label $input /}</th>
+	<td>
+		{include 'menuselect.latte', tree => $tree, input => $input, itemId => $itemId, path => ''}
+	</td>
+</tr>
+		{else}
+			{if $input->control->type != 'hidden'}
+<tr n:class="$input->required ? required">
+	<th>{label $input /}</th>
+	<td>{input $input} <span class=error n:ifcontent>{$input->error}</span></td>
+</tr>
+			{else}
+				{input $input}
+			{/if}
+        {/if}
+    {/foreach}
+</table>
+	
+<form class="form-horizontal" action="index.html" method="post">
+	<fieldset>
+		{foreach $form->controls as $input}
+			{if $input instanceof \Nette\Forms\Controls\SelectBox && $input->name == 'parent'}
+			{else}
+				{if $input->control->type != 'hidden'}
+				{else}
+					{input $input}
+				{/if}
+			{/if}
+		{/foreach}
+		<div class="input-prepend" title="Username">
+			<span class="add-on"><i class="halflings-icon user"></i></span>
+			<input class="input-large span10" name="username" id="username" type="text" placeholder="type username"/>
+		</div>
+		<div class="clearfix"></div>
+
+		<div class="input-prepend" title="Password">
+			<span class="add-on"><i class="halflings-icon lock"></i></span>
+			<input class="input-large span10" name="password" id="password" type="password" placeholder="type password"/>
+		</div>
+		<div class="clearfix"></div>
+
+		<label class="remember" for="remember"><input type="checkbox" id="remember" />Remember me</label>
+
+		<div class="button-login">	
+			<button type="submit" class="btn btn-primary">Login</button>
+		</div>
+		<div class="clearfix"></div>
+</form>
+{/form}

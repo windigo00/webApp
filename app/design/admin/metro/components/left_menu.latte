@@ -1,0 +1,15 @@
+<div class="nav-collapse sidebar-nav">
+	<ul class="nav nav-tabs nav-stacked main-menu">
+		{foreach $menu as $item}
+		<li>
+			{if $item->hasChildren()}
+				{include 'left-menu/submenu.latte', item => $item}
+			{elseif $item->component}
+				{include 'left-menu/component.latte', item => $item}
+			{else}
+				{include 'left-menu/item.latte', item => $item}
+			{/if}
+		</li>
+		{/foreach}
+	</ul>
+</div>

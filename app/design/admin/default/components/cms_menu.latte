@@ -1,0 +1,24 @@
+{foreach $menus as $menu}
+	<div class="tree panel panel-default">
+		<ul class="">
+	{block #tree}
+		{?$c = $menu->getChildren()}
+	<li>
+		<span class="item">
+			{if !empty($c)}<i class="glyphicon glyphicon-minus-sign"></i> {/if}
+			{$menu->getName()}
+			<a href="{link delete, $menu->getId()}" data-action="delete" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+			<a href="{link edit, $menu->getId()}" data-action="edit" class="pull-right"><span class="glyphicon glyphicon-edit"></span></a>
+		</span>
+		{if !empty($c)}
+			<ul>
+		{foreach $c as $item}
+			{include #tree, menu => $item}
+		{/foreach}
+			</ul>
+		{/if}
+	</li>
+	{/block}
+		</ul>
+	</div>
+{/foreach}

@@ -2,24 +2,24 @@
 namespace App\Model\Presenters;
 
 use Nette
-		;
+	;
 /**
  * Description of SecurePresenter
  *
  * @author KuBik
  */
 abstract class SecurePresenter extends BasePresenter {
-	protected $goingToLog = false;
 	protected function startup() {
 		parent::startup();
-		if (!$this->goingToLog) {
-			
-			if (!$this->user->loggedIn || !$this->getUser()->isAllowed($this->presenter->name, $this->presenter->action)) {
-				if ($this->user->logoutReason === Nette\Security\IUserStorage::INACTIVITY) {
+//		if (!$this->goingToLog) {
+			if (!$this->user->loggedIn) {
+				if ($this->user->logoutReason === Security\IUserStorage::INACTIVITY) {
 					$this->flashMessage('You have been signed out due to inactivity. Please sign in again.');
 				}
 				$this->redirect('Sign:in', array('backlink' => $this->storeRequest()));
+			} elseif (!$this->getUser()->isAllowed($this->presenter->name, $this->presenter->action)) {
+				$this->redirect('Security:notAllowed', array('backlink' => $this->storeRequest()));
 			}
-		}
+//		}
 	}
 }

@@ -27,15 +27,18 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	 */
 	public function formatLayoutTemplateFiles() {
 		$layout = $this->layout ? $this->layout : 'layout';
-		$presenter = explode(':', $this->getName());
+//		$presenter = explode(':', $this->getName());
 		$tpls = $this->context->parameters['templates'];
-		$file = realpath(getcwd()."/..{$tpls}");
-		return array(
-//			"{$file}/../@{$layout}.latte",
-//			"{$file}/../@{$layout}.phtml",
+		$file = realpath("../app{$tpls}");
+		$file2 = realpath("../app{$tpls}../base");
+		$ret = array(
 			"{$file}/@$layout.latte",
 			"{$file}/@$layout.phtml",
+			"{$file2}/@{$layout}.latte",
+			"{$file2}/@{$layout}.phtml",
 		);
+//		dump($ret);
+		return $ret;
 	}
 	/**
 	 * @see Nette\Application\UI\Presenter
@@ -43,14 +46,16 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	public function formatTemplateFiles() {
 		$presenter = explode(':', $this->getName());
 		$tpls = $this->context->parameters['templates'];
-		$file = realpath("..{$tpls}{$presenter[1]}");
-		$file2 = realpath("..{$tpls}../base/{$presenter[1]}");
-		return array(
+		$file = realpath("..\app{$tpls}{$presenter[1]}");
+		$file2 = realpath("..\app{$tpls}../base/{$presenter[1]}");
+		$ret = array(
 			"{$file}/{$this->view}.latte",
 			"{$file}/{$this->view}.phtml",
 			"{$file2}/{$this->view}.latte",
 			"{$file2}/{$this->view}.phtml",
 		);
+//		dump($ret);
+		return $ret;
 	}
 	
 //	protected function setTpl($tplFile = ''){
@@ -75,9 +80,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 //		return $dir;
 //	}
 	protected function beforeRender() {
-//		$this->template->setFile($this->setTpl());
 		$this->template->setTranslator(Model\Translator::get());
-//		$this->template->render();
 		parent::beforeRender();
 	}
 }

@@ -1,15 +1,16 @@
 <?php
 namespace App\Model;
 
-use Nette,
-	Nette\Application\UI\Control
+use Nette\Application\UI\Control
 		;
 /**
  * Description of TranslatedControl
  *
  * @author KuBik
  */
-class TranslatedControl extends Control {
+abstract class TranslatedControl extends Control {
+	
+	public abstract function setup($param);
 	
 	protected function setTpl($tplFile = ''){
 		if ($tplFile=='') {
@@ -26,14 +27,12 @@ class TranslatedControl extends Control {
 	protected $tplDir = NULL;
 	protected $tplName = NULL;
 	protected function getTplPath() {
-		
 		if (!$this->tplDir){
 			$tpls = $this->presenter->context->parameters['templates'];
-			$file = "..{$tpls}components/";
+			$file = "../app{$tpls}components/";
 			$this->tplDir = realpath($file);
 		}
-		$dir = $this->tplDir;
-		return $dir;
+		return $this->tplDir;
 	}
 
 	public function render()

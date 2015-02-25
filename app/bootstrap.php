@@ -1,7 +1,5 @@
 <?php
-use Nette\Configurator,
-	Nette\Diagnostics\Debugger,
-	Nette\Environment
+use Nette\Environment
 		;
 
 ob_start();
@@ -26,6 +24,7 @@ $configurator->createRobotLoader()
 $configurator->addConfig(__DIR__ . '/config/config.neon');
 $configurator->addConfig(__DIR__ . '/config/settings.neon');
 $configurator->addConfig(__DIR__ . '/config/settings.db.neon');
+$configurator->addConfig(__DIR__ . '/config/router.neon');
 $tmp = explode('/', $_SERVER['REQUEST_URI']);
 $module = strtolower($tmp[1]);
 if (!in_array($module, array('front','shop','admin'))) {
@@ -41,8 +40,6 @@ $modCfg = __DIR__.'/modules/'.  ucfirst($module).'/bootstrap.php';
 if (file_exists($modCfg))
 	require $modCfg;
 //$isDevMode = true;
-//
-//$entityManager = EntityManager::create(array('driver' => 'pdo_mysql'), $config);
 
 $container = $configurator->createContainer();
 //\App\Management\EntityManager::set($container);

@@ -1,0 +1,36 @@
+<nav id="navleiste" class="subnav transition" role="navigation" data-spy="affix" data-offset-top="160">
+    <div class="container-fluid">
+        <ul class="nav nav-pills">
+            {block itemLi}
+            {foreach $data as $menuItem}
+            <li {if $menuItem->hasChildren()}class="dropdown"{/if}>
+                <a href="{$menuItem->getPath()}" class="dropdown-toggle" {if $menuItem->hasChildren()}data-toggle="dropdown"{/if} title="{$menuItem->getTitle()}">
+                    <i class="{$menuItem->getIconClass()}">
+                    </i> {$menuIte->getLabel()}
+                    {if $menuItem->hasChildren()}<b class="caret">{/if}
+                    </b>
+                    {if $menuItem->hasChildren()}
+                        <ul class="dropdown-menu">
+                            {include itemLi, data => $menuItem->getChildren()}
+                        </ul>
+                    {/if}
+                </a>
+            </li>
+            {/foreach}
+            {/block}
+            
+            <li class="pull-right">
+                <form class="navbar-search form-search" id="search-form" action="http://www.tennisschlaeger.info/" method="get">
+                    <div class="input-append">
+                        <input type="text" name="s" id="s" class="search-query input-medium" placeholder="Suchbegriff" />
+                        <input type="hidden" name="site_section" value="google_suche" />
+                        <button type="submit" class="btn">
+                            <i class="icon-search">
+                            </i>
+                        </button>
+                    </div>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>

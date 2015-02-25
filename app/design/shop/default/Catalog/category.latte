@@ -1,0 +1,75 @@
+{block content}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{ifset #title}{include title}{/ifset}
+                <small>Subheading</small>
+            </h1>
+            {control breadcrumbs}
+        </div>
+    </div>
+    <!-- /.row -->
+    {*dump $document*}
+	
+    <!-- categories -->
+	{foreach $categories as $category}
+		{dump $category}
+	{/foreach}
+    <!-- filters -->
+	{control categoryFilter}
+    <!-- products -->
+	<div class="row">
+		{foreach $products as $product}
+        <div class="col-lg-4">
+			<article>
+				<header class="entry-header">
+					<h1 class="entry-title">
+						<a href="{!$product->getUrlPath($presenter)}" title="">{$product->sku}</a>
+					</h1><!-- .entry-title -->
+				</header>
+
+				<div class="post-image-content-wrap clearfix">
+					<?php
+			/*		if( has_post_thumbnail() ) {
+						if( of_get_option( 'spacious_site_layout', 'box_1218px' ) == 'box_1218px' || of_get_option( 'spacious_site_layout', 'box_1218px' ) == 'wide_1218px' ) {
+							$featured = 'featured-blog-medium'; 
+						}
+						elseif( of_get_option( 'spacious_site_layout', 'box_1218px' ) == 'box_978px' || of_get_option( 'spacious_site_layout', 'box_1218px' ) == 'wide_978px' ) {
+							$featured = 'featured-blog-medium-small';
+						}
+						$image = '';        			
+						$title_attribute = get_the_title( $post->ID );
+						$image .= '<figure class="post-featured-image">';
+						$image .= '<a href="' . get_permalink() . '" title="'.the_title( '', '', false ).'">';
+						$image .= get_the_post_thumbnail( $post->ID, $featured, array( 'title' => esc_attr( $title_attribute ), 'alt' => esc_attr( $title_attribute ) ) ).'</a>';
+						$image .= '</figure>';
+
+						echo $image;
+					}
+			*/			?>
+						<figure class="post-featured-image">
+							<a href="" title="img_title">cccc
+							{*get_the_post_thumbnail( $post->ID, $featured, array( 'title' => $title_attribute, 'alt' => $title_attribute))*}</a>
+						</figure>
+					<div class="entry-content clearfix">asddsadsdasd asdd kj dshakgdkajd kasdfgh fkdsah kjhzsd ksa gkdjgh kag
+						{*$descriptionShort*}
+					</div>
+				</div>
+
+				<footer class="entry-meta-bar clearfix">	        			
+					<div class="entry-meta clearfix">
+						<a href="buy" class="btn btn-default">Buy</a>
+					</div>
+				</footer>
+
+			</article>
+		</div>
+		{/foreach}
+	</div>
+	
+    {include '../page/footer.latte'}
+</div>
+	
+	
+
+{/block}

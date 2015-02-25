@@ -1,30 +1,54 @@
 parameters:
 	menu:
 		dashboard:
+			priority: 1 # priority in range from 1 to just about plus INT. for soting purposes
 			presenter: Dashboard
-			icon: icon-bar-chart
+			icon: dashboard
 			text: Dashboard
-		messages:
-			presenter: Messages
-			icon: icon-envelope
-			text: Messages
+#		messages:
+#			priority: 100
+#			presenter: Messages
+#			icon: envelope
+#			text: Messages
 		settings:
+			priority: 1000
 			text: Settings
-			presenter: Settings
-			icon: icon-wrench
+			icon: cogs
+			items:
+				sys:
+					presenter: SystemSettings
+					text: System
+					icon: wrench
+				lng:
+					presenter: LocaleSettings
+					text: Locales
+					icon: globe
 		users:
-			icon: icon-group
+			priority: 101
+			icon: group
 			text: User admin
 			items:
 				users:
-					presenter: User
-					icon: icon-user
+					priority: 100
+					presenter: Users
+					icon: user
 					text: Users
 				groups:
+					priority: 90
 					presenter: UserGroups
-					icon: icon-group
+					icon: group
 					text: User groups
+				acl:
+					icon: group
+					text: Security
+					priority: 120
+					items:
+						resources:
+							presenter: AclResources
+							icon: group
+							text: Security resources
 				privileges:
-					presenter: UserPriviliges
-					icon: icon-lock
+					priority: 110
+					presenter: UserPrivileges
+					icon: lock
 					text: Privileges

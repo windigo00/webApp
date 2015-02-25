@@ -2,20 +2,19 @@
 
 namespace App\Modules\Front\Presenters;
 
-use Nette,
-    App\Model
+use App\Model\Document
         ;
 
 
 /**
  * Homepage presenter.
  */
-class HomepagePresenter extends BaseFrontPresenter
+class HomepagePresenter extends DocumentPresenter
 {
 	public function renderDefault()
 	{
-//		$this->template->setFile('1column.latte');
-		$this->template->anyVariable = 'any value';
+		$posts = Document::getRepository()->findAll();
+		$this->template->posts = $posts;
 	}
 
 }

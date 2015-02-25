@@ -8,6 +8,4 @@ use App\Model\EditableControl;
  *
  * @author KuBik
  */
-abstract class AdminControl extends EditableControl {
-	
-}
+abstract class AdminControl extends EditableControl {}

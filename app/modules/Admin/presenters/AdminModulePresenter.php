@@ -6,6 +6,6 @@ namespace App\Modules\Admin\Presenters;
  *
  * @author KuBik
  */
-abstract class AdminModulePresenter extends BaseAdminPresenter {
+abstract class AdminModulePresenter extends SecureAdminPresenter {
 	
 }

@@ -1,19 +1,15 @@
 <?php
 namespace App\Model;
 
-use Nette,
-	Nette\Security\Passwords,
-	Doctrine\ORM\Mapping\Entity,
-	Doctrine\ORM\Mapping\Column,
-	Doctrine\ORM\Mapping\Id,
-	Doctrine\Common\Collections\ArrayCollection
+use Doctrine\Common\Collections\ArrayCollection,
+	App\Model\Entity,
+	App\Model\Security\UserGroup
 		;
-
 /**
  * @Entity
- * @Table(name="user")
+ * @Table(name="users")
  **/
-class User extends \App\Model\Entity {
+class User extends Entity {
 	/** 
 	 * @Id @Column(type="integer")
 	 * @GeneratedValue 
@@ -24,19 +20,26 @@ class User extends \App\Model\Entity {
 	/** @Column(type="string") **/
 	protected $firstname;
 	/** @Column(type="string") **/
-	protected $surname;
+	protected $lastname;
 	/** @Column(type="string") **/
 	protected $mail;
 	/** @Column(type="string", name="`pwd`") **/
 	protected $password;
-	/** @Column(type="string") **/
-	protected $usr_link;
 	/** @Column(type="boolean") **/
 	protected $active;
-	/** @Column(type="string") **/
-	protected $rights;
-	/** @Column(type="string") **/
-	protected $role;
+	/**
+     * @ManyToMany(targetEntity="App\Model\Security\UserGroup")
+     * @JoinTable(name="user_group_assignment",
+     *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="group_id", referencedColumnName="id")}
+     *      )
+     **/
+	protected $roles;
+	public function __construct() {
+		$this->roles = new ArrayCollection();
+	}
 	
-
+	public function getName() {
+		return $this->firstname.' '.$this->lastname;
+	}
 }

@@ -1,0 +1,19 @@
+parameters:
+	# routing setup
+	# module : [ route match (Module), Controller:action ]
+	routes:
+		Test:
+			- ['test/', 'Test:default']
+		Admin:
+			- ['admin/<presenter>/<action>/[<id>]', 'Dashboard:default']
+		Shop:
+			- ['shop/<path [^/\.]+>', 'Cms:document']
+			- ['shop/[<category [^/]+>/]<name [^\.]+>.html', 'Product:detail']
+			- ['shop/<category [^/]+>/<name .+>', 'Catalog:category']
+			- ['shop/[<presenter>/][<action>/][<id>]', 'Homepage:default']
+			- ['shop/<presenter>/<action>/[<id>]', 'Homepage:default']
+		Front:
+			- ['error/<action>', 'Error:default']
+			- ['[<lang [a-z]{2}>[-<sublang>]/][<category>/]<name>[/page-<page=0>]', 'Document:default']
+			- ['<name>[/page-<page=0>]', 'Document:page']
+			- ['<presenter>/<action>[/<id>]', 'Homepage:default']

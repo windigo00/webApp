@@ -1,0 +1,23 @@
+<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" title="{if $item->label}{_$item->label}{else}{_$item->text}{/if}" {if $item->presenter}href="{plink $item->presenter.':'}"{/if}>
+	<i class="halflings-icon white {$item->icon}"></i>&nbsp;
+	{if $item->text}
+		{if strpos($item->text, '.') > 0}
+			<?php
+			$tmp = explode('.', $item->text);
+			$prop = ucfirst($tmp[1]);
+			$var = strtolower($tmp[0]);
+			eval('$item->text = $'.$var.'->get'.$prop.'();');
+			?>
+		{/if}
+		{_$item->text}
+	{/if} <span class="caret"></span></a>
+<ul class="dropdown-menu">
+	{if $item->title}
+		<li class="dropdown-menu-title">
+			<span>{$item->title}</span>
+		</li>
+	{/if}
+	{foreach $item->children as $subitem}
+		{include 'subitem.latte', item => $subitem}
+	{/foreach}
+</ul>

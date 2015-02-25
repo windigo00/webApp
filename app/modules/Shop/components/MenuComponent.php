@@ -23,12 +23,16 @@ class MenuComponent extends \App\Model\Component\MenuComponent {
 		$path = (!empty($params['category']) ? $params['category'].'/':'').
 				(!empty($params['name']) ? $params['name']:'');
 		$menu = Menu::getByPath($path);
-		$this->template->menu = $menu;
+		$this->template->data = $menu;
 		parent::render();
 	}
 
 	protected function setTpl($tplFile = '') {
 		return parent::setTpl('menu.latte');
+	}
+
+	public function setup($param) {
+		
 	}
 
 }

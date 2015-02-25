@@ -15,9 +15,7 @@ class UserList extends AdminControl {
 	protected function setTpl($tplFile = '') {
 		return parent::setTpl('users/list.latte');
 	}
-	
-	public function render() {
-		
-		parent::render();
-	}
+
+	public function setup($param) {}
+
 }

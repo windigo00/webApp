@@ -21,4 +21,8 @@ class Breadcrumbs extends TranslatedControl {
 		parent::render();
 	}
 
+	public function setup($param) {
+		
+	}
+
 }

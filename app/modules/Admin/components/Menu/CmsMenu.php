@@ -13,4 +13,7 @@ class CmsMenu  extends Menu{
 	protected function setTpl($tplFile = '') {
 		return parent::setTpl('cms_menu.latte');
 	}
+
+	public function setup($param) {}
+
 }

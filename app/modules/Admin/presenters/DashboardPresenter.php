@@ -12,7 +12,7 @@ use Nette,
 /**
  * Dashboard presenter.
  */
-class DashboardPresenter extends BaseAdminPresenter
+class DashboardPresenter extends SecureAdminPresenter
 {
 	public function renderDefault()
 	{

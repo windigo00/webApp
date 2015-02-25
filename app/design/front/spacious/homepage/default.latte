@@ -1,0 +1,35 @@
+{*
+ * Theme Index Section for our theme.
+ *
+ * @package ThemeGrill
+ * @subpackage Spacious
+ * @since Spacious 1.0
+ *}
+	{block action('spacious_before_body_content')/}
+
+	<div id="primary">
+		<div id="content" class="clearfix">
+
+			{if $posts}
+				{foreach $posts as $post}
+
+					{*$format = spacious_posts_listing_display_type_select()*}
+
+					{$post->template}
+
+				{/foreach}
+
+				{*get_template_part( 'navigation', 'none' )*}
+
+			{else}
+
+				{*get_template_part( 'no-results', 'none' )*}
+				
+			{/if}
+
+		</div><!-- #content -->
+	</div><!-- #primary -->
+	
+	{*spacious_sidebar_select()*}
+	
+	{block action( 'spacious_after_body_content' )/}

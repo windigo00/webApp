@@ -1,10 +1,6 @@
 <?php
 namespace App\Modules\Admin\Components;
 
-use Nette,
-	Nette\Environment,
-	App\Model\TranslatedControl
-		;
 /**
  * Description of FrontBreadcrumbs
  *
@@ -40,5 +36,7 @@ class Breadcrumbs extends AdminControl {
 		$this->template->items = $path;
 		parent::render();
 	}
+
+	public function setup($param) {}
 
 }

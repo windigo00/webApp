@@ -1,0 +1,14 @@
+{* Latte template *}
+<ul class="breadcrumb">
+	<li>
+		<i class="icon-home"></i>
+		<a href="{plink Dashboard:}">Home</a> 
+		
+	</li>
+	{if $items}
+	{foreach $items as $item}
+	<li><i class="icon-angle-right"></i><a {if isset($item['presenter'])}href="{plink $item['presenter'].':'}"{/if}>{_$item['text']}</a></li>
+	{/foreach}
+	{/if}
+</ul>
+{block content}

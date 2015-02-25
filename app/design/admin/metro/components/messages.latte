@@ -1,0 +1,30 @@
+<ul class="dropdown-menu messages">
+	<li class="dropdown-menu-title">
+	{ifset $items}
+		<span>{_"You have %d new messages", count($items)}</span>
+	{else}
+		<span>{_"You have no new messages"}</span>
+	{/ifset}
+		<a n:href="{refresh}" class="ajax"><i class="icon-repeat"></i></a>
+	</li>
+	{ifset $items}
+		{foreach $items as $item}
+		<li>
+			<a href="{$item->getLink()}">
+				<span class="avatar"><img src="{$basePath}/img/avatar.jpg" alt="Avatar"></span>
+				<span class="header">
+					<span class="from">
+						Dennis Ji
+					</span>
+					<span class="time">{$item->getTime()}</span>
+				</span>
+				<span class="message">{$item->getMessage()}</span>  
+			</a>
+		</li>
+		{/foreach}
+	
+	{/ifset}
+	<li>
+		<a class="dropdown-menu-sub-footer" href="{plink Email:list}">{_"View all messages"}</a>
+	</li>	
+</ul>

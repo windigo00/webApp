@@ -4,24 +4,31 @@ parameters:
 			text: System events
 			presenter: SystemEvents
 			icon: warning-sign
+			priority: 100
 		messages:
 			text: Messages
 			presenter: Messages
 			icon: envelope
+			component: MessageMenu
+			priority: 900
 		settings:
 			text: Settings
 			presenter: Settings
 			icon: wrench
+			priority: 100
 		user:
 			title: Account Settings
 			icon: user
+			label: User
 			text: user.nick
+			priority: 1000
 			items:
 				acc: 
+					priority: 10
 					text: User Account
 					presenter: UserAccount
 					icon: user
-				off: 
+				off:
 					text: Logout
 					presenter: Sign
-					icon: off
+					icon: 'off'

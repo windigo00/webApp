@@ -1,14 +1,15 @@
 parameters:
 	menu:
 		modules:
+			priority: 10
 			text: Modules
-			icon: icon-folder-close-alt
+			icon: sitemap
 			items:
 				ashp :
 					presenter: AdminShop
-					icon: icon-bar-chart
+					icon: bar-chart
 					text: Shop
 				acms :
 					presenter: AdminCms
-					icon: icon-bar-chart
+					icon: bar-chart
 					text: CMS

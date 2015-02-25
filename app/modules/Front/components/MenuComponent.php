@@ -1,10 +1,7 @@
 <?php
 namespace App\Modules\Front\Components;
 
-use Nette,
-	Nette\Environment,
-	App\Model\Menu\Menu,
-	App\Model\Component
+use App\Model\Component
 		;
 
 /**
@@ -32,7 +29,11 @@ class MenuComponent extends Component\MenuComponent {
 //	}
 
 	protected function setTpl($tplFile = '') {
-		return parent::setTpl('../navigation/menu.latte');
+		return parent::setTpl('../componens/navigation.latte');
+	}
+
+	public function setup($param) {
+		
 	}
 
 }

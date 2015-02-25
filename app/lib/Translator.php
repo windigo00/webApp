@@ -16,7 +16,7 @@ class Translator implements Nette\Localization\ITranslator
 	const LANG_CONFIG_KEY = 'default';
 
 	protected $config;
-	protected $dictionary;
+	protected $dictionary = array();
 
 	protected static $_instance;
 	/**
@@ -27,18 +27,9 @@ class Translator implements Nette\Localization\ITranslator
 		$this->config->locale = Environment::getContext()
 				->parameters[self::LOCALE_CONFIG_KEY][self::LANG_CONFIG_KEY];
 		
-		$tmp = glob(__DIR__.'/../locale/'.$this->config->locale.'/*.csv');
-		$locales = array();
-		foreach ($tmp as $tmpFile) {
-//			echo $tmpFile.'<br>';
-			$file = fopen($tmpFile, "r");
-			while (list($key, $value) = fgetcsv($file)) {
-				$locales[$key] = $value;
-			}
-			fclose($file);
-		}
+		$this->initLanguage($this->config->locale);
 //		exit();
-		$this->dictionary = $locales;
+		
 	}
 
 	/**
@@ -48,16 +39,36 @@ class Translator implements Nette\Localization\ITranslator
      * @return string
      */
     public function translate($message, $count = NULL) {
-        return isset($this->dictionary[$message]) ? $this->dictionary[$message] : $message;
+        return isset($this->dictionary[$this->config->locale][$message]) ? $this->dictionary[$this->config->locale][$message] : $message;
     }
 	
-	public static function setLang($newLanguage) {
-		self::get()->config->locale = $newLanguage;
+	protected function initLanguage($newLanguage) {
+		$tmp = glob(__DIR__.'/../locale/'.$newLanguage.'/*.csv');
+		$locales = array();
+		foreach ($tmp as $tmpFile) {
+//			echo $tmpFile.'<br>';
+			$file = fopen($tmpFile, "r");
+			while (list($key, $value) = fgetcsv($file)) {
+				$locales[$key] = $value;
+			}
+			fclose($file);
+		}
+		$this->dictionary[$newLanguage] = $locales;
+	}
+	
+	public function setLang($newLanguage) {
+		$this->config->locale = $newLanguage;
+		if (!isset($this->dictionary[$newLanguage])) {
+			$this->initLanguage($newLanguage);
+		}
 	}
 	public static function getLang() {
 		return self::get()->config->locale;
 	}
-	
+	/**
+	 * 
+	 * @return self
+	 */
 	public static function get() {
 		if (empty(static::$_instance)) {
 			static::$_instance = new static();

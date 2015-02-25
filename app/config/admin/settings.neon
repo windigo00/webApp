@@ -7,7 +7,7 @@
 parameters:
 	templates: /design/admin/metro/
 	admin:
-		baseUrl: /
+		baseUrl: /admin
 
 services:
 	- App\Admin\Model\UserManager

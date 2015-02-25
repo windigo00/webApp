@@ -1,0 +1,16 @@
+{* Latte template *}
+
+{block content}
+<div class="row-fluid">	
+<div class="box yellow span12">
+	<div class="box-header">
+		<h2><i class="halflings-icon tasks"></i><span class="break"></span>{_'Access denied'}</h2>
+	</div>
+	<div class="box-content " style="color:#333;">
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at. Nulla tellus elit, varius non commodo eget, mattis vel eros. In sed ornare nulla. Donec consectetur, velit a pharetra ultricies, diam lorem lacinia risus, ac commodo orci erat eu massa. Sed sit amet nulla ipsum. Donec felis mauris, vulputate sed tempor at, aliquam a ligula. Pellentesque non pulvinar nisi.</p>
+		<div class="alert alert-block">
+			{_'You can log in here'}: <a href="{plink Sign:in, backlink => $presenter->getParam('backlink')}">link</a> 
+		</div>
+	</div>
+</div>
+</div>
