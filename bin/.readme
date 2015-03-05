@@ -1,0 +1,2 @@
+# create classes from db
+d:\data\projekty\www\my_workspace\cms5\bin>..\vendor\bin\doctrine.php.bat orm:convert-mapping --force --from-database --extend=\App\Model\Entity annotation ../temp/model

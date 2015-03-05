@@ -20,7 +20,7 @@ class MessageMenu extends AdminControl {
 	}
 	
 	public function handleRefresh() {
-		dump(func_get_args());
+//		dump(func_get_args());
 		$this->invalidateControl();
 	}
 

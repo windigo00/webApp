@@ -36,14 +36,14 @@ class DocumentPresenter extends BaseFrontPresenter {
 	
 	public function renderDefault() {
 		$params = $this->getRequest()->getParameters();
-		dump($params);
+//		dump($params);
 		$category = isset($params['category']) ? $params['category'] : '';
 		$name = isset($params['name']) ? $params['name'] : '';
 		$page = isset($params['page']) ? $params['page'] : '';
 		$lang = isset($params['lang']) ? $params['lang'] : '';
 		$path = (!empty($category)?$category.'/':'').$name;
 		try {
-			dump($path);
+//			dump($path);
 			
 			$this->template->document = $this->getDocument($path);
 		} catch (\Exception $ex) {

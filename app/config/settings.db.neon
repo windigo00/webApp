@@ -1,11 +1,13 @@
 parameters:
 	doctrine:
 		devmode: true
-		entityDir: %appDir%/lib/models
+		entityDir: %appDir%/lib/model/_Generated
+#		entityDir: %appDir%/temp/model
 		connection:
 			host: localhost
 #			port: 3600
 			dbname: cms5
+#			dbname: cinske_mobily
 			driver: pdo_mysql
 			user: root
 			password: 1111

@@ -5,7 +5,7 @@
 	{else}
 		<span>{_"You have no new messages"}</span>
 	{/ifset}
-		<a n:href="{refresh}" class="ajax"><i class="icon-repeat"></i></a>
+		<a n:href="refresh" class="ajax"><i class="icon-repeat"></i></a>
 	</li>
 	{ifset $items}
 		{foreach $items as $item}

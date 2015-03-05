@@ -1,9 +1,0 @@
-{* This is the welcome page, you can delete it *}
-
-{block content}
-{?$content = '';}
-{foreach $documents as $document}
-    {?$content .= $document->docname}
-{/foreach}
-{include '../design/'.$design.'.latte', content => $content, menuTop => $menuTop}
-{/block}

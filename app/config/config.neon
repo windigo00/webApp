@@ -12,7 +12,6 @@ parameters:
 php:
 	date.timezone: Europe/Prague
 
-
 nette:
 	application:
 		errorPresenter: Error
@@ -26,10 +25,10 @@ services:
 #	- App\Model\UserManager
 	- App\RouterFactory
 	router: @App\RouterFactory::createRouter(%routes%)
-	database: App\Management\EntityManager(%doctrine.connection%, %doctrine.entityDir%, %doctrine.devmode%)
 #	authenticator: @App\model\UserManager
 #	databaseManager: App\Management\DatabaseManager
 
+	database: App\Management\EntityManager(%doctrine.connection%, %doctrine.entityDir%, %doctrine.devmode%)
 #tracy:
 #	bar: # panely do Debugger baru
 #		- Nette\DI\Diagnostics\ContainerPanel # alias DI Container baru

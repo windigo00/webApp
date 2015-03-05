@@ -2,17 +2,25 @@
 namespace App\Modules\Shop\Presenters;
 
 use App\Model\Catalog\Product,
-	App\Model\Catalog\Category;
+	App\Model\Catalog\Category,
+	App\Model\LangPath,
+	App\Modules\Shop\Views\ProductViewTrait
+		;
 /**
  * Description of ProductPresenter
  *
  * @author KuBik
  */
 class ProductPresenter extends BaseShopPresenter {
+	
+	use ProductViewTrait;
+	
 	public function renderDetail() {
-		$product = \App\Model\LangPath::getUid(Product::getClass(), $this->params['name']);
-		$product = Product::get($product);
+		$productId = LangPath::getUid(Product::getClass(), $this->params['name']);
+		$product = Product::get($productId);
+		$this->setTemplateData($product);
+		
 		dump($product);
-		exit;
+//		exit;
 	}
 }

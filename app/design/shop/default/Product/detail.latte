@@ -1,0 +1,113 @@
+{**
+ * Product view template
+ *
+ * @see CatalogProductView
+ * @see ReviewProductView
+ *}
+<script type="text/javascript">
+//    var optionsPrice = new Product.OptionsPrice(<?php //echo $this->getJsonConfig() ?>);
+</script>
+<div id="messages_product_view">{!$messagesBlock}</div>
+<div class="product-view">
+    <div class="product-essential">
+        {form productDetailForm, id=>'product_addtocart_form'}
+            {input productId}
+            {input relatedProduct, id=>"related-products-field"}
+
+            <div class="product-img-box">
+                <div class="product-name">
+                    <h1>{_$product->name}</h1>
+                </div>
+                {ifset $product->media}aaa
+				{/ifset}
+            </div>
+
+            <div class="product-shop">
+                <div class="product-name">
+                    <span class="h1">{_$product->name}</span>
+                </div>
+
+                <div class="price-info">
+                    {$product->priceHtml}
+                    {$product->bundlePrices}
+                    {$product->tierPriceHtml}
+                </div>
+
+                <div class="extra-info">
+                    {$product->reviewsSummaryHtml}
+                    {$product->productTypeAvailability}
+                </div>
+
+                {$product->alertUrls}
+
+                {ifset $product->shortDescription}
+                    <div class="short-description">
+                        <div class="std">{$product->shortDescription}</div>
+                    </div>
+                {/ifset}
+
+
+
+
+                {$product->other}
+
+                {if $product->isSaleable && $product->hasOptions}
+                    {$this->container1}
+                {/if}
+
+            </div>
+
+            <div class="add-to-cart-wrapper">
+                {$product->productTypeData}
+                {$product->extrahint}
+
+                {if !$hasOptions}
+                    <div class="add-to-box">
+                        {if $product->isSaleable}
+                            {input addtocart}
+                            {if $wishlist->isAllow}
+                                <span class="or">{_'OR'}</span>
+                            {/if}
+                        {/if}
+                        {control addto}
+                        {control sharing}
+                    </div>
+                    {control extraButtons}
+                {elseif !$product->isSaleable}
+                    <div class="add-to-box">
+                        {control addto}
+                        {control sharing}
+                    </div>
+                {/if}
+            </div>
+
+            {control related_products}
+
+            <div class="clearer"></div>
+            {if $product->isSaleable && $options}
+                {control container2}
+            {/if}
+        {/form}
+        <script type="text/javascript">
+        //<![CDATA[
+        //]]>
+        </script>
+    </div>
+
+    <div class="product-collateral toggle-content tabs">
+        {if $detailedInfoGroup = $detailedInfo}
+            <dl id="collateral-tabs" class="collateral-tabs">
+                {foreach $detailedInfoGroup as $alias => $html}
+                    <dt class="tab"><span>{$alias->title}</span></dt>
+                    <dd class="tab-container">
+                        <div class="tab-content">{!$html}</div>
+                    </dd>
+                {/foreach}
+            </dl>
+        {/if}
+    </div>
+
+    {control upsellProducts}
+    {control productAdditionalData}
+
+</div>

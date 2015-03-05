@@ -13,7 +13,7 @@ parameters:
 			priority: 900
 		settings:
 			text: Settings
-			presenter: Settings
+			presenter: SystemSettings
 			icon: wrench
 			priority: 100
 		user:

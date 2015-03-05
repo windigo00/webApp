@@ -11,10 +11,10 @@ namespace App\Modules\Admin\Presenters;
 use Nette;
 
 /**
- * Description of EmailPresenter
+ * Description of SettingsPresenter
  *
  * @author KuBik
  */
-class TaskPresenter extends BaseAdminPresenter {
+class SystemEventsPresenter extends BaseAdminPresenter {
 	
 }
