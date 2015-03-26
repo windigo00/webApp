@@ -39,7 +39,7 @@ class Category extends \App\Model\Model
 		if (isset($this->attributes[$name])) {
 			return $this->attributes[$name];
 		} else {
-			$this->loadAttributes();
+			// $this->loadAttributes();
 			if (isset($this->attributes[$name])) {
 				return $this->attributes[$name];
 			}

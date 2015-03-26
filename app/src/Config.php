@@ -14,12 +14,13 @@ class AppConfig {
 	private static $_appConfig;
 	/**
 	 *
-	 * @var \SystemContainer
+	 * @var \Nette\ComponentModel\IContainer
 	 */
 	private static $_appContainer;
 	/**
 	 * 
 	 * @param \Nette\Configurator $appCfg
+	 * @param \Nette\ComponentModel\IContainer $cnt
 	 */
 	public static function set(\Nette\Configurator $appCfg, $cnt) {
 		self::$_appConfig = $appCfg;
