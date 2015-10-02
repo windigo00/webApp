@@ -1,5 +1,7 @@
 <?php
 namespace App\Model\Traits;
+
+use \App\Management\EntityManager;
 /**
  * Description of SearchTrait
  * findBy methods
@@ -7,11 +9,12 @@ namespace App\Model\Traits;
  */
 trait SearchTrait {
 	public static function get($id) {
-		$entity = \App\Management\EntityManager::get()->find(static::getClass(), $id);
+		$entity = EntityManager::get()->find(static::getEntityClass(), $id);
 		$entity = new static($entity);
 		return $entity;
 	}
 	public static function findAll() {
+		
 		$entity = static::getRepository()->findAll();
 		foreach ($entity as &$item) {
 			$item = new static($item);

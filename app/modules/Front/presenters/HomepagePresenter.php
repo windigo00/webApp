@@ -11,6 +11,8 @@ use App\Model\Document
  */
 class HomepagePresenter extends DocumentPresenter
 {
+	
+	
 	public function renderDefault()
 	{
 		$posts = Document::getRepository()->findAll();

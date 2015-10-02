@@ -1,0 +1,13 @@
+parameters:
+	menu:
+		modules:
+			items:
+				acms :
+					presenter: AdminCms
+					icon: globe
+					text: CMS
+					items:
+						doc: 
+							presenter: AdminCmsDocuments
+							icon: file
+							text: Documents

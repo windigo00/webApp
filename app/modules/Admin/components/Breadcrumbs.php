@@ -30,7 +30,7 @@ class Breadcrumbs extends AdminControl {
 	}
 
 	public function render() {
-		$data = \App\Configs\AppConfig::getParameter('menu');
+		$data = $this->presenter->context->parameters['menu'];
 		$p = explode(':', $this->presenter->name);
 		$path = $this->findPath($p[1], $data);
 		$this->template->items = $path;

@@ -31,7 +31,6 @@ if (isset($_SERVER['REQUEST_URI'])) {
 	if (!in_array($module, array('front','shop','admin'))) {
 		$module = 'front';
 	}
-	$module = $module == '' ? 'front' : $module;
 	$modCfg = __DIR__.'/modules/'.  ucfirst($module).'/bootstrap.php';
 	if (file_exists($modCfg)) {
 		require $modCfg;

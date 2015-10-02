@@ -1,22 +1,12 @@
 <?php
 namespace App\Model\Menu;
 
-use Doctrine\ORM\Mapping AS ORM,
-	Doctrine\Common\Collections\ArrayCollection;
-
 /**
  * Description of MenuItem
- * @ORM\Entity
- * @Table(name="menu")
  * @author KuBik
  */
-class MenuItem {
-//	const 
-//		TABLE_NAME = 'menu',
-//
-//		COLUMN_NAME		= 'name',
-//		COLUMN_PARENT	= 'parent_id'
-//			;
+class MenuItem extends \App\Model\Model {
+	protected static $entityClass = '\App\Model\Entities\MenuItem';
 	protected $parent;
 	protected $children;
 	protected $childrenIds;
@@ -33,19 +23,29 @@ class MenuItem {
 	}
 	
 	public function getPath() {
-		$sql = 'SELECT * FROM ';
+//		$sql = 'SELECT * FROM ';
+	}
+	
+	
+	public function hasChildren() {
+		return !empty($this->getChildren());
 	}
 	
 	/**
 	 * @return array<MenuItem>
 	 */
-	public function getChildren() {
-		$res = static::getTable()->where(static::COLUMN_PARENT.'='.$this->getId());
-		$ret = array();
-		while($tmp = $res->fetch()) {
-			$ret[] = MenuItem::getById($tmp[static::COLUMN_ID]);
+	public function getChildren($recursive = FALSE) {
+		if ($this->children === NULL) {
+			$res = MenuItem::findBy(array('menu'=> $this->menu->id, 'parent' => $this->id));
+			$this->children = array();
+			foreach ($res as $child) {
+				$this->children[] = $child;
+				if ($recursive) {
+					$child->getChildren();
+				}
+			}
 		}
-		return $ret;
+		return $this->children;
 	}
 	public function setParent(MenuItem $item) {
 		$this->parent = $item;

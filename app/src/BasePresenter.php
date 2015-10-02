@@ -16,7 +16,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	public function __construct(Nette\Database\Context $database) {
 		try {
 			parent::__construct();
-//			Model\DBObject::setDB($database);
 		} catch (\Exception $ex) {
 			$this->flashMessage($ex->getMessage());
 			$this->redirect('Error:', array('backlink' => $this->storeRequest()));
@@ -27,7 +26,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	 */
 	public function formatLayoutTemplateFiles() {
 		$layout = $this->layout ? $this->layout : 'layout';
-//		$presenter = explode(':', $this->getName());
 		$tpls = $this->context->parameters['templates'];
 		$file = realpath("../app{$tpls}");
 		$file2 = realpath("../app{$tpls}../base");
@@ -37,50 +35,47 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 			"{$file2}/@{$layout}.latte",
 			"{$file2}/@{$layout}.phtml",
 		);
-//		dump($ret);
 		return $ret;
 	}
 	/**
 	 * @see Nette\Application\UI\Presenter
 	 */
-	public function formatTemplateFiles() {
-		$presenter = explode(':', $this->getName());
+	public function formatTemplateFiles($view = NULL) {
+		if ($view !== NULL) {
+			$presenter = $view;
+		} else {
+			$presenter = explode(':', $this->getName())[1];
+		}
 		$tpls = $this->context->parameters['templates'];
-		$file = realpath("..\app{$tpls}{$presenter[1]}");
-		$file2 = realpath("..\app{$tpls}../base/{$presenter[1]}");
+		$pth1 = "..\app{$tpls}{$presenter}";
+		$pth2 = "..\app{$tpls}../base/{$presenter}";
+		$file = realpath($pth1);
+		$file2 = realpath($pth2);
+		if (empty($file)) {
+			throw new \Exception('Tamplate path "'.$pth1.'" does not exits!');
+		}
+		
 		$ret = array(
 			"{$file}/{$this->view}.latte",
-			"{$file}/{$this->view}.phtml",
-			"{$file2}/{$this->view}.latte",
-			"{$file2}/{$this->view}.phtml",
+			"{$file}/{$this->view}.phtml"
 		);
-//		dump($ret);
+		if (!empty($file2)) {
+			$ret[] = "{$file2}/{$this->view}.latte";
+			$ret[] = "{$file2}/{$this->view}.phtml";
+		}
 		return $ret;
 	}
-	
-//	protected function setTpl($tplFile = ''){
-//		if ($tplFile=='') {
-//			if ($this->tplName=='') {
-//				$this->tplName = 'default.latte';
-//			}
-//		} else {
-//			$this->tplName = $tplFile;
-//		}
-//		$pth = $this->getTplPath().'/'.($this->tplName);
-//		return $pth;
-//	}
-//	protected function getTplPath() {
-//		
-//		if (!$this->tplDir){
-//			$tpls = $this->presenter->context->parameters['templates'];
-//			$file = $tpls;
-//			$this->tplDir = realpath($file);
-//		}
-//		$dir = $this->tplDir;
-//		return $dir;
-//	}
+
 	protected function beforeRender() {
+		if (isset($this->context->parameters['coat'])) {
+			$this->template->basePath = $this->context->parameters['coat'];
+		}
+		if (isset($this->context->parameters['scriptPath'])) {
+			$this->template->scriptPath = $this->context->parameters['scriptPath'];
+		}
 		$this->template->setTranslator(Model\Translator::get());
+		if (!isset($this->template->user)) {
+		}
 		parent::beforeRender();
 	}
 }

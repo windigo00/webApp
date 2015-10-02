@@ -2,43 +2,14 @@
 
 namespace App\Model;
 
-
-/**
- * @Entity
- * @Table(name="documents")
- **/
-class Document extends \App\Model\Entity {
-	/** 
-	 * @Id @Column(type="integer")
-	 * @GeneratedValue 
-	**/
-	protected $id;
-	/** @Column(type="string") **/
-	protected $uid; //Unique id of document
-	/** @Column(type="text") **/
-//	protected $template;
-	/**
-     * @OneToOne(targetEntity="User")
-     * @JoinColumn(name="autor", referencedColumnName="id")
-     **/
-//	protected $autor;
-	
-	/** @Column(type="integer") **/
-//	protected $type;
-	/** @Column(type="integer") **/
-//	protected $lang;
-	/** @Column(type="datetimetz") **/
-//	protected $created;
-	/** @Column(type="datetimetz") **/
-//	protected $edited;
-	/** @Column(type="integer") **/
-//	protected $views;
+class Document extends Model {
+	protected static $entityClass = '\App\Model\Entities\Documents';
 
 	/**
 	 * adds one view for document
 	 */
 	public function addView() {
-		$this->set(static::COLUMN_VIEWS, $this->get(static::COLUMN_VIEWS)+1);
+//		$this->set(static::COLUMN_VIEWS, $this->get(static::COLUMN_VIEWS)+1);
 	}
 	/**
 	 * 
@@ -50,8 +21,17 @@ class Document extends \App\Model\Entity {
 		 * @var \Doctrine\ORM\EntityManager
 		 */
 		$sel = self::getRepository()->findByPath($path);
-		foreach($sel as $tmp){
-			var_dump($tmp);
+		foreach($sel as &$tmp){
+			$tmp = new self($tmp);
+		}
+		return $sel;
+	}
+	
+	public static function getAll() {
+		$sel = self::getRepository()->getAll();
+		dump($sel);
+		foreach($sel as &$tmp){
+			$tmp = new self($tmp);
 		}
 		return $sel;
 	}

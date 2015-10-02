@@ -5,31 +5,40 @@
  * @subpackage Spacious
  * @since Spacious 1.0
  *}
-	{block action('spacious_before_body_content')/}
+ {block content}
+ 
+ aaaaaaaaaaaaaaaaa
 
-	<div id="primary">
-		<div id="content" class="clearfix">
+		
+		
 
-			{if $posts}
-				{foreach $posts as $post}
+			
+ 
+	{*block action('spacious_before_body_content')/*}
+	<!--<div id="primary">-->
+		<!--<div id="content" class="clearfix">-->
+
+			{*if $posts*}
+				{*foreach $posts as $post*}
 
 					{*$format = spacious_posts_listing_display_type_select()*}
 
-					{$post->template}
+					{*$post->template*}
 
-				{/foreach}
+				{*/foreach*}
 
 				{*get_template_part( 'navigation', 'none' )*}
 
-			{else}
+			{*else*}
 
 				{*get_template_part( 'no-results', 'none' )*}
 				
-			{/if}
+			{*/if*}
 
-		</div><!-- #content -->
-	</div><!-- #primary -->
+		<!--</div> #content -->
+	<!--</div> #primary -->
 	
 	{*spacious_sidebar_select()*}
 	
-	{block action( 'spacious_after_body_content' )/}
+	{*block action( 'spacious_after_body_content' )/*}
+{/block}

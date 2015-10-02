@@ -61,5 +61,20 @@ class Users extends \App\Model\Entity
      */
     protected $active;
 
-
+	/**
+     * @var \UserGroupAssignment
+	 * 
+	 * @ORM\ManyToMany(targetEntity="UserGroups")
+     * @ORM\JoinTable(name="user_group_assignment",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     *      )
+     */
+	protected $groups;
+	
+	public function __construct()
+    {
+		parent::__construct();
+        $this->groups = new ArrayCollection();
+    }
 }

@@ -5,7 +5,8 @@
 # http://nette.org/security-warning
 #
 parameters:
-	templates: /design/admin/metro/
+	coat: "/www/coat/admin/metro"
+	templates: "/design/admin/metro/"
 	admin:
 		baseUrl: /admin
 

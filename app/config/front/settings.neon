@@ -1,2 +1,3 @@
 parameters:
-	templates: /design/front/spacious/
+    coat: "/www/coat/front/spacious"
+    templates: "/design/front/spacious/"

@@ -6,6 +6,7 @@ use App\Management\EntityManager;
 /**
  * Description of Entity
  * @author KuBik
+ * 
  */
 class Entity
 {
@@ -13,13 +14,13 @@ class Entity
 		if (property_exists($this, $name)){
 			return $this->$name;
 		}
-		throw new \Exception('property \''.$name.'\' not exist!');
+		throw new \Exception('property \''.$name.'\' not exist! '. get_class($this));
 	}
 	public function __set($name, $value) {
 		if (property_exists($this, $name)){
 			$this->$name = $value;
 		} else {
-			throw new \Exception('property \''.$name.'\' not exist!');
+			throw new \Exception('property \''.$name.'\' not exist! '. get_class($this));
 		}
 	}
 	public function __call($method, $params) {
@@ -70,8 +71,9 @@ class Entity
 			$cnt = EntityManager::get();
 		}
 		
-//		dump($cnt);
+//		dump(get_called_class());
 		$ret = $cnt->getRepository(get_called_class());
+//		dump($ret);
 		return $ret;
 	}
 	/**
@@ -88,7 +90,10 @@ class Entity
 	}
 	
 	public function flush() {
-		EntityManager::get()->flush();
+		$em = EntityManager::get();
+		$em->persist($this);
+		dump($em);
+		$em->flush();
 	}
 	public function persist($autoFlush = TRUE) {
 		EntityManager::get()->persist($this);
@@ -106,9 +111,7 @@ class Entity
 //		return 5;
 //	}
 //
-//	public function getData() {
-//		
-//	}
+	
 //
 //	public function limit($offset, $limit) {
 //		throw new \Nette\NotImplementedException;

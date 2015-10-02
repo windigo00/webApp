@@ -6,6 +6,5 @@ namespace App\Modules\Front\Components;
  *
  * @author KuBik
  */
-class ComponentFront {
-	//put your code here
+abstract class ComponentFront extends \App\Model\TranslatedControl {
 }

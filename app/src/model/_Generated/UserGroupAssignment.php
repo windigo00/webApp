@@ -29,6 +29,19 @@ class UserGroupAssignment extends \App\Model\Entity
      */
     protected $group;
 
+	/**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    protected $group_id;
+	/**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    protected $user_id;
+	
     /**
      * @var \Users
      *
@@ -38,6 +51,5 @@ class UserGroupAssignment extends \App\Model\Entity
      * })
      */
     protected $user;
-
 
 }

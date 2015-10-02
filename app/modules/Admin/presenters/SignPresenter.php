@@ -74,7 +74,7 @@ class SignPresenter extends BaseAdminPresenter
 
 		} catch (Nette\Security\AuthenticationException $e) {
 			$form->addError($e->getMessage());
-			$this->redirect('this');
+			$this->redirect('in');
 		}
 	}
 	public function resetFormSucceeded($form, $values)
@@ -82,7 +82,7 @@ class SignPresenter extends BaseAdminPresenter
 		//try send email
 		
 		$this->flashMessage('A new password was sent to your email address. Please check your email and click Back to Login.');
-		$this->redirect('in');
+//		$this->redirect('in');
 	}
 
 	public function actionDefault()

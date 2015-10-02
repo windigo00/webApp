@@ -24,7 +24,7 @@ class UserPrivilegesPresenter extends SecureAdminPresenter {
         $form = new \Nette\Application\UI\Form;
         $form->addSelect('resource', 'Resource:', $this->getResourceSelectValues());
         $form->addSelect('privilege', 'Privilege:', $this->getPrivilegeSelectValues());
-        $form->addSelect('group', 'Group:', $this->getGroupSelectValues());
+        $form->addSelect('userGroup', 'Group:', $this->getGroupSelectValues());
         $form->addCheckbox('allowed', 'Allowed:');
         $form->addSubmit('new', 'Save');
         $form->onSuccess[] = array($this, 'addFormSucceeded');
@@ -44,7 +44,7 @@ class UserPrivilegesPresenter extends SecureAdminPresenter {
 			$res = new AclRecord;
 			$res->setResource(AclResource::get($values['resource']));
 			$res->setPrivilege(AclPrivilege::get($values['privilege']));
-			$res->setGroup(UserGroup::get($values['group']));
+			$res->setUserGroup(UserGroup::get($values['group']));
 			$res->setAllowed($values['allowed']);
 			$res->persist();
 			$this->flashMessage('You have successfully created new privilege.', 'success');
@@ -89,9 +89,9 @@ class UserPrivilegesPresenter extends SecureAdminPresenter {
 //			->setFilterText()->setSuggestion()
 //			->setCondition(array('privilege',  '= ?', 'privilege'))
 				;
-		$grid->addColumnText('group', 'User group')->setSortable()
+		$grid->addColumnText('userGroup', 'User group')->setSortable()
 			->setCustomRender(function($item){
-				return $item->group->name;
+				return $item->userGroup->name;
 			})
 //			->setFilterText()->setSuggestion()
 //			->setCondition(array('group',  '= ?', 'group'))

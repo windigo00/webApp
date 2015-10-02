@@ -1,8 +1,7 @@
 <?php
 namespace App\Modules\Admin\Presenters;
 
-use Nette,
-	App\Model\Document\Document,
+use App\Model\Document,
 	App\Modules\Admin\Components\AdminTable
 		;
 
@@ -24,7 +23,7 @@ class DocumentPresenter extends BaseAdminPresenter {
 	public function renderDefault() {
 		try {
 			$documents = Document::getAll();
-
+//			$documents= array();
 			$this->template->title = 'Documents';
 			$this->template->table = $documents;
 		} catch (\Exception $ex) {

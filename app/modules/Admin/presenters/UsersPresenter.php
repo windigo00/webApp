@@ -4,6 +4,8 @@ namespace App\Modules\Admin\Presenters;
 use Grido\DataSources\Doctrine,
 	App\Management\EntityManager,
 	App\Model\User,
+	App\Modules\Admin\Components\UserForm,
+	Nette\Application\UI,
 	App\Modules\Admin\Components\AdminTable
 		;
 
@@ -13,6 +15,22 @@ use Grido\DataSources\Doctrine,
  * @author KuBik
  */
 class UsersPresenter extends SecureAdminPresenter {
+	
+	public function createComponentUserForm($name) {
+		$form = new UserForm(new UI\Form());
+		$form->addText('name', 'Nick:');
+        $form->addPassword('password', 'Name:');
+        $form->addSubmit('save', 'Save');
+        $form->onSuccess[] = array($this, 'userFormSucceeded');
+		return $form;
+	}
+	
+	public function userFormSucceeded(UI\Form $form, $values)
+    {
+        // ...
+        $this->flashMessage('Byl jste úspěšně registrován.');
+        $this->redirect('Homepage:');
+    }
 	
 	public function createComponentUserList($name) {
 //		$ctrl = new UserList($this, $name);

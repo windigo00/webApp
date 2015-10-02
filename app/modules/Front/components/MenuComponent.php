@@ -29,11 +29,13 @@ class MenuComponent extends Component\MenuComponent {
 //	}
 
 	protected function setTpl($tplFile = '') {
-		return parent::setTpl('../componens/navigation.latte');
+		return parent::setTpl('navigation.latte');
 	}
 
 	public function setup($param) {
-		
+		$this->data = $param;
+		$this->data->init();
 	}
+	
 
 }

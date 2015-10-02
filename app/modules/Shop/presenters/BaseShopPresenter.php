@@ -25,8 +25,4 @@ abstract class BaseShopPresenter extends BasePresenter {
 		return $ctrl;
 	}
 
-	protected function beforeRender() {
-		parent::beforeRender();
-		$this->template->scriptPath = \App\Configs\AppConfig::getParameter('scriptPath');
-	}
 }

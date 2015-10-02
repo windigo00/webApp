@@ -15,11 +15,12 @@ class DocumentPresenter extends BaseFrontPresenter {
 	
 	protected function getDocument($path) {
 		$document = Document::getByPath($path);
+
 		if (empty($document)) {
 			$httpResponse = $this->context->getByType('Nette\Http\Response');
 			$httpResponse->setCode(\Nette\Http\Response::S404_NOT_FOUND);
 		}
-		return $document;
+		return $document[0];
 	}
 	
 //	protected function startup() {
@@ -45,7 +46,8 @@ class DocumentPresenter extends BaseFrontPresenter {
 		try {
 //			dump($path);
 			
-			$this->template->document = $this->getDocument($path);
+			$this->template->design = 'base1';
+			$this->template->documents = array($this->getDocument($path));
 		} catch (\Exception $ex) {
 			$this->flashMessage($ex->getMessage());
 			$this->redirect('Error:', array('backlink' => $this->storeRequest()));

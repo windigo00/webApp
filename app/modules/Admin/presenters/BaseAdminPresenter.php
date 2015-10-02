@@ -26,11 +26,4 @@ abstract class BaseAdminPresenter extends BasePresenter{
 		$menu = new Breadcrumbs;
 		return $menu;
 	}
-	
-	protected function beforeRender() {
-		parent::beforeRender();
-		$this->template->basePath = '/www/coat/admin/metro';
-				
-		$this->template->setTranslator(\App\Model\Translator::get());
-	}
 }

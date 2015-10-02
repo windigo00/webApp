@@ -16,9 +16,10 @@ trait ModelGetSetTrait {
 		$this->entity->$name = $value;
 	}
 	public static function __callStatic($method, $params) {
-		$ret = @forward_static_call(array(static::$entityClass, $method), !empty($params)?$params[0]:NULL);
+		$ret = forward_static_call(array(static::getEntityClass(), $method), !empty($params)?$params[0]:NULL);
+//		dump(static::$entityClass, $method);
 		if (!$ret) {
-			$ret = @forward_static_call(array(static::$entityClass,'getRepository'));
+			$ret = forward_static_call(array(static::getEntityClass(),'getRepository'));
 			if ($ret) {
 				$ret = $ret->$method($params[0]);
 			}
@@ -53,7 +54,11 @@ trait ModelGetSetTrait {
 				// call native methods of repository
 				// shortcut
 //				dump($this);exit;
-				return call_user_func($this->resource->$method, $params);
+				if (isset($this->resource)) {
+					return call_user_func($this->resource->$method, $params);
+				} else {
+					throw new \Exception("name '{$method}' not defied in ".get_class($this)."!");
+				}
 
 				break;
 		}

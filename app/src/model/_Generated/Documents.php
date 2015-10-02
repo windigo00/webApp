@@ -13,7 +13,7 @@ class Documents extends \App\Model\Entity
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -22,9 +22,46 @@ class Documents extends \App\Model\Entity
     /**
      * @var string
      *
-     * @ORM\Column(name="uid", type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     protected $uid;
 
-
+	
+	/**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=1024, nullable=false)
+     */
+    protected $path;
+	/**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=1024, nullable=false)
+     */
+    protected $title;
+	/**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=1024, nullable=false)
+     */
+	protected $module;
+	
+	/**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=1024, nullable=false)
+     */
+	protected $content;
+	/**
+     * @var integer
+     *
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+	protected $created;
+	/**
+     * @var integer
+     *
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+	protected $published;
 }

@@ -6,59 +6,77 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
+
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-		{ifset $page}
-        <meta name="description" content="{$page->description}">
-        <meta name="author" content="{$page->author}">
+        {ifset $page}
+			<meta name="description" content="{$page->description}">
+			<meta name="author" content="{$page->author}">
 		{/ifset}
 		<title>{ifset #title}{include title|striptags}{/ifset}</title>
-
-		<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/bootstrap.min.css">
-		<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/bootstrap-theme.min.css">
-
-        <!-- Custom CSS -->
-        <link href="{$basePath}/css/default/modern-business.css" rel="stylesheet">
-
-        <!-- Custom Fonts -->
-        <link href="{$basePath}/css/default/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-
-<!--<link rel="stylesheet" media="print" href="{$basePath}/css/print.css">-->
 		<link rel="shortcut icon" href="{$basePath}/favicon2.ico">
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
+		{var $dark = false}
+		<link href="{$basePath}/css/styles.css" rel="stylesheet">
+		<link href="{$basePath}/css/style.css" rel="stylesheet">
+		{if $dark}
+			<link href="{$basePath}/css/dark.css" rel="stylesheet">
+		{/if}
+		<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" id="spacious-genericons-css" href="{$basePath}/css/genericons.css" type="text/css" media="all">
 
 		{block head}{/block}
+		
+		
 	</head>
+	
+	<body class="home page page-id-7 page-template page-template-page-templates page-template-business page-template-page-templatesbusiness-php">
+		<div id="page" class="hfeed site">
+			<header id="masthead" class="site-header clearfix">
+				{includeblock 'html/header.latte'}
+			</header>
+			<div id="main" class="clearfix">
+				<div class="inner-wrap">
+					<!-- Page Content -->
+					{block content}{/block}
+				</div><!-- .inner-wrap -->
+			</div><!-- #main -->	
+			<footer id="colophon" class="clearfix">	
+				{include 'html/footer.latte'}
 
-	<body>
-		{include 'html/header.latte'}
-		<div id="main" class="clearfix">
-			<div class="inner-wrap">
-				{control navigation}
-
-				<!-- Page Content -->
-
-				{include content}
-
-			</div><!-- .inner-wrap -->
-		</div><!-- #main -->	
-		{include 'html/footer.latte'}
-		<!-- /.container -->
+			</footer>
+			<!-- /.container -->
+		</div>
+		
 		{block scripts}
 		<!-- jQuery Version 1.11.0 -->
-		<script src="{$basePath}/js/jquery-1.11.0.js"></script>
+		<script src="{$basePath}/../../../js/jquery-1.11.0.js"></script>
 
-		<!-- Bootstrap Core JavaScript -->
-		<script src="{$basePath}/js/bootstrap.min.js"></script>
+		{**
+		 * Adds JavaScript to pages with the comment form to support
+		 * sites with threaded comments (when in use).
+		*}
+		{**
+		 * Register JQuery cycle js file for slider.
+		*}
+		<script src="{$basePath}/js/jquery.cycle.all.min.js"></script>
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		
+		<script src="{$basePath}/js/navigation.js"></script>
+		<script src="{$basePath}/js/spacious-custom.js"></script>
+
+		{var $links = $presenter->getScripts()}
+		{foreach $links as $link}
+		<script src="{$basePath}{$link}"></script>
+		{/foreach}
 
 		{/block}
 	</body>

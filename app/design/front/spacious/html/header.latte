@@ -1,6 +1,4 @@
-{* Latte template *}
-{*block content*}
-
+{*
 <div id="page" class="hfeed site">
 	<?php //do_action( 'spacious_before_header' ); ?>
 	<header id="masthead" class="site-header clearfix">
@@ -102,4 +100,77 @@
 	<?php// do_action( 'spacious_after_header' ); ?>
 	<?php //do_action( 'spacious_before_main' ); ?>
 	
-		
+*}
+
+<div id="header-text-nav-container">
+	<div class="inner-wrap">
+
+		<div id="header-text-nav-wrap" class="clearfix">
+			<div id="header-left-section">
+				<div id="header-logo-image">
+					<a href="#" title="Spacious" rel="home"><img src="http://demo.themegrill.com/spacious/wp-content/uploads/sites/2/2014/03/spacious-logo.png" alt="Spacious"></a>
+				</div><!-- #header-logo-image -->
+				<div id="header-text">
+					<h1 id="site-title">
+						<a href="#" title="Spacious" rel="home">Spacious</a>
+					</h1>
+					<h2 id="site-description">ThemeGrill Demo site</h2><!-- #site-description -->
+				</div><!-- #header-text -->
+			</div><!-- #header-left-section -->
+			<div id="header-right-section">
+				<div id="header-right-sidebar" class="clearfix">
+					<aside id="search-3" class="widget widget_search"><form action="#" class="search-form searchform clearfix" method="get">
+							<div class="search-wrap">
+								<input placeholder="Search" class="s field" name="s" type="text">
+								<button class="search-icon" type="submit"></button>
+							</div>
+						</form><!-- .searchform -->
+					</aside>
+				</div>
+				{control navigation}
+
+			</div><!-- #header-right-section -->
+
+		</div><!-- #header-text-nav-wrap -->
+	</div><!-- .inner-wrap -->
+</div><!-- #header-text-nav-container -->
+
+{**
+* Enqueue Slider setup js file.	 
+*}
+{if true}{*( is_home() || is_front_page())*}
+	
+	
+	<section id="featured-slider">
+		<div style="width: 100%; height: 326px;" class="slider-cycle">
+			<div style="position: absolute; top: 0px; left: 0px; display: none; z-index: 2; opacity: 0; width: 100%;" class="slides displayblock">
+				<figure>
+					<img alt="Free Awesome slider" src="http://demo.themegrill.com/spacious/wp-content/uploads/sites/2/2014/03/book.jpg">
+				</figure>
+				<div class="entry-container">
+					<div class="entry-description-container">
+						<div class="slider-title-head"><h3 class="entry-title"><a href="http://themegrill.com" title="Free Awesome slider"><span>Free Awesome slider</span></a></h3></div>
+						<div class="entry-content"><p>Cotton candy liquorice donut unerdwear.com caramels powder bonbon. Sugar plum fruitcake gummies. Brownie marshmallow jelly-o jelly beans. Gummi bears gummi bears jelly cheesecake jelly beans jelly beans fruitcake</p></div>
+					</div>
+					<div class="clearfix"></div>
+					<a class="slider-read-more-button" href="http://themegrill.com" title="Free Awesome slider">Read more</a>
+				</div>
+			</div>
+			<div style="position: absolute; top: 0px; left: 0px; display: block; z-index: 3; width: 100%; opacity: 1;" class="slides displaynone">
+				<figure>
+					<img alt="Clean Code" src="http://demo.themegrill.com/spacious/wp-content/uploads/sites/2/2014/03/chess.jpg">
+				</figure>
+				<div class="entry-container">
+					<div class="entry-description-container">
+						<div class="slider-title-head"><h3 class="entry-title"><a href="http://themegrill.com" title="Clean Code"><span>Clean Code</span></a></h3></div>
+						<div class="entry-content"><p>Chocolate bar caramels fruitcake icing. Jujubes gingerbread marzipan applicake sweet lemon drops. Marshmallow cupcake bear claw oat cake candy marzipan. Cookie soufflé bear claw. Macaroon tiramisu fruitcake tiramisu.</p></div>
+					</div>
+					<div class="clearfix"></div>
+					<a class="slider-read-more-button" href="http://themegrill.com" title="Clean Code">Read more</a>
+				</div>
+			</div>
+		</div>
+		<nav id="controllers" class="clearfix"><a class="" href="#">1</a><a class="active" href="#">2</a></nav>
+	</section>
+	{?$presenter->addScript('/js/spacious-slider-setting.js')}
+{/if}

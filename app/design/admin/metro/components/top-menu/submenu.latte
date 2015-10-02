@@ -4,9 +4,11 @@
 		{if strpos($item->text, '.') > 0}
 			<?php
 			$tmp = explode('.', $item->text);
-			$prop = ucfirst($tmp[1]);
+			$prop = strtolower($tmp[1]);
 			$var = strtolower($tmp[0]);
-			eval('$item->text = $'.$var.'->get'.$prop.'();');
+			if (!is_null($$var)) {
+				$item->text = $$var->$prop;
+			}
 			?>
 		{/if}
 		{_$item->text}

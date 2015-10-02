@@ -1,0 +1,19 @@
+parameters:
+	menu:
+		modules:
+			items:
+				ashp :
+					presenter: AdminShop
+					icon: shopping-cart
+					text: Shop
+					items:
+						cat: 
+							priority: 10
+							presenter: AdminShopCatalog
+							icon: file
+							text: Catalog
+						prod: 
+							priority: 20
+							presenter: AdminShopProduct
+							icon: file
+							text: Products

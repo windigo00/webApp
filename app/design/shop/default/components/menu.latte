@@ -36,7 +36,7 @@
 					<li {if $ch}class="dropdown"{/if}>
 						<a href="{$menuItem->getPath()}" class="dropdown-toggle" {if $ch}data-toggle="dropdown"{/if} title="{*_$menuItem->title*}aaaaaaaa">
 							<i class="{*$menuItem->getIconClass()*}">
-							</i>{$menuItem->label}
+							</i>{$menuItem->text}
 							{if $ch}<b class="caret"></b>
 								<ul class="dropdown-menu">
 									{include items, 'items'=>$ch}

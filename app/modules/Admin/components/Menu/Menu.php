@@ -43,7 +43,7 @@ abstract class Menu extends AdminControl{
 	}
 	
 	public function render() {
-		$data = \App\Configs\AppConfig::getParameter($this->getMenu());
+		$data = $this->presenter->context->parameters[$this->getMenu()];
 		$this->template->menu = self::process($data, $this);
 		parent::render();
 	}

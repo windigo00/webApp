@@ -1,9 +1,12 @@
 {* This is the welcome page, you can delete it *}
 
 {block content}
-{?$content = '';}
 {foreach $documents as $document}
-    {?$content .= $document->docname}
+	{if $document->title != ''}<h3>{$document->title}</h3>
+	<hr>
+	<date>{$document->created->format('d.m.Y [H:i:s]')}</date>
+	{/if}
+	{!$document->content}
 {/foreach}
-{include '../design/'.$design.'.latte', content => $content, menuTop => $menuTop}
+{*include '../design/'.$design.'.latte', content => $content*}{*, menuTop => $menuTop*}
 {/block}

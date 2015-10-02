@@ -12,7 +12,8 @@ class TopMenu extends Menu{
 	public function getMenu() { return 'menu-top'; }
 
 	protected function setTpl($tplFile = ''){
-		$this->template->user = \App\Model\User::get($this->presenter->user->id);
+//		dump($this->presenter->user);
+		$this->template->user = $this->presenter->user !== null ? \App\Model\User::get($this->presenter->user->id) : null;
 		return parent::setTpl('top_menu.latte');
 	}
 

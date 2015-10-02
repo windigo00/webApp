@@ -10,28 +10,28 @@ use App\Model\Entity;
  * @Entity
  * @Table(name="acl_records")
  **/
-class AclRecord extends Entity {
-	
+class AclRecord extends \App\Model\Model {
+	protected static $entityClass = '\App\Model\Entities\AclRecords';
 	/** 
 	 * @Id @Column(type="integer")
 	 * @GeneratedValue 
 	 **/
-	protected $id;
+//	protected $id;
 	/**
 	 * @OneToOne(targetEntity="AclResource")
 	 * @JoinColumn(name="resource", referencedColumnName="name")
 	 **/
-	protected $resource;
+//	protected $resource;
 	/**
 	 * @OneToOne(targetEntity="AclPrivilege")
 	 * @JoinColumn(name="privilege", referencedColumnName="name")
 	 **/
-	protected $privilege;
+//	protected $privilege;
 	/**
 	 * @OneToOne(targetEntity="UserGroup")
 	 * @JoinColumn(name="user_group", referencedColumnName="id")
 	 **/
-	protected $group;
+//	protected $group;
 	/** @Column(type="boolean") **/
-	protected $allowed;
+//	protected $allowed;
 }

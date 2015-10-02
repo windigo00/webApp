@@ -46,6 +46,7 @@ class AclResourcesPresenter extends SecureAdminPresenter {
 			$this->flashMessage('Name `'.$values['name'].'` allready exist.', 'error');
 			$this->redirect('default');
 		} else {
+			
 			$res = new AclResource;
 			$res->setName($values['name']);
 			$res->persist();

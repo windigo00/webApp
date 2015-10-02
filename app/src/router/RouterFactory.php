@@ -3,7 +3,8 @@
 namespace App;
 
 use Nette\Application\Routers\RouteList,
-	Nette\Application\Routers\Route;
+	Nette\Application\Routers\Route,
+	Nette\Application\IRouter;
 
 
 /**
@@ -12,10 +13,11 @@ use Nette\Application\Routers\RouteList,
 class RouterFactory
 {
 
+	
 	/**
 	 * @return \Nette\Application\IRouter
 	 */
-	public function createRouter($routes = NULL)
+	public static  function createRouter($routes = NULL)
 	{
 		$router = new RouteList();
 		if ($routes) {

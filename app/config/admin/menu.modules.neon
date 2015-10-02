@@ -4,12 +4,3 @@ parameters:
 			priority: 10
 			text: Modules
 			icon: sitemap
-			items:
-				ashp :
-					presenter: AdminShop
-					icon: bar-chart
-					text: Shop
-				acms :
-					presenter: AdminCms
-					icon: bar-chart
-					text: CMS

@@ -7,10 +7,9 @@ use Nette\Security\Identity;
  * @Entity
  * @Table(name="user-email")
  **/
-class Email extends \App\Model\Entity {
+class Email extends \App\Model {
 	/** 
 	 * @Id @Column(type="integer")
-	 * @GeneratedValue 
 	 **/
 	protected $id;
 	
@@ -23,14 +22,14 @@ class Email extends \App\Model\Entity {
 	protected $vieved;
 	
 	/**
-     * @ManyToOne(targetEntity="User", inversedBy="mails")
+     * @OneToOne(targetEntity="User", inversedBy="mails")
      * @JoinColumn(name="user_id", referencedColumnName="id")
      **/
     private $user;
 	
 	public static function findNewByUser(Identity $user) {
 		$qb = self::getRepository()->createQueryBuilder('e');
-		$qb->
+//		$qb->
 		return $emails;
 	}
 }
