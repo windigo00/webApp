@@ -38,7 +38,7 @@ abstract class BaseFrontPresenter extends BasePresenter {
 	 * @return \App\Model\Menu
 	 */
 	protected function loadMenu() {
-		return \App\Model\Menu::get(1);
+		return \App\Model\Menu::get(6);
 	}
 	
 	protected $scripts = array();

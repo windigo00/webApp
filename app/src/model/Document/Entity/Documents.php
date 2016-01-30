@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Documents
  *
- * @ORM\Table(name="documents")
+ * @ORM\Table(name="cms_documents")
  * @ORM\Entity
  */
 class Documents extends \App\Model\Entity

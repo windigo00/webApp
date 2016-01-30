@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Page language dependent titles
  *
- * @ORM\Table(name="page_titles")
+ * @ORM\Table(name="cms_page_titles")
  * @ORM\Entity
  */
 class PageTitleEntity extends \App\Model\Entity

@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM,
 /**
  * Documents
  *
- * @ORM\Table(name="pages")
+ * @ORM\Table(name="cms_pages")
  * @ORM\Entity
  */
 class PageEntity extends \App\Model\Entity

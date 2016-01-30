@@ -66,14 +66,9 @@ class Entity
 	 * @param \App\Management\EntityManager $cnt
 	 * @return \static
 	 */
-	public static function getRepository(EntityManager $cnt = null) {
-		if ($cnt == NULL) {
-			$cnt = EntityManager::get();
-		}
-		
-//		dump(get_called_class());
+	public static function getRepository() {
+		$cnt = EntityManager::get();
 		$ret = $cnt->getRepository(get_called_class());
-//		dump($ret);
 		return $ret;
 	}
 	/**
@@ -103,26 +98,5 @@ class Entity
 		return $this;
 	}
 	
-//	public function filter(array $condition) {
-//		if (empty($condition)) return $this;
-//	}
-//
-//	public function getCount() {
-//		return 5;
-//	}
-//
-	
-//
-//	public function limit($offset, $limit) {
-//		throw new \Nette\NotImplementedException;
-//	}
-//
-//	public function sort(array $sorting) {
-//		throw new \Nette\NotImplementedException;
-//	}
-//
-//	public function suggest($column, array $conditions, $limit) {
-//		throw new \Nette\NotImplementedException;
-//	}
 
 }

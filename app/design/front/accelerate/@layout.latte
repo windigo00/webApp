@@ -1,0 +1,60 @@
+{*
+ * Theme Index Section for our theme.
+ *
+ * @package ThemeGrill
+ * @subpackage Accelerate
+ * @since Accelerate 1.0
+ *}
+{*
+ * Theme Header Section for our theme.
+ *
+ * Displays all of the <head> section and everything up till <div id="main" class="clearfix"> <div class="inner-wrap">
+ *
+ * @package ThemeGrill
+ * @subpackage Accelerate
+ * @since Accelerate 1.0
+ *}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="{* bloginfo( 'pingback_url' );*}" />
+{block head}{/block}
+</head>
+
+<body>
+	{*do_action( 'accelerate_before' ); *}
+	<div id="page" class="hfeed site">
+		{*do_action( 'accelerate_before_header' ); *}
+		{include 'html/header.latte'}
+		{*do_action( 'accelerate_after_header' ); *}
+		{*do_action( 'accelerate_before_main' ); *}
+		<div id="main" class="clearfix">
+			<div class="inner-wrap clearfix">
+				{* do_action( 'accelerate_before_body_content' ); *}
+
+				<div id="primary">
+					<div id="content" class="clearfix">
+					{ifset $posts}
+						{foreach $posts as $post}
+							{*include 'components/post_content.latte', post => $post*}
+						{/foreach}
+						{control navigation}
+					{else}
+						{include 'page/no-results.latte'}
+					{/ifset}
+					</div><!-- #content -->
+				</div><!-- #primary -->
+			{*
+			{*accelerate_sidebar_select(); *}
+			{*do_action( 'accelerate_after_body_content' ); *}
+			</div><!-- .inner-wrap -->
+		</div><!-- #main -->	
+		{*do_action( 'accelerate_before_footer' ); *}
+		{include 'html/footer.latte'}
+		<a href="#masthead" id="scroll-up"><i class="fa fa-long-arrow-up"></i></a>	
+	</div><!-- #page -->
+</body>
+</html>

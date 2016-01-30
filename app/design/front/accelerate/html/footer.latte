@@ -1,0 +1,33 @@
+{*
+ * Theme Footer Section for our theme.
+ * 
+ * Displays all of the footer section and closing of the #main div.
+ *
+ * @package ThemeGrill
+ * @subpackage Accelerate
+ * @since Accelerate 1.0
+ 
+*}
+
+		
+	
+		<footer id="colophon" class="clearfix">	
+			{*get_sidebar( 'footer' ); *}	
+			<div class="footer-socket-wrapper clearfix">
+				<div class="inner-wrap">
+					<div class="footer-socket-area">
+						{*do_action( 'accelerate_footer_copyright' ); *}
+						<nav class="footer-menu" class="clearfix">
+							{*if ( has_nav_menu( 'footer' ) ) {									
+										wp_nav_menu( array( 'theme_location' => 'footer',
+																 'depth'           => -1
+																 ) );
+								}
+							*}
+		    			</nav>
+					</div>
+				</div>
+			</div>			
+		</footer>
+		
+	{*wp_footer(); *}

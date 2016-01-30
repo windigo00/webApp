@@ -1,7 +1,7 @@
 {* admin module base *}
 {block content}
 <div class="row-fluid">
-	<div class="box span2">
+	<div class="box span3">
 	<div class="box-header" data-original-title="">
 		<h2><i class="halflings-icon align-justify"></i><span class="break"></span>{_'Menus'}</h2>
 		<div class="box-icon">
@@ -10,13 +10,13 @@
 	</div>
 
 	<div class="box-content">
-		<div class="btn-group btn-group-vertical">
+		<div class="btn-group btn-group-vertical menus">
 		{include 'components/menu_list.latte', menus => $menus}
 		</div>
 	</div>
 	</div>
 	{ifset $menu}
-		<div class="box span10">
+		<div class="box span9">
 			<div class="box-header" data-original-title="">
 				<h2><i class="halflings-icon wrench"></i><span class="break"></span>{_'Menu details'}</h2>
 				<div class="box-icon">
@@ -28,7 +28,7 @@
 				{include 'components/menu_form.latte'}
 			</div>
 		</div>
-		<div class="box span10">
+		<div class="box span9">
 			<div class="box-header" data-original-title="">
 				<h2><i class="halflings-icon align-justify"></i><span class="break"></span>{_'Menu Items'}</h2>
 				<div class="box-icon">
@@ -41,7 +41,7 @@
 			</div>
 		</div>
 	{else}
-		<div class="alert span10">
+		<div class="alert span9">
 			<h2>{_'Select menu'}</h2>
 		</div>
 	{/ifset}
@@ -113,16 +113,20 @@
 		.tree > li::before {
 			border: 0px;
 		}
-		
-		.btn-group+.btn-group {
+		.menus .btn-group+.btn-group {
 			margin-left: 0px;
 		}
-		.btn-group {
-			white-space: normal;
+		.menus.btn-group,
+		.menus .btn-group {
+			white-space: normal !important;
 		}
-		.btn-group>.btn:first-child {
-			width: 89px;
+		.menus .btn-group {
+			min-width: 205px;
+		}
+		.menus .btn-group > .btn:first-child {
 			text-align: left;
+			min-width: 140px;
+			max-width: 160px;
 		}
 	</style>
 {/block}

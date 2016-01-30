@@ -1,0 +1,30 @@
+{**
+ * The template part for displaying navigation.
+ *
+ * @package spacious
+ *}
+ 
+	<nav id="site-navigation" class="main-navigation" role="navigation">
+		<h3 class="menu-toggle">{$menu->name}</h3>
+		<div class="menu-primary-container">
+			<ul id="menu-primary" class="menunav-menu">
+				{var $items = $menu->getItems()}
+				{foreach $items as $item}
+				<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item 
+					{if FALSE}current_page_item{/if}{if $item->hasChildren()} menu-item-has-children{/if}"><a href="{$item->path}">{$item->text}</a>
+					{if $item->hasChildren()}
+						{var $subitems = $item->getChildren()}
+						{block submenu}
+						<ul class="sub-menu">
+						   {foreach $subitems as $item}
+						   <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{$item->path}">{$item->text}</a></li>
+							 {include #submenu, subitems => $item->getChildren()}
+						   {/foreach}
+						</ul>
+						{/block}
+					{/if}
+				</li>
+				{/foreach}
+			</ul>
+		</div>
+	</nav>
