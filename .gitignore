@@ -7,6 +7,9 @@ vendor/*
 !.gitignore
 !.htaccess
 !web.config
-/!--dev--!/
-/www/doctrine-example/
-/www/js/grido/
+dev
+www/doctrine-example
+www/js/grido
+www/adminer
+www/metro-dashboard
+www/sb-admin-v2

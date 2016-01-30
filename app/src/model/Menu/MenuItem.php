@@ -48,12 +48,11 @@ class MenuItem extends \App\Model\Model {
 		return $this->children;
 	}
 	public function setParent(MenuItem $item) {
-		$this->parent = $item;
-		$this->setParentId($item->getId());
+		$this->parent = $item->getEntity();
 	}
 	public function getParent() {
 		if (empty($this->parent)) {
-			$this->parent = static::getById($this->getParentId());
+			$this->parent = static::get($this->getParentId());
 		}
 		return $this->parent;
 	}

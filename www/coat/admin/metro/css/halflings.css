@@ -539,6 +539,22 @@ html .halflings {
 .no-inlinesvg .halflings-icon.white {
   background-image: url(../img/glyphicons_halflings-white.png);
 }
+.halflings-icon.red {
+  background-image: url(../img/glyphicons_halflings-red.svg) !important;
+  background-color: transparent !important;
+}
+.no-inlinesvg .halflings-icon.red {
+  background: url(../img/glyphicons_halflings-red.png) transparent !important;
+  background-color: transparent !important;
+}
+.halflings-icon.warning {
+  background-image: url(../img/glyphicons_halflings-orange.svg) !important;
+  background-color: transparent !important;
+}
+.no-inlinesvg .halflings-icon.warning {
+  background: url(../img/glyphicons_halflings-orange.png) transparent !important;
+  background-color: transparent !important;
+}
 .halflings-icon.glass {
   background-position: 0 0;
 }

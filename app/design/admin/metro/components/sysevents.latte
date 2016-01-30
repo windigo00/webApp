@@ -1,0 +1,30 @@
+
+<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" title="{ifset $data['label']}{_$data['label']}{else}{_$data['text']}{/ifset}">
+	{ifset $data['icon']}<i class="halflings-icon {if isset($items) && count($items)}red{else}white{/if} {$data['icon']}"></i>&nbsp;{/ifset}
+<span class="caret"></span>
+</a>
+<ul class="dropdown-menu events">
+	<li class="dropdown-menu-title">&nbsp;
+		<a n:href="refresh" class="ajax"><i class="icon-repeat"></i></a>
+	</li>
+	{ifset $items}
+		{foreach $items as $item}
+		<li>
+			<a href="{$item->getLink()}">
+				<span class="avatar"><img src="{$basePath}/img/avatar.jpg" alt="Avatar"></span>
+				<span class="header">
+					<span class="from">
+						Dennis Ji
+					</span>
+					<span class="time">{$item->getTime()}</span>
+				</span>
+				<span class="message">{$item->getMessage()}</span>  
+			</a>
+		</li>
+		{/foreach}
+	
+	{/ifset}
+	<li>
+		<a class="dropdown-menu-sub-footer" href="{plink SystemEvents:}">{_"View all events"}</a>
+	</li>	
+</ul>

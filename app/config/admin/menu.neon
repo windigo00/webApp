@@ -5,11 +5,11 @@ parameters:
 			presenter: Dashboard
 			icon: dashboard
 			text: Dashboard
-#		messages:
-#			priority: 100
-#			presenter: Messages
-#			icon: envelope
-#			text: Messages
+		widgets:
+			priority: 100
+			presenter: Widgets
+			icon: cog
+			text: Widgets
 		settings:
 			priority: 1000
 			text: Settings

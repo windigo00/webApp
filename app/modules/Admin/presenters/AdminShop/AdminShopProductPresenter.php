@@ -8,7 +8,7 @@ use Nette\Application\UI\Form
  *
  * @author KuBik
  */
-class AdminShopProductPresenter extends AdminCmsPresenter {
+class AdminShopProductPresenter extends AdminShopPresenter {
 	
 	
 

@@ -1,6 +1,5 @@
-<a class="btn {if $item->component}dropdown-toggle" data-toggle="dropdown{/if}" 
+<a class="btn" 
 	{if $item->component}href="#"{elseif $item->presenter}href="{plink $item->presenter.':'}"{/if} 
 	title="{if $item->label}{_$item->label}{else}{_$item->text}{/if}">
-	<i class="halflings-icon white {$item->icon}"></i>
-	{if $item->component}{$item->component->render()}{/if}
+	{if $item->icon}<i class="halflings-icon white {$item->icon}"></i>{/if}
 </a>

@@ -41,6 +41,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	 * @see Nette\Application\UI\Presenter
 	 */
 	public function formatTemplateFiles($view = NULL) {
+		$ret = array();
 		if ($view !== NULL) {
 			$presenter = $view;
 		} else {
@@ -51,14 +52,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 		$pth2 = "..\app{$tpls}../base/{$presenter}";
 		$file = realpath($pth1);
 		$file2 = realpath($pth2);
-		if (empty($file)) {
-			throw new \Exception('Tamplate path "'.$pth1.'" does not exits!');
+		if (empty($file) && empty($file2)) {
+			throw new \Exception('Tamplate path "'.$pth1.'" and "'.$pth2.'" does not exits!');
 		}
 		
-		$ret = array(
-			"{$file}/{$this->view}.latte",
-			"{$file}/{$this->view}.phtml"
-		);
+		$ret[] = "{$file}/{$this->view}.latte";
+		$ret[] = "{$file}/{$this->view}.phtml";
+		
 		if (!empty($file2)) {
 			$ret[] = "{$file2}/{$this->view}.latte";
 			$ret[] = "{$file2}/{$this->view}.phtml";

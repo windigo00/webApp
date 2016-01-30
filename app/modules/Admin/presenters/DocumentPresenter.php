@@ -1,37 +1,28 @@
 <?php
 namespace App\Modules\Admin\Presenters;
 
-use App\Model\Document,
-	App\Modules\Admin\Components\AdminTable
-		;
 
 /**
  * Description of DocumentPresenter
  *
  * @author KuBik
  */
-class DocumentPresenter extends BaseAdminPresenter {
-	protected function createComponentAdminTable() {
-//		var_dump(func_get_args());exit;
-		$table = new AdminTable();
-		$table->addAddHandler(array($this, 'handleAdd'));
-		$table->addEditHandler(array($this, 'handleEdit'));
-		$table->addDeleteHandler(array($this, 'handleDelete'));
-		return $table;
-	}
+class DocuumentPresenter extends SecureAdminPresenter {
+	
+	
 	
 	public function renderDefault() {
 		try {
-			$documents = Document::getAll();
+//			$documents = Document::getAll();
 //			$documents= array();
 			$this->template->title = 'Documents';
-			$this->template->table = $documents;
+//			$this->template->table = $documents;
 		} catch (\Exception $ex) {
 			$this->flashMessage($ex->getMessage());
 			$this->redirect('Error:500', array('backlink' => $this->storeRequest()));
 		}
 	}
-	
+	/*
 	public function actionEdit($id) {
 		//handle edit
 		$doc = Document::getById($id);
@@ -111,4 +102,6 @@ class DocumentPresenter extends BaseAdminPresenter {
 		exit();
 //		$this->template->setFile(__DIR__.'/../templates/Document/delete.latte');
 	}
+	 * 
+	 */
 }

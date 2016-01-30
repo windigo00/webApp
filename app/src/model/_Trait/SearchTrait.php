@@ -9,7 +9,10 @@ use \App\Management\EntityManager;
  */
 trait SearchTrait {
 	public static function get($id) {
-		$entity = EntityManager::get()->find(static::getEntityClass(), $id);
+		$entity = NULL;
+		if ($id !== NULL) {
+			$entity = EntityManager::get()->find(static::getEntityClass(), $id);
+		}
 		$entity = new static($entity);
 		return $entity;
 	}

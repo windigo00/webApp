@@ -63,4 +63,13 @@ trait ModelGetSetTrait {
 				break;
 		}
 	}
+	
+	public function __isset($name) {
+		try {
+			return $this->$name !== NULL;
+		} catch (\Exception $ex) {
+			return FALSE;
+		}
+		
+	}
 }

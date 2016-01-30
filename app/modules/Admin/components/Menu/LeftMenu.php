@@ -14,6 +14,4 @@ class LeftMenu extends Menu{
 		return parent::setTpl('left_menu.latte');
 	}
 
-	public function setup($param) {}
-
 }

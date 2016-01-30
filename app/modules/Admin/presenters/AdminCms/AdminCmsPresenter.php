@@ -9,15 +9,15 @@ namespace App\Modules\Admin\Presenters;
 class AdminCmsPresenter extends AdminModulePresenter {
 	
 	public function formatTemplateFiles($view = NULL) {
-		$view = explode(':', $this->getName())[1];
-		$view = str_replace('AdminCms', '', $view);
-		
-		return parent::formatTemplateFiles('AdminCms/'.$view);
+		return parent::formatTemplateFiles($this->getTemplateFilesPath('AdminCms', $this->getName()));
 	}
 	
 	public function renderDefaullt() {
 		
 	}
 	
-	
+	public function formCancelled()
+    {
+        $this->redirect('default');
+    }
 }

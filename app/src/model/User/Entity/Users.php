@@ -13,7 +13,7 @@ class Users extends \App\Model\Entity
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -72,9 +72,9 @@ class Users extends \App\Model\Entity
      */
 	protected $groups;
 	
-	public function __construct()
-    {
-		parent::__construct();
-        $this->groups = new ArrayCollection();
-    }
+//	public function __construct()
+//    {
+//		parent::__construct();
+//        $this->groups = new ArrayCollection();
+//    }
 }

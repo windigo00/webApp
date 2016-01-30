@@ -1,5 +1,5 @@
 <div class="nav-no-collapse header-nav">
-	<ul class="nav pull-right">
+	<ul class="nav navbar-nav pull-right">
 		{foreach $menu as $item}
 			<li class="{if $item->hasChildren() || $item->component}dropdown{/if} hidden-phone">
 				{if $item->hasChildren()}
@@ -13,4 +13,3 @@
 		{/foreach}
 	</ul>
 </div>
-<!-- end: Header Menu -->

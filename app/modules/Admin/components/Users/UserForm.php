@@ -21,8 +21,4 @@ class UserForm extends AdminControl {
 		return parent::setTpl('users/form.latte');
 	}
 
-	public function setup($param) {
-		
-	}
-
 }

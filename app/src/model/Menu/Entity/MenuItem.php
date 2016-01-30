@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Menu
  *
- * @ORM\Table(name="menu_item")
+ * @ORM\Table(name="cms_menu_item")
  * @ORM\Entity
  */
 class MenuItem extends \App\Model\Entity

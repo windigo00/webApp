@@ -7,7 +7,18 @@ parameters:
 					icon: globe
 					text: CMS
 					items:
+						pages: 
+							priority: 10
+							presenter: AdminCmsPages
+							icon: file
+							text: Pages
 						doc: 
+							priority: 20
 							presenter: AdminCmsDocuments
 							icon: file
 							text: Documents
+						menu:
+							priority: 30
+							presenter: AdminCmsMenu
+							icon: align-justify
+							text: Menu

@@ -16,6 +16,4 @@ class UserList extends AdminControl {
 		return parent::setTpl('users/list.latte');
 	}
 
-	public function setup($param) {}
-
 }

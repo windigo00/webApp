@@ -1,0 +1,31 @@
+{layout '../../@blank.latte'}
+{block content}
+{include 'components/menu_item_form.latte'}
+{/block}
+{block scripts}
+<script type="text/javascript" n:syntax="double">
+		$(function () {
+		$('.btn-select').click(function(e){
+			e.preventDefault();
+			var button = $(this);
+			$('.tree .btn-select').removeClass('selected');
+			button.addClass('selected');
+			console.log(button.data('item'));
+			$("input[name=parent]").val(button.data('item'));
+		});
+		//--- menu items tree
+		$('.form-horizontal .tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', '{{_'Collapse this branch'}}');
+		$('.form-horizontal .tree li.parent_li > span').on('click', function (e) {
+			var children = $(this).parent('li.parent_li').find(' > ul > li');
+			if (children.is(":visible")) {
+				children.hide('fast');
+				$(this).attr('title', '{{_'Expand this branch'}}').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+			} else {
+				children.show('fast');
+				$(this).attr('title', '{{_'Collapse this branch'}}').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+			}
+			e.stopPropagation();
+		});
+	});
+	</script>
+{/block}

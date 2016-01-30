@@ -17,6 +17,4 @@ class TopMenu extends Menu{
 		return parent::setTpl('top_menu.latte');
 	}
 
-	public function setup($param) {}
-
 }

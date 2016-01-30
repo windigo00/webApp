@@ -8,6 +8,7 @@ parameters:
 	locales:
 		default: cs_CZ
 		path: /app/locale/
+		available: cs_CZ en_US de_DE es_ES fr_FR
 	templates: /design/front/default/
 
 php:

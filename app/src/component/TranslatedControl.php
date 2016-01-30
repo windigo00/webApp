@@ -38,7 +38,8 @@ abstract class TranslatedControl extends Control {
 	public function render()
 	{
 		$this->template->setFile($this->setTpl());
-		$this->template->setTranslator(Translator::get());
+		$this->template->locale = Translator::get();
+		$this->template->setTranslator($this->template->locale);
 		$this->template->render();
 	}
 }

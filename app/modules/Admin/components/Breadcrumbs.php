@@ -37,6 +37,4 @@ class Breadcrumbs extends AdminControl {
 		parent::render();
 	}
 
-	public function setup($param) {}
-
 }

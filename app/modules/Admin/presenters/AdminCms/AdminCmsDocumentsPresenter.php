@@ -1,7 +1,10 @@
 <?php
 namespace App\Modules\Admin\Presenters;
 
-use Nette\Application\UI\Form
+use Nette\Application\UI\Form,
+	App\Modules\Admin\Components\AdminTable,
+	Grido\DataSources\Doctrine,
+	App\Model\Document
 	;
 /**
  * Description of CmsMenuPresenter
@@ -9,6 +12,18 @@ use Nette\Application\UI\Form
  * @author KuBik
  */
 class AdminCmsDocumentsPresenter extends AdminCmsPresenter {
+	
+	protected function createComponentDocumentList($name) {
+		$table = new AdminTable($this, $name);
+		$table->model = new Doctrine(Document::getRepository()->createQueryBuilder('d'));
+		$table->addColumnText('id', 'ID')->setSortable();
+		$table->addColumnText('title', 'Title')->setSortable();
+		$table->addColumnText('language', 'Language')->setSortable();
+		$table->addColumnDate('created', 'Created')->setSortable();
+		$table->addColumnDate('published', 'Publised')->setSortable();
+//		dump($table);
+		return $table;
+	}
 	
 	protected function createComponentEditForm() {
 //		var_dump($this->template);
@@ -40,11 +55,11 @@ class AdminCmsDocumentsPresenter extends AdminCmsPresenter {
 		exit;
 	}
 
-	public function renderDefault()
-	{
+//	public function renderDefault()
+//	{
 //		$menu = Menu::getByParent(NULL);
 //		$this->template->menus = $menu;
-	}
+//	}
 	
 	public function actionEdit($id) {
 //		$item = MenuItem::getById($id);

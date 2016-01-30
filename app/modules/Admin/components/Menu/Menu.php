@@ -42,11 +42,16 @@ abstract class Menu extends AdminControl{
 		return $data;
 	}
 	
-	public function render() {
+	protected function attached($presenter) {
+		parent::attached($presenter);
 		$data = $this->presenter->context->parameters[$this->getMenu()];
 		$this->template->menu = self::process($data, $this);
-		parent::render();
 	}
+	
+	public function setup($param) {
+		parent::setup($param->data);
+	}
+	
 }
 
 class MenuItem {
@@ -81,9 +86,13 @@ class MenuItem {
 			$this->items = Menu::process($data['items'], $container);
 		}
 		if (isset($data['component'])) {
-			$tmp = trim('\App\Modules\Admin\Components\\'.$data['component']);
+			$tmp = trim("\App\Modules\Admin\Components\\{$data['component']}");
 			$this->component = new $tmp;
+			
+//			$this->component->setParent($container);
+			
 			$container->addComponent($this->component, $name);
+			$this->component->setup($this->data);
 		}
 	}
 	public function hasChildren() {

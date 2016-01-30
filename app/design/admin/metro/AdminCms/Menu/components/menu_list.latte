@@ -1,0 +1,8 @@
+{foreach $menus as $item}
+	<div class="btn-group">
+	<a class="btn btn-inverse{if $selected == $item->id} btn-info{/if}" href="{link default, $item->id}">{$item->name}{if !$item->active}
+		<i class="halflings-icon white eye-close"></i>{/if}</a>
+	<a class="btn btn-danger"><i class="halflings-icon white trash"></i></a>
+	</div>
+{/foreach}
+	

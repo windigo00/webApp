@@ -13,15 +13,21 @@ class AdminTable extends Grid {
 	public function __construct(\Nette\ComponentModel\IContainer $parent = NULL, $name = NULL) {
 		parent::__construct($parent, $name);
 //		$this->setTemplateFile('../app/design/admin/metro/components/Grid2.latte');
-		$this->getTablePrototype()->class[] = 'table table-striped table-bordered bootstrap-datatable datatable dataTable';
+		$this->getTablePrototype()->class[] = 'table table-striped table-bordered bootstrap-datatable datatable';
+		$act;
 		if ($parent->user->isAllowed($parent->name, 'edit')){
-			$this->addActionHref('edit', '')->setIcon('edit');
+			$act = $this->addActionHref('edit', 'Edit');
+			$act->getElementPrototype()->class('btn btn-info')->setHtml('<i class="halflings-icon white edit"></i>');
 		}
 		elseif ($parent->user->isAllowed($parent->name, 'view')){
-			$this->addActionHref('view', '')->setIcon('zoom-in');
+			$act = $this->addActionHref('view', 'View');
+			$act->getElementPrototype()->class('btn btn-success')->setHtml('<i class="halflings-icon white zoom-in"></i>');
+			
 		}
 		if ($parent->user->isAllowed($parent->name, 'delete')){
-			$this->addActionHref('delete', '')->setIcon('trash')->setConfirm(function($item) {
+			$act = $this->addActionHref('delete', 'Delete');
+			$act->getElementPrototype()->class('btn btn-danger')->setHtml('<i class="halflings-icon white trash"></i>');
+			$act->setConfirm(function($item) {
 				return "Are you sure you want to delete it?";
 			});
 		}

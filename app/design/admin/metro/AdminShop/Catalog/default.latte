@@ -1,0 +1,29 @@
+{* admin module base *}
+{block content}
+<div class="row">
+
+	<h3>{_'Catalogue'}</h3>
+	
+	<div class="col-md-2">
+		<div class="box">
+			<div class="box-header"><h2>{_'categories'}</h2></div>
+			<div class="box-content">asssssssss</div>
+		</div>
+	</div>
+	
+	<div class="col-md-10">
+		<div class="panel panel-default">
+			<div class="panel-heading">{_'Products'}</div>
+			<div class="panel-body">asssssssss</div>
+		</div>
+	</div>
+	
+</div>
+{block head}
+	{include parent}
+	{include '../components/grid_head.latte'}
+{/block}
+{block scripts}
+	{include parent}
+	{include '../components/grid_scripts.latte'}
+{/block}

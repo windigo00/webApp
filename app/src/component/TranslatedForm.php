@@ -38,10 +38,25 @@ class TranslatedForm extends Form {
 		return $this->tplDir;
 	}
 
-	public function render()
-	{
-		$this->template->setFile($this->setTpl());
-		$this->template->setTranslator(Translator::get());
-		$this->template->render();
+//	public function render()
+//	{
+//		$this->template->setFile($this->setTpl());
+//		$this->template->setTranslator(Translator::get());
+//		$this->template->render();
+//	}
+	
+	public function setValues($values, $erase = FALSE) {
+		if (is_object($values)) {
+			foreach ($this->getComponents() as $name => $control) {
+				if (isset($values->$name)) {
+					$control->setValue($values->$name);
+				} elseif ($erase) {
+					$control->setValue(NULL);
+				}
+			}
+			return $this;
+		} else {
+			parent::setValues($values, $erase);
+		}
 	}
 }

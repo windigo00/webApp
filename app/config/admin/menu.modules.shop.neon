@@ -5,7 +5,7 @@ parameters:
 				ashp :
 					presenter: AdminShop
 					icon: shopping-cart
-					text: Shop
+					text: Shops
 					items:
 						cat: 
 							priority: 10

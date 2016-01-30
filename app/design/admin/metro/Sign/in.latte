@@ -1,3 +1,4 @@
+{layout ../@layout2.latte}
 {block #head}
 <style type="text/css">
 	body {
@@ -23,17 +24,17 @@
 					<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">{_$flash->message}</div>
 					</div>
 					{/if}
-					<h2>{_'Login Information'}</h2>
+					<h2>{_'Login information'}</h2>
 					{form signInForm, class=>"form-horizontal"}
 						<fieldset>
 							
-							<div class="input-prepend" title="{_"Username"}">
+							<div class="input-prepend" title="{_'Username'}">
 								<span class="add-on"><i class="halflings-icon user"></i></span>
 								{input username, class=>'form-control input-large span10'}
 							</div>
 							<div class="clearfix"></div>
 
-							<div class="input-prepend" title="{_"Password"}">
+							<div class="input-prepend" title="{_'Password'}">
 								<span class="add-on"><i class="halflings-icon lock"></i></span>
 								{input password, class=>'form-control input-large span10'}
 							</div>
@@ -49,9 +50,9 @@
 							<div class="clearfix"></div>
 					{/form}
 					<hr>
-					<h2>{_"Forgot your password?"}</h2>
+					<h2>{_'Forgot Your Password?'}</h2>
 					<p>
-						{!_sprintf('No problem, <a href="%s">click here</a> to get a new password.', $presenter->link('Sign:reset'))}
+						{!_'No problem, <a href="%s">click here</a> to get a new password.', $presenter->link('Sign:reset')}
 					</p>	
 				</div><!--/span-->
 			</div><!--/row-->

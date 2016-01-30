@@ -6,6 +6,6 @@ namespace App\Model\Component;
  *
  * @author KuBik
  */
-class LangSelectorComponent {
+class LangSelectorComponent extends EditableControl {
 	
 }

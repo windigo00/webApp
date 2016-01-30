@@ -6,7 +6,7 @@ use Nette,
 		;
 
 /**
- * Description of Translator
+ * Translator class. works with local translations.
  *
  * @author KuBik
  */
@@ -17,19 +17,34 @@ class Translator implements Nette\Localization\ITranslator
 	const PATH_CONFIG_KEY = 'path';
 
 	protected $config;
-	protected $dictionary = array();
+	protected $dictionary;
+	protected $notTranslated;
 
 	protected static $_instance;
+	
 	/**
 	 * 
 	 */
 	protected function __construct() {
 		$this->config = new \stdClass;
+		$this->dictionary = array();
+		$this->notTranslated = array();
+		
 		$env = Environment::getContext()->parameters[self::LOCALE_CONFIG_KEY];
-		$this->config->locale = $env[self::LANG_CONFIG_KEY];
+		
+		$loc = $env[self::LANG_CONFIG_KEY];
+		$sec = Environment::getContext()->getService('session')->getSection('lang');
+		if ($sec) {
+			$loc = $sec->lang;
+		}
+		$this->config->locale = $loc;
 		$this->config->path = $env[self::PATH_CONFIG_KEY];
 		
 		$this->initLanguage($this->config->locale);
+	}
+	
+	public function __destruct() {
+//		\Tracy\Debugger::barDump($this);
 	}
 
 	/**
@@ -39,7 +54,15 @@ class Translator implements Nette\Localization\ITranslator
      * @return string
      */
     public function translate($message, $count = NULL) {
-        return isset($this->dictionary[$this->config->locale][$message]) ? $this->dictionary[$this->config->locale][$message] : $message;
+		if (isset($this->dictionary[$this->config->locale][$message])) {
+			$message = $this->dictionary[$this->config->locale][$message];
+		} else {
+			$this->notTranslated[$this->config->locale][$message] = $message;
+		}
+		if ($count != NULL) {
+			$message = sprintf($message, $count);
+		}
+        return $message;
     }
 	/**
 	 * Initiates dictionary
@@ -47,7 +70,7 @@ class Translator implements Nette\Localization\ITranslator
 	 * @return boolean Whether the locale files were found.
 	 */
 	protected function initLanguage($newLanguage) {
-		$path = '../..'.$this->config->path.$newLanguage;
+		$path = '..'.$this->config->path.$newLanguage;
 		if (file_exists($path)) {
 			$tmp = glob($path.'/*.csv');
 			$locales = array();

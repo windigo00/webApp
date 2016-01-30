@@ -22,7 +22,7 @@ class SignPresenter extends BaseAdminPresenter
 		$form = new TranslatedForm;
 		$trans = $form->getTranslator();
 		$form->addText('email', 'Email')
-			->getControlPrototype()->addAttributes(array('placeholder'=> $trans->translate('Please enter your email.')))
+			->getControlPrototype()->addAttributes(array('placeholder'=> 'Your email.'))
 			->setRequired('Please enter your email.');
 		$form->addSubmit('send', 'Send reset email');
 		
@@ -39,16 +39,16 @@ class SignPresenter extends BaseAdminPresenter
 		$form = new TranslatedForm;
 		$trans = $form->getTranslator();
 		$form->addText('username', 'Username')
-			->getControlPrototype()->addAttributes(array('placeholder'=> $trans->translate('type username')))
-			->setRequired($trans->translate('Please enter your username.'));
+			->getControlPrototype()->addAttributes(array('placeholder'=> 'Type username'))
+			->setRequired('Please enter your username.');
 
 		$form->addPassword('password', 'Password')
-			->getControlPrototype()->addAttributes(array('placeholder'=> 'type password'))
-			->setRequired($trans->translate('Please enter your password.'));
+			->getControlPrototype()->addAttributes(array('placeholder'=> 'Type password'))
+			->setRequired('Please enter your password.');
 
-		$form->addCheckbox('remember', $trans->translate('Remember Me'));
+		$form->addCheckbox('remember', 'Remember Me');
 
-		$form->addSubmit('send', $trans->translate('Sign in'));
+		$form->addSubmit('send', 'Log In');
 
 		// call method signInFormSucceeded() on success
 		$form->onSuccess[] = $this->signInFormSucceeded;
@@ -93,7 +93,7 @@ class SignPresenter extends BaseAdminPresenter
 	}
 	public function actionReset()
 	{
-		$this->layout = 'layout2';
+//		$this->layout = 'layout2';
 	}
 
 	public function renderIn()
@@ -102,7 +102,7 @@ class SignPresenter extends BaseAdminPresenter
 			$this->redirect('Dashboard:');
 		}
 		
-		$this->layout = 'layout2';
+//		$this->layout = 'layout2';
 	}
 	public function renderOut()
 	{

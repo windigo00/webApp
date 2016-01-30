@@ -2,7 +2,7 @@ parameters:
 	menu-top:
 		events:
 			text: System events
-			presenter: SystemEvents
+			component: SystemEvents
 			icon: warning-sign
 			priority: 100
 		messages:
@@ -10,12 +10,16 @@ parameters:
 			presenter: Messages
 			icon: envelope
 			component: MessageMenu
-			priority: 900
+			priority: 700
 		settings:
 			text: Settings
 			presenter: SystemSettings
 			icon: wrench
 			priority: 100
+		language:
+			text: Select language
+			component: LangSelector
+			priority: 900
 		user:
 			title: Account Settings
 			icon: user

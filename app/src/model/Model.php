@@ -10,8 +10,7 @@ use App\Management\EntityManager;
  * @author KuBik
  */
 abstract class Model {
-	use 
-	\App\Model\Traits\ModelGetSetTrait,
+	use \App\Model\Traits\ModelGetSetTrait,
 		\App\Model\Traits\SearchTrait;
 	
 	protected static $entityClass;
@@ -30,6 +29,14 @@ abstract class Model {
 		}
 	}
 	
+	public function getEntity() {
+		return $this->entity;
+	}
+	/**
+	 * Returns string name if entity class or throws an exception to warn developer to set model entity class.
+	 * @return string
+	 * @throws \Exception
+	 */
 	public static function getEntityClass() {
 		if (!isset(static::$entityClass)) {
 			throw new \Exception('Class "' . get_class() . '" does not have $entityClass value set!');
@@ -39,7 +46,10 @@ abstract class Model {
 //		}
 		return static::$entityClass;
 	}
-	
+	/**
+	 * Stores changes in database
+	 * @param boolean $autoflush
+	 */
 	public function persist($autoflush = TRUE) {
 		if ($this->entity) {
 			$this->entity->persist($autoflush);

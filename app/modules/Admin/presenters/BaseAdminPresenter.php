@@ -14,6 +14,7 @@ use App\Model\Presenters\BasePresenter,
  * @author KuBik
  */
 abstract class BaseAdminPresenter extends BasePresenter{
+	
 	protected function createComponentTopMenu() {
 		$menu = new TopMenu;
 		return $menu;

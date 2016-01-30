@@ -8,6 +8,10 @@ namespace App\Modules\Admin\Presenters;
  */
 class AdminShopPresenter extends AdminModulePresenter {
 	
+	public function formatTemplateFiles($view = NULL) {
+		return parent::formatTemplateFiles($this->getTemplateFilesPath('AdminShop', $this->getName()));
+	}
+	
 	public function renderDefaullt() {
 		
 	}

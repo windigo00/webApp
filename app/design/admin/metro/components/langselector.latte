@@ -1,0 +1,13 @@
+{ifset $items}
+	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" title="{ifset $data['label']}{_$data['label']}{else}{_$data['text']}{/ifset}">
+<i class="flag-icon flag-icon-{strtolower(explode('_',$locale->getLang())[1])}"></i>&nbsp;
+<span class="caret"></span>
+</a>
+<ul class="dropdown-menu languages">
+	{foreach $items as $item}
+	<li>
+		<a n:href="click $item"><span class="flag-icon flag-icon-{strtolower(explode('_',$item)[1])}"></span></a>
+	</li>
+	{/foreach}
+</ul>
+{/ifset}

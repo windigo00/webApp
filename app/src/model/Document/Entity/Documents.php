@@ -44,6 +44,18 @@ class Documents extends \App\Model\Entity
      *
      * @ORM\Column(type="string", length=1024, nullable=false)
      */
+    protected $author;
+	/**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=10, nullable=false)
+     */
+    protected $language;
+	/**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=1024, nullable=false)
+     */
 	protected $module;
 	
 	/**

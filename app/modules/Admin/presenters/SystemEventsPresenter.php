@@ -16,5 +16,7 @@ use Nette;
  * @author KuBik
  */
 class SystemEventsPresenter extends BaseAdminPresenter {
-	
+	public function renderDefault() {
+		
+	}
 }

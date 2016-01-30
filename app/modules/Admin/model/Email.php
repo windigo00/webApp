@@ -7,7 +7,7 @@ use Nette\Security\Identity;
  * @Entity
  * @Table(name="user-email")
  **/
-class Email extends \App\Model {
+class Email extends \App\Model\Model {
 	/** 
 	 * @Id @Column(type="integer")
 	 **/
@@ -28,8 +28,9 @@ class Email extends \App\Model {
     private $user;
 	
 	public static function findNewByUser(Identity $user) {
-		$qb = self::getRepository()->createQueryBuilder('e');
+//		$qb = self::getRepository()->createQueryBuilder('e');
 //		$qb->
+		$emails = null;
 		return $emails;
 	}
 }

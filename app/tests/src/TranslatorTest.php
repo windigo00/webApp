@@ -49,8 +49,8 @@ class TranslatorTest extends \PHPUnit_Framework_TestCase {
 	 * @todo   Implement testGetLang().
 	 */
 	public function testGetLang() {
-		$code = 'cs_CZ';
-		$this->assertTrue($this->object->getLang() === $code);
+		$this->object->setLang('cs_CZ');
+		$this->assertTrue($this->object->getLang() === 'cs_CZ');
 	}
 
 	

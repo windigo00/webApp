@@ -14,7 +14,8 @@ class MessageMenu extends AdminControl {
 	}
 
 	public function setup($param) {
-		$items = Email::findNewByUser($this->presenter->user);
+		parent::setup($param);
+		$items = Email::findNewByUser($this->presenter->user->identity);
 		
 		$this->template->items = $items;
 	}
