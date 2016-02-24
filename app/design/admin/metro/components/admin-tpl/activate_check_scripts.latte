@@ -1,0 +1,37 @@
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
+<script type="text/javascript" defer="defer" n:syntax="double">
+	function setStatus(item) {
+		if (item.data('reset')) {
+			item.data('reset', false);
+		} else {
+			var id = item.data("id");
+			var checked = item.attr("checked") === 'checked';
+			item.data('reset', true);
+			// show loading
+			var over = $('<div class="overlay"/><img class="spinner" src="'+{{$basePath}}+'/img/spinner_32.gif"/>');
+			$('.row-fluid.list').prepend(over);
+			$.ajax({
+				type: "POST",
+				url: {{link edit!}},
+				data: { 
+					id : id, 
+					active : (checked ? 1 : 0), 
+					ajax : 'ajax'
+				},
+				success: function(){
+					item.data('reset', false);
+					console.dir(arguments);
+					//after loading
+				}
+			})
+			.fail(function() { 
+				//fail - reverse input settings
+				var resp = arguments[0];
+				item.bootstrapToggle('toggle');	
+			})
+			.always(function() {
+				$(over).remove();
+			});
+		}
+	}
+</script>

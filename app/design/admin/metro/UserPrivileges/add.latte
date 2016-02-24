@@ -18,10 +18,22 @@
 					</div>
 						{else}
 					<div class="control-group">
-						{label $input, class=>'control-label' /}
+						{if $input->getControlPrototype()->attrs['type'] == 'checkbox'}
+							{$input->getLabelPart()->class('control-label')}
+						{else}
+							{label $input, class=>'control-label'}{/label}
+						{/if}
 						<div class="controls">
 							{if $input->required}<div class="input-append">{/if}
-								{input $input ,class=>'input-xlarge'}
+								{if $input->getControlPrototype()->attrs['type'] == 'checkbox'}
+									{?$input->getControlPrototype()->data('toggle', 'toggle')
+										->data('height', 21)
+										->data('on', $form->getTranslator()->translate('Yes'))
+										->data('off', $form->getTranslator()->translate('No'))}
+									{$input->getControlPart()}
+								{else}
+									{input $input ,class=>'input-xlarge'}
+								{/if}
 							{if $input->required}<span class="add-on blue">*</span>
 							</div>{/if}
 						</div>
@@ -36,4 +48,12 @@
 	</div><!--/span-->
 
 </div><!--/row-->
+{/block}
+{block head}
+	{include parent}
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+{/block}
+{block scripts}
+	{include parent}
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
 {/block}

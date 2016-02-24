@@ -1,0 +1,17 @@
+<script type="text/javascript" n:syntax="double">
+	$(function () {
+		//--- menu items tree
+		$('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', '{{_'Collapse this branch'}}');
+		$('.tree li.parent_li > span:first-child').on('click', function (e) {
+			e.stopPropagation();
+			var children = $(this).parent('li.parent_li').find(' > ul > li');
+			if (children.is(":visible")) {
+				children.hide('fast');
+				$(this).attr('title', '{{_'Expand this branch'}}').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+			} else {
+				children.show('fast');
+				$(this).attr('title', '{{_'Collapse this branch'}}').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+			}
+		});
+	})
+</script>

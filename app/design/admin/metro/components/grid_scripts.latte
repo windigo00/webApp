@@ -14,7 +14,17 @@
 	<script src="{$basePath}/../../../js/grido/js/plugins/grido.nette.ajax.js" defer="defer"></script>
 	<script type="text/javascript" defer="defer" n:syntax="off">
 		$(function(){
+			$.nette.init(); 
 			//init grido
 			$('.grido').grido({ajax: true});
 		})
 	</script>
+	<style type="text/css">
+		.table .count > * {
+			display: inline-block;
+		}
+		.table .count .hide { display: none; }
+		.table .count select {
+		    margin-bottom: 0;
+		}
+	</style>

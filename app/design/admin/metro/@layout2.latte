@@ -1,3 +1,6 @@
+{define #head}{/define}
+{define #content}{/define}
+{define #scripts}{/define}
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,7 +14,7 @@
 		<link href="{$basePath}/css/bootstrap-responsive.min.css" rel="stylesheet">
 		<link id="base-style" href="{$basePath}/css/style.css" rel="stylesheet">
 		<link id="base-style-responsive" href="{$basePath}/css/style-responsive.css" rel="stylesheet">
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
 		<!-- end: CSS -->
 
 
@@ -29,13 +32,13 @@
         <link rel="shortcut icon" href="{$basePath}/favicon2.ico">
         
         
-        {block head}{/block}
+        {include #head}
     </head>
 
     <body>
 	
 
-		{include content}
+		{include #content}
 	
 		<!-- start: JavaScript-->
 
@@ -52,54 +55,35 @@
 
 		<script src="{$basePath}/js/jquery.cookie.js"></script>
 
-		<script src='{$basePath}/js/fullcalendar.min.js'></script>
-
-		<script src='{$basePath}/js/jquery.dataTables.min.js'></script>
-
-		<script src="{$basePath}/js/excanvas.js"></script>
-		<script src="{$basePath}/js/jquery.flot.js"></script>
-		<script src="{$basePath}/js/jquery.flot.pie.js"></script>
-		<script src="{$basePath}/js/jquery.flot.stack.js"></script>
-		<script src="{$basePath}/js/jquery.flot.resize.min.js"></script>
-
-		<script src="{$basePath}/js/jquery.chosen.min.js"></script>
-
-		<script src="{$basePath}/js/jquery.uniform.min.js"></script>
-
-		<script src="{$basePath}/js/jquery.cleditor.min.js"></script>
-
-		<script src="{$basePath}/js/jquery.noty.js"></script>
-
-		<script src="{$basePath}/js/jquery.elfinder.min.js"></script>
-
-		<script src="{$basePath}/js/jquery.raty.min.js"></script>
-
-		<script src="{$basePath}/js/jquery.iphone.toggle.js"></script>
-
-		<script src="{$basePath}/js/jquery.uploadify-3.1.min.js"></script>
-
-		<script src="{$basePath}/js/jquery.gritter.min.js"></script>
-
-		<script src="{$basePath}/js/jquery.imagesloaded.js"></script>
-
-		<script src="{$basePath}/js/jquery.masonry.min.js"></script>
-
-		<script src="{$basePath}/js/jquery.knob.modified.js"></script>
-
-		<script src="{$basePath}/js/jquery.sparkline.min.js"></script>
-
 		<script src="{$basePath}/js/counter.js"></script>
 
 		<script src="{$basePath}/js/retina.js"></script>
 
-		<script src="{$basePath}/js/custom.js"></script>
+		<!--<script src="{$basePath}/js/custom.js"></script>-->
 		<!-- end: JavaScript-->
         
         <script src="{$basePath}/../../../js/netteForms.js"></script>
-        {block scripts}
         <!-- Core Scripts - Include with every page -->
-        {/block}
+        {include #scripts}
+		<script type="text/javascript">
+			$(function(){
+				$("#username").focus(function() {
+					$(this).parent(".input-prepend").addClass("input-prepend-focus");
+				});
 
+				$("#username").focusout(function() {
+					$(this).parent(".input-prepend").removeClass("input-prepend-focus");
+				});
+
+				$("#password").focus(function() {
+					$(this).parent(".input-prepend").addClass("input-prepend-focus");
+				});
+
+				$("#password").focusout(function() {
+					$(this).parent(".input-prepend").removeClass("input-prepend-focus");
+				});
+			})
+		</script>
         
     </body>
 </html>

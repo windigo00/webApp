@@ -18,7 +18,9 @@ class EntityManager extends \Nette\Database\Context{
 	
 	public function __construct($connection, $entityDir, $devmode = FALSE) {
 			$config = Setup::createAnnotationMetadataConfiguration(array($entityDir), $devmode, NULL, NULL, false);
+			
 			self::$config = \Doctrine\ORM\EntityManager::create($connection, $config);
+			self::$config->getConfiguration()->setSQLLogger(\App\Helper\SqlLogHelper::get());
 			
 	}
 	

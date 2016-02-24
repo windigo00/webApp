@@ -10,6 +10,7 @@ vendor/*
 dev
 www/doctrine-example
 www/js/grido
+www/js/ace
 www/adminer
 www/metro-dashboard
 www/sb-admin-v2

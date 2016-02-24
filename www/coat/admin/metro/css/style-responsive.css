@@ -3,7 +3,7 @@
 @media (min-width: 1200px) {
 	
 	.container-fluid-full {
-		overflow: hidden;
+		/*overflow: hidden;*/
 		position: relative;
 		height: 100%;
 	}
@@ -38,7 +38,7 @@
 @media only screen and (min-width: 980px) and (max-width: 1199px){
 	
 	.container-fluid-full {
-		overflow: hidden;
+		/*overflow: hidden;*/
 		position: relative;
 		height: 100%;
 	}
@@ -138,7 +138,7 @@
 @media only screen and (min-width: 768px) and (max-width: 979px) {
 	
 	.container-fluid-full {
-		overflow: hidden;
+		/*overflow: hidden;*/
 		position: relative;
 		height: 100%;
 	}

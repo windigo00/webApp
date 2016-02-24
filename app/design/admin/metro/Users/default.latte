@@ -1,23 +1,20 @@
 {block content}
 {* admin module base *}
-<div class="row-fluid">
+<div class="row-fluid list">
+	{include '../components/add_button.latte'}
 	{control userList}
-
-	<div class="span3 statbox blue" ontablet="span6" ondesktop="span3">
-		<div class="number">854<i class="icon-arrow-up"></i></div>
-		<div class="title">visits</div>
-		<div class="footer">
-			<a href="#"> read full report</a>
-		</div>	
-	</div>
 
 </div>
 {/block}
 {block head}
 	{include parent}
-	{include '../components/grid_head.latte'}
+	{*include '../components/grid_head.latte'*}
+	{include '../components/admin-tpl/activate_check_head.latte'}
+	
 {/block}
 {block scripts}
 	{include parent}
 	{include '../components/grid_scripts.latte'}
+	{include '../components/admin-tpl/activate_check_scripts.latte'}
+	
 {/block}

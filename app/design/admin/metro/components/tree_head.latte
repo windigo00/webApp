@@ -1,0 +1,79 @@
+	<style type="text/css">
+		.tree {
+			margin-left: 0;
+		}
+		.tree .selected {
+			background-color: #9a9c9d;
+			color: #fff;
+		}
+		.tree ul {
+			margin-left: 10px;
+		}
+		.tree li {
+			list-style-type:none;
+			margin:0;
+			padding:10px 0 0 5px;
+			position:relative;
+			white-space: nowrap;
+		}
+		.tree li::before, .tree li::after {
+			content:'';
+			left:-20px;
+			position:absolute;
+			right:auto
+		}
+		.tree li::before {
+			border-left:1px solid #999;
+			bottom:50px;
+			height:100%;
+			top: -9px;
+			width: 1px;
+			left: -1px;
+		}
+		.tree li::after {
+			border-top:1px solid #999;
+			height: 13px;
+			top: 20px;
+			width: 10px;
+			left: -1px;
+		}
+		.tree li span:first-child {
+			-moz-border-radius:0px;
+			-webkit-border-radius:0px;
+			border:0px solid #999;
+			border-radius:0px;
+			display:inline-block;
+			padding:0px;
+			text-decoration:none
+		}
+		.tree li span:first-child i {
+			z-index: 1000;
+			position: relative;
+		}
+		.tree li.parent_li>span {
+			cursor:pointer
+		}
+		.tree>ul>li::before,
+		.tree>ul>li::after {
+			border:0
+		}
+		.tree li:last-child::before {
+			height:30px
+		}
+		
+		.tree li.parent_li > span:first-child:hover
+		{
+			background:#eee;
+			/*border:1px solid #94a0b4;*/
+			color:#000
+		}
+		.tree > li::after,
+		.tree > li::before {
+			border: 0px;
+		}
+		
+		.tree .btn-group {
+			position: absolute;
+			right: 0;
+		}
+	</style>

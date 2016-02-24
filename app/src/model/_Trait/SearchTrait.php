@@ -1,41 +1,30 @@
 <?php
 namespace App\Model\Traits;
 
-use \App\Management\EntityManager;
 /**
  * Description of SearchTrait
  * findBy methods
  * @author KuBik
  */
 trait SearchTrait {
+	
 	public static function get($id) {
-		$entity = NULL;
 		if ($id !== NULL) {
-			$entity = EntityManager::get()->find(static::getEntityClass(), $id);
+			$entity = self::rep()->find($id);
+		} else {
+			$entity = new static;
 		}
-		$entity = new static($entity);
 		return $entity;
 	}
 	public static function findAll() {
-		
-		$entity = static::getRepository()->findAll();
-		foreach ($entity as &$item) {
-			$item = new static($item);
-		}
-		return $entity;
+		return self::rep()->findAll();
 	}
 	
 	public static function findBy($attributes) {
-		$entity = static::getRepository()->findBy($attributes);
-		foreach ($entity as &$item) {
-			$item = new static($item);
-		}
-		return $entity;
+		return self::rep()->findBy($attributes);
 		
 	}
 	public static function findOneBy($attributes) {
-		$entity = static::getRepository()->findOneBy($attributes);
-		
-		return new static($entity);
+		return self::rep()->findOneBy($attributes);
 	}
 }

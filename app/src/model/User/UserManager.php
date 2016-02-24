@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace App\Model\Security;
 
 use Nette,
 	Nette\Security\IAuthenticator,
@@ -8,6 +8,7 @@ use Nette,
 	Nette\Security\Identity,
 	Nette\Security\Passwords,
 	Nette\Security\AuthenticationException,
+	App\Management\EntityManager,
 	App\Model\User
 		;
 
@@ -16,17 +17,6 @@ use Nette,
  */
 class UserManager extends \Nette\Object implements IAuthenticator, IAuthorizator
 {
-//	private static $_inst;
-//	protected $database;
-//	protected $users = array();
-//	protected $active = array();
-	
-//	public function __construct(Nette\Database\Context $database)
-//	{
-//		$this->database = $database;
-//		self::$_inst = $this;
-//	}
-
 	/**
 	 * Performs an authentication.
 	 * @return Nette\Security\Identity
@@ -35,20 +25,19 @@ class UserManager extends \Nette\Object implements IAuthenticator, IAuthorizator
 	public function authenticate(array $credentials)
 	{
 		list($username, $password) = $credentials;
-		$row = User::getRepository()->findOneByNick($username);
-		if (!$row) {
-			throw new AuthenticationException('The username is incorrect.', static::IDENTITY_NOT_FOUND);
-		} elseif (!Passwords::verify($password, $row->getPwd())) {
-			throw new AuthenticationException('The password is incorrect.', static::INVALID_CREDENTIAL);
-		} elseif (Passwords::needsRehash($row->getPwd())) {
-			$row->setPassword(Passwords::hash($password));
-			$row->persist();
-		}
-		$user = new User($row);
-		$groups = $user->getGroups();
-		$id = new Identity($user->getId(), $groups);
+		$user = User::rep()->findOneByNick($username);
 		
-		return $id;
+		if (!$user) {
+			throw new AuthenticationException('The username is incorrect.', static::IDENTITY_NOT_FOUND);
+		} elseif (!Passwords::verify($password, $user->pwd)) {
+			throw new AuthenticationException('The password is incorrect.', static::INVALID_CREDENTIAL);
+		} elseif (Passwords::needsRehash($user->pwd)) {
+			$user->setPassword(Passwords::hash($password));
+			$user->persist();
+		}
+		$groups = array();
+		foreach ($user->groups as $group) $groups[] = $group->id;
+		return new Identity($user->id, $groups);
 	}
 
 
@@ -69,7 +58,7 @@ class UserManager extends \Nette\Object implements IAuthenticator, IAuthorizator
 	}
 	
 	public static function getList() {
-		return User::getRepository()->findAll();
+		return EntityManager::get()->findAll();
 	}
 
 	/**
@@ -80,23 +69,25 @@ class UserManager extends \Nette\Object implements IAuthenticator, IAuthorizator
 	 * @return bool
 	 */
 	public function isAllowed($role, $resource, $privilege) {
-		return TRUE;
 		/// Presenter actions conversion
 		switch ($privilege) {
 			case 'default':
 				$privilege = 'view';
 				break;
+			case 'editItem':
+				$privilege = 'edit';
+				break;
 			case 'add':
+			case 'addItem':
 				$privilege = 'create';
 				break;
 		}
-		$res = Security\AclRecord::getRepository()->findOneBy(array(
+		$res = AclRecord::findOneBy(array(
 			'resource'  => $resource,
 			'privilege' => $privilege,
 			'userGroup'     => 'IN('.!is_object($role) ? $role : $role->getId().')',
 			'allowed'   => TRUE));
 		if ($res === NULL) {
-			
 			return FALSE;
 		}
 		return TRUE;

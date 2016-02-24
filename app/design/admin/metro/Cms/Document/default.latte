@@ -1,0 +1,33 @@
+{* admin module base *}
+{block content}
+<div class="row-fluid list">
+	<div class="box">
+		<div class="box-header" data-original-title="">
+			<a href="{link add}" class="btn btn-small btn-success btn-add" title="{_'Add new document'}"><i class="halflings-icon white plus-sign"></i></a>
+			<!--<a href="#" class="btn-minimize" title="{*_'Minimize'*}"><i class="halflings-icon chevron-up"></i></a>-->
+		</div>
+		<div class="box-content">
+			{control docList}
+		</div>
+	</div>
+</div>
+{/block}
+{block head}
+	{include parent}
+	{*include '../../components/grid_head.latte'*}
+{/block}
+{block scripts}
+	{include parent}
+	{include '../../components/grid_scripts.latte'}
+	<!-- script type="text/javascript" n:syntax="double">
+		$(function () {
+			$('.btn-minimize').click(function(e){
+				e.preventDefault();
+				var $target = $(this).parent().parent().next('.box-content');
+				if($target.is(':visible')) $('i',$(this)).removeClass('chevron-up').addClass('chevron-down');
+				else 					   $('i',$(this)).removeClass('chevron-down').addClass('chevron-up');
+				$target.slideToggle();
+			});
+		})
+	</script -->
+{/block}

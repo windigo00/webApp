@@ -34,7 +34,7 @@ class MenuComponent extends Component\MenuComponent {
 
 	public function setup($param) {
 		$this->data = $param;
-		$this->data->init();
+//		$this->data->init();
 	}
 	
 

@@ -1,5 +1,6 @@
 <a class="btn" 
-	{if $item->component}href="#"{elseif $item->presenter}href="{plink $item->presenter.':'}"{/if} 
+	{if $item->component}href="#"
+	{elseif $item->presenter}href="{plink $item->presenter.':'.($item->action?$item->action:'')}"{/if} 
 	title="{if $item->label}{_$item->label}{else}{_$item->text}{/if}">
 	{if $item->icon}<i class="halflings-icon white {$item->icon}"></i>{/if}
 </a>

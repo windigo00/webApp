@@ -1,63 +1,52 @@
 <?php
-
 namespace App\Model;
 
-class Document extends Model {
-	protected static $entityClass = '\App\Model\Entities\Documents';
+use Doctrine\ORM\Mapping\Table,
+	Doctrine\ORM\Mapping\Entity,
+	Doctrine\ORM\Mapping\Column,
+	Doctrine\ORM\Mapping\Id,
+	Doctrine\ORM\Mapping\GeneratedValue,
+	Doctrine\ORM\Mapping\OneToMany,
+	Doctrine\Common\Collections\ArrayCollection
+		;
+/**
+ * Documents
+ *
+ * @Table(name="cms_document")
+ * @Entity
+ */
+class Document extends AbstractModel {
+	/**
+     * @var integer
+     *
+     * @Column(type="integer", nullable=false)
+     * @Id
+     * @GeneratedValue(strategy="IDENTITY")
+     */
+    protected $id;
 
 	/**
-	 * adds one view for document
+	 * @OneToMany(targetEntity="DocumentVersion", mappedBy="document")
 	 */
-	public function addView() {
-//		$this->set(static::COLUMN_VIEWS, $this->get(static::COLUMN_VIEWS)+1);
-	}
+	protected $version;
+
 	/**
-	 * 
-	 * @param type $path
-	 * @return null
-	 */
-	public static function getByPath($path, $limit = 1) {
-		/**
-		 * @var \Doctrine\ORM\EntityManager
-		 */
-		$sel = self::getRepository()->findByPath($path);
-		foreach($sel as &$tmp){
-			$tmp = new self($tmp);
-		}
-		return $sel;
-	}
-	
-	public static function getAll() {
-		$sel = self::getRepository()->getAll();
-		dump($sel);
-		foreach($sel as &$tmp){
-			$tmp = new self($tmp);
-		}
-		return $sel;
-	}
-	
+     * @var integer
+     *
+     * @Column(type="datetime", nullable=false)
+     */
+	protected $created;
 	/**
-	 * 
-	 * @return string
-	 */
-	public function renderTemplate() {
-		$tpl = $this->getTemplate();
-		if (!empty($tpl)) {
-			$doc = new \DOMDocument();
-			if (@$doc->loadXML($tpl)) {
-				$tpl = $doc->saveHTML($doc->getElementsByTagName('template')->item(0));
-				$tpl = preg_replace('#\<(\/)?content\>#', '<$1div>', $tpl);
-				$tpl = preg_replace('#\<(\/)?template\>#', '<$1div>', $tpl);
-				$tpl = preg_replace('#\<(\/)?heading\>#', '<$1h1>', $tpl);
-				
-				if (preg_match_all('#\{\{([^\}]+)\}\}#', $tpl, $matches)) {
-					foreach ($matches[1] as $match) {
-						$tpl = str_replace('{{'.$match.'}}', View\View::renderPlugin($match, $this), $tpl);
-					}
-					
-				}
-			}
-		}
-		return $tpl;
-	}
+     * @var integer
+     *
+     * @Column(type="datetime", nullable=false)
+     */
+	protected $published;
+	
+	public function __construct() {
+        $this->title = new ArrayCollection();
+        $this->version = new ArrayCollection();
+    }
+	
+	
 }

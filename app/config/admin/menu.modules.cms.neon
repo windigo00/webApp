@@ -3,22 +3,22 @@ parameters:
 		modules:
 			items:
 				acms :
-					presenter: AdminCms
+					presenter: Cms
 					icon: globe
 					text: CMS
 					items:
 						pages: 
 							priority: 10
-							presenter: AdminCmsPages
-							icon: file
+							presenter: CmsPage
+							icon: book
 							text: Pages
 						doc: 
 							priority: 20
-							presenter: AdminCmsDocuments
+							presenter: CmsDocument
 							icon: file
 							text: Documents
 						menu:
 							priority: 30
-							presenter: AdminCmsMenu
+							presenter: CmsMenu
 							icon: align-justify
 							text: Menu

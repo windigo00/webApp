@@ -1,0 +1,59 @@
+{block content}
+{?$cpt = $control->components}
+{$cpt['tpl_data']->control}
+<div class="box">
+	<div class="box-header" data-original-title="">
+		{* template selectbox *}
+		<h2><i class="halflings-icon th-large"></i><span class="break"></span>{$cpt['tpl_select']->label}{$cpt['tpl_select']->control}</h2>
+		<div class="box-icon"><a class="btn-minimize" title="{_'Minimize'}"><i class="halflings-icon chevron-up"></i></a></div>
+	</div>
+	<div class="box-content template">
+		<div class="row-fluid">
+			<div class="span2 box tpl_palette">
+				
+			</div>
+			<div n:snippet="template" class="span8 tpl_content">
+				<span class="hide" id="tplLink" data-link="{link change!, tpl => 'xxx'}"></span>
+				{?$tplName = $control->components['tpl_select']->value}
+				<table border="1">
+				{if $tplName=='1-col'}
+					<tr><th class="cnt" data-name="head"></th></tr>
+					<tr><td class="cnt" data-name="content-center"></td></tr>
+					<tr><td class="cnt" data-name="foot"></td></tr>
+				{elseif $tplName=='2-col-left'}
+					<tr><th class="cnt" data-name="head" colspan="2"></th></tr>
+					<tr>
+						<td class="cnt" data-name="content-left" width="30%"></td>
+						<td class="cnt" data-name="content-center"></td>
+					</tr>
+					<tr><td class="cnt" data-name="foot" colspan="2"></td></tr>
+				{elseif $tplName=='2-col-right'}
+					<tr><th class="cnt" data-name="head" colspan="2"></th></tr>
+					<tr>
+						<td class="cnt" data-name="content-center"></td>
+						<td class="cnt" data-name="content-right" width="30%"></td>
+					</tr>
+					<tr><td class="cnt" data-name="foot" colspan="2"></td></tr>
+				{elseif $tplName=='3-col'}
+					<tr><th class="cnt" data-name="head" colspan="3"></th></tr>
+					<tr>
+						<td class="cnt" data-name="content-left" width="30%"></td>
+						<td class="cnt" data-name="content-center"></td>
+						<td class="cnt" data-name="content-right" width="30%"></td>
+					</tr>
+					<tr><td class="cnt" data-name="foot" colspan="3"></td></tr>
+				{/if}
+				</table>
+				{ifset $isAjax}
+				<script type="text/javascript">
+					tplEditor.init($('.tpl_content'), $('.tpl_ctrls'), $('#tpl_data').data('tpl'));
+				</script>
+				{/ifset}
+			</div>
+			<div class="span2 box tpl_ctrls">
+				
+			</div>
+		</div>
+	</div>
+</div>
+{/block}

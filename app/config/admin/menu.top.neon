@@ -35,4 +35,5 @@ parameters:
 				off:
 					text: Logout
 					presenter: Sign
+					action: out
 					icon: 'off'

@@ -1,0 +1,95 @@
+{block #content}
+<div class="row-fluid product-edit">
+	<form n:name=productForm class=form-horizontal>
+	<div class="box">
+		<div class="box-header" data-original-title="">
+			<h2><i class="halflings-icon edit"></i><span class="break"></span>{_'Edit product'}</h2>
+			<ul class="nav tab-menu nav-tabs" id="lng_tabs">
+				{* lang flags *}
+				{foreach $form['lng']->components as $name => $item}
+				{if $name != 'dummy'}
+				{?$lng = strtolower(explode('_',$name)[1])}
+				<li class="tab"><a href="#{$name}"><span class="flag-icon flag-icon-{$lng}"></span></a></li>
+				{/if}
+				{/foreach}
+				<li class="">
+					<!-- Single button -->
+					<div class="btn-group">
+						<a href="{*link add*}"  class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="{_'Add new language version'}"><i class="halflings-icon white plus-sign"></i></a>
+						<ul class="dropdown-menu" id="add_language">
+							<li>
+							{*foreach $languages_notset as $lang}
+								{?$lng = strtolower(explode('_',$lang)[1])}
+								<a class=" btn-add" data-lang="{$lang}"><span class="flag-icon flag-icon-{$lng}"></span></a>
+							{/foreach*}
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+			<div class="box-icon">
+				<a class="btn-minimize" title="{_'Minimize'}"><i class="halflings-icon chevron-up"></i></a>
+			</div>
+		</div>
+		<div class="box-content">
+			<div id="lng_content" class="tab-content">
+				{* lang content forms *}
+				{foreach $form['lng']->components as $name => $item}
+					{if $name == 'dummy'}<div class="hidden">{/if}
+					<div class="{if $name != 'dummy'}tab-pane" id="{$name}{/if}">
+						<fieldset>
+						{foreach $item->components as $item1}
+							{*if $item1->control *}
+							{if $item1->control->getType() != 'hidden'}
+							<div class="control-group">
+								{$item1->label->class("control-label")}
+								<div class="controls">
+									{$item1->control->class("span6 input-xlarge")}
+								</div>
+							</div>
+							{else}
+								{$item1->control}
+							{/if}
+							{*/if*}
+						{/foreach}
+						</fieldset>
+					</div>
+					{if $name == 'dummy'}</div>{/if}
+				{/foreach}
+			</div>
+			<div class="form-actions">
+				<button n:name=send class="btn btn-primary"/>
+				<button n:name=cancel class="btn"/>
+			</div>
+		</div>
+	</div>
+			
+	</form>
+</div>
+{/block}
+{block #head}
+	{include '../../Cms/lang_select_style.latte'}
+{/block}
+{block #scripts}
+	<script src="/js/nette.ajax.js"></script>
+	<script type="text/javascript" n:syntax="double">
+		$(function () {
+			var lngBtnClick = function (e) {
+				e.preventDefault();
+				$(this).tab('show');
+			}
+			/* ---------- Tabs ---------- */
+			$('#lng_tabs .tab a:first').tab('show');
+			$('#lng_tabs .tab a').click(lngBtnClick);
+			
+			/* -------- Minimize -------- */
+			$('.btn-minimize').click(function(e){
+				e.preventDefault();
+				var $target = $(this).parent().parent().next('.box-content');
+				if($target.is(':visible')) $('i',$(this)).removeClass('chevron-up').addClass('chevron-down');
+				else 					   $('i',$(this)).removeClass('chevron-down').addClass('chevron-up');
+				$target.slideToggle();
+			});
+		})
+	</script>
+{/block}

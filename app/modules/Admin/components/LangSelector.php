@@ -24,9 +24,9 @@ class LangSelector extends AdminControl {
 		$tr = \App\Model\Translator::get();
 		if ($tr->setLang($lang)){
 			$ctrl->getSession('lang')->lang = $lang;
-			$ctrl->flashMessage($tr->translate('Language selected:').' '.$lang);
+			$ctrl->flashMessage($tr->translate('Language selected: %s', $lang));
 		} else {
-			$ctrl->flashMessage('Language "'.$lang.'" does not exist :D');
+			$ctrl->flashMessage($tr->translate('Language "%s" does not exist :D', $lang));
 		}
 	}
 }

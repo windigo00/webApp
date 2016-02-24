@@ -32,52 +32,5 @@
 		
 	</head>
 	
-	<body class="home page page-id-7 page-template page-template-page-templates page-template-business page-template-page-templatesbusiness-php">
-		<div id="page" class="hfeed site">
-			<header id="masthead" class="site-header clearfix">
-				{includeblock 'html/header.latte'}
-			</header>
-			<div id="main" class="clearfix">
-				<div class="inner-wrap">
-					<!-- Page Content -->
-					{block content}{/block}
-				</div><!-- .inner-wrap -->
-			</div><!-- #main -->	
-			<footer id="colophon" class="clearfix">	
-				{include 'html/footer.latte'}
-
-			</footer>
-			<!-- /.container -->
-		</div>
-		
-		{block scripts}
-		<!-- jQuery Version 1.11.0 -->
-		<script src="{$basePath}/../../../js/jquery-1.11.0.js"></script>
-
-		{**
-		 * Adds JavaScript to pages with the comment form to support
-		 * sites with threaded comments (when in use).
-		*}
-		{**
-		 * Register JQuery cycle js file for slider.
-		*}
-		<script src="{$basePath}/js/jquery.cycle.all.min.js"></script>
-
-		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
-		
-		<script src="{$basePath}/js/navigation.js"></script>
-		<script src="{$basePath}/js/spacious-custom.js"></script>
-
-		{var $links = $presenter->getScripts()}
-		{foreach $links as $link}
-		<script src="{$basePath}{$link}"></script>
-		{/foreach}
-
-		{/block}
-	</body>
+	{block content}
 </html>

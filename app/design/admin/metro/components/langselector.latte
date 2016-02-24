@@ -1,6 +1,7 @@
 {ifset $items}
+	{?$lng = $control->getTranslator()->getLang()}
 	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" title="{ifset $data['label']}{_$data['label']}{else}{_$data['text']}{/ifset}">
-<i class="flag-icon flag-icon-{strtolower(explode('_',$locale->getLang())[1])}"></i>&nbsp;
+<i class="flag-icon flag-icon-{strtolower(!is_null($lng)? explode('_',$lng)[1] : 'cz')}"></i>&nbsp;
 <span class="caret"></span>
 </a>
 <ul class="dropdown-menu languages">

@@ -1,10 +1,8 @@
 <?php
 namespace App\Modules\Front\Presenters;
 
-use Nette\Environment,
-	App\Model\Document,
-	App\Model\Page,
-	Nette\Http\Response
+use App\Model\Page,
+	App\Modules\Front\Components\PageControl
 		;
 
 /**
@@ -14,4 +12,22 @@ use Nette\Environment,
  */
 class PagePresenter extends BaseFrontPresenter {
 	
+	protected function createComponentPage() {
+		$page = new PageControl($this, 'page');
+		return $page;
+	}
+	
+	public function renderDefault() {
+//		\Tracy\Debugger::barDump($this->request);
+		$id = 1;
+		$lng = $this['page']->getTranslator()->getLang();
+		$page = Page::get($id);
+		$version;
+		foreach ($page->version as $version){
+			if ($version->language == $lng)
+				break;
+		}
+		$this['page']->setup($version);
+		
+	}
 }

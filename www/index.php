@@ -1,5 +1,5 @@
 <?php
-
+//phpinfo();exit;
 // Uncomment this line if you must temporarily take down your site for maintenance.
 // require '.maintenance.php';
 

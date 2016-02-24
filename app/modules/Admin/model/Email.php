@@ -1,13 +1,14 @@
 <?php
 namespace App\Admin\Model;
 
-use Nette\Security\Identity;
+use Nette\Security\Identity,
+	App\Model\AbstractModel;
 
 /**
  * @Entity
  * @Table(name="user-email")
  **/
-class Email extends \App\Model\Model {
+class Email extends AbstractModel {
 	/** 
 	 * @Id @Column(type="integer")
 	 **/
@@ -28,7 +29,7 @@ class Email extends \App\Model\Model {
     private $user;
 	
 	public static function findNewByUser(Identity $user) {
-//		$qb = self::getRepository()->createQueryBuilder('e');
+//		$qb = self::getQB('e');
 //		$qb->
 		$emails = null;
 		return $emails;

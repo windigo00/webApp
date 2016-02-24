@@ -1,0 +1,294 @@
+{block #content}
+<div class="row-fluid page-edit">
+	<form n:name=pageEditForm class=form-horizontal>
+	<div class="box">
+		<div class="box-header" data-original-title="">
+			<h2><i class="halflings-icon edit"></i><span class="break"></span>{_'Edit page'}</h2>
+			<ul class="nav tab-menu nav-tabs" id="lng_tabs">
+				{* lang flags *}
+				{foreach $form['lng']->components as $name => $item}
+				{if $name != 'dummy'}
+				{?$lng = strtolower(explode('_',$name)[1])}
+				<li class="tab"><a href="#{$name}"><span class="flag-icon flag-icon-{$lng}"></span></a></li>
+				{/if}
+				{/foreach}
+				<li class="">
+					<!-- Single button -->
+					<div class="btn-group">
+						<a href="{*link add*}"  class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="{_'Add new language version'}"><i class="halflings-icon white plus-sign"></i></a>
+						<ul class="dropdown-menu" id="add_language">
+							<li>
+							{foreach $languages_notset as $lang}
+								{?$lng = strtolower(explode('_',$lang)[1])}
+								<a class=" btn-add" data-lang="{$lang}"><span class="flag-icon flag-icon-{$lng}"></span></a>
+							{/foreach}
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+			<div class="box-icon">
+				<a class="btn-minimize" title="{_'Minimize'}"><i class="halflings-icon chevron-up"></i></a>
+			</div>
+		</div>
+		<div class="box-content">
+			<div id="lng_content" class="tab-content">
+				{* lang content forms *}
+				{foreach $form['lng']->components as $name => $item}
+					{if $name == 'dummy'}<div class="hidden">{/if}
+					<div class="{if $name != 'dummy'}tab-pane" id="{$name}{/if}">
+						<fieldset>
+						{foreach $item->components as $item1}
+							{*if $item1->control*}
+							{if $item1->control->getType() != 'hidden'}
+							<div class="control-group">
+								{$item1->label->class("control-label")}
+								<div class="controls">
+									{$item1->control->class("span6 input-xlarge")}
+								</div>
+							</div>
+							{else}
+								{$item1->control}
+							{/if}
+							{*/if*}
+						{/foreach}
+						</fieldset>
+					</div>
+					{if $name == 'dummy'}</div>{/if}
+				{/foreach}
+			</div>
+			<div class="form-actions">
+				<button n:name=send class="btn btn-primary"/>
+				<button n:name=cancel class="btn"/>
+			</div>
+		</div>
+	</div>
+			
+	{control $form['page']['template']}
+	</form>
+</div>
+{/block}
+{block #head}
+	{include '../lang_select_style.latte'}
+	<style type="text/css">
+		.form-horizontal .form-actions {
+		    padding: 20px;
+			margin: 15px -10px -10px -10px;
+		}
+		
+		.box-header label
+		{
+			display: inline-block;
+			font-size: inherit;
+			line-height: inherit;
+			font-weight: inherit;
+		}
+		.box-header select {
+			margin-top: -8px;
+			height: 30px;
+			vertical-align: top;
+			margin-left: 10px;
+		}
+		
+		/* template */
+		.tpl_content table {
+			width: 100%;
+			min-height: 250px;
+			font-weight: 300;
+			border-collapse: separate;
+		}
+		.tpl_content table,
+		.tpl_content table td,
+		.tpl_content table th {
+			border: 1px solid #eee;
+		}
+		.tpl_content table td,
+		.tpl_content table th {
+			padding: 5px;
+		}
+		.tpl_content table td:hover,
+		.tpl_content table th:hover {
+			border: 1px solid #bbb;
+		}
+
+		.tpl_ctrls ul {
+			padding: 0;
+			margin: 0;
+			list-style-type: none;
+		}
+		.tpl_ctrls > ul > li > span {
+			background-color: #eee;
+			display: inline-block;
+			width: 100%;
+			text-align: right;
+		}
+		.tpl_ctrls > ul > li {
+			border-width: 1px;
+			border-style: solid;
+			border-color: #eee;
+		}
+		.tpl_ctrls > ul > li:hover {
+			border-color: #bbb;
+		}
+		.tpl_ctrls ul ul { padding: 2px; }
+		.tpl_ctrls ul ul > li {
+			border-radius: 4px;
+			border: 1px solid #bbb;
+			padding: 2px 7px;
+			margin-top: 2px;
+		}
+		.tpl_ctrls ul ul > li:first-child {
+			margin-top: 0px;
+		}
+		.tpl_content .small,
+		.tpl_ctrls .small {
+			font-size: 60%;
+		}
+		.tpl_content .cnt {
+			vertical-align: top;
+			text-align: left;
+		}
+		.tpl_content .cnt div {
+			border-radius: 4px;
+			border: 1px solid #bbb;
+			padding: 2px 7px;
+		}
+	/*	.template .box {
+			border: 2px solid #eee;
+			background: #fff !important;
+			margin-bottom: 28px;
+		}*/
+		@media (min-width: 1200px) {
+			.template .tpl_ctrls,
+			.template .tpl_palette,
+			.template .tpl_content {
+				min-height: 250px;
+			}
+			.template .tpl_ctrls,
+			.template .tpl_content {
+				margin-left: 0.564102564102564%;
+			}
+			.template .tpl_palette,
+			.template .tpl_ctrls {
+				width: 15.52991452991453%;
+			}
+			.template .tpl_content {
+				width: 66.81196581196582%;
+			}
+		}
+	</style>
+{/block}
+{block #scripts}
+	<script src="/js/nette.ajax.js"></script>
+	<script type="text/javascript" n:syntax="double">
+		$(function () {
+			var lngBtnClick = function (e) {
+				e.preventDefault();
+				$(this).tab('show');
+			}
+			/* ---------- Tabs ---------- */
+			$('#lng_tabs .tab a:first').tab('show');
+			$('#lng_tabs .tab a').click(lngBtnClick);
+			
+			$('.btn-add, .btn-edit').click(function (e) {
+				e.preventDefault();
+				var button = $(this);
+				var lng = button.data('lang');
+				var lng1 = lng.split('_')[1].toLowerCase();
+				//--- Add new tab
+				var parentTab = $(button.parents('.btn-group')[0]).parent();
+				parentTab.before($('<li class="tab">').append($('<a>').attr('href', '#'+lng).click(lngBtnClick)
+						.append($('<span>').addClass('flag-icon flag-icon-'+lng1))));
+				//--- Add new form
+				var pane = $('#lng_content .hidden:first');
+				var html = pane.html();
+				html = html.replace(new RegExp('dummy','g'), lng);
+				$('#lng_content').append($('<div class="tab-pane">').attr('id', lng).html(html));
+				$('#lng_content input[name="title['+lng+'][id]"]').val(-1);
+				//--- Remove lang from add button
+				button.remove();
+
+				$('#lng_tabs .tab a:last').tab('show');
+			});
+
+			/* -------- Minimize -------- */
+			$('.btn-minimize').click(function(e){
+				e.preventDefault();
+				var $target = $(this).parent().parent().next('.box-content');
+				if($target.is(':visible')) $('i',$(this)).removeClass('chevron-up').addClass('chevron-down');
+				else 					   $('i',$(this)).removeClass('chevron-down').addClass('chevron-up');
+				$target.slideToggle();
+			});
+			
+			/* ---------- Template edit ---------- */
+			tplEditor = {
+				init : function (template, controls, data) {
+//					console.dir(this);
+					var self = this;
+					this.data = data;
+					this.controls = controls;
+					this.template = template;
+					var ctrls = this.controls.append('<ul>');
+					var tmp;
+					for(var i in this.data) {
+						var item = this.data[i];
+						var ctrl = this.controls.find('.'+item.name+' > ul');
+						if (ctrl.length == 0) {
+							tmp = $('<ul>');
+							tmp.data('name', item.name);
+							var tmp1 = $('<li>').addClass(item.name).html($('<span>'+item.name+' <a class="btn btn-primary btn-small"><i class="halflings-icon white plus"></i></a></span><ul></ul>'));
+							tmp.append(tmp1);
+							tmp1.on('mouseover', function(){
+								self.template.find('.cnt[data-name="'+$(this).parent().data('name')+'"]').css('border-color', '#333');
+							})
+							.on('mouseout', function(){
+								self.template.find('.cnt[data-name="'+$(this).parent().data('name')+'"]').css('border-color', '');
+							});
+							ctrls.append(tmp);
+							ctrl = this.controls.find('.'+item.name+' > ul');
+						}
+						ctrl.html('');
+						var tpl = this.template.find('.cnt[data-name="'+item.name+'"]')
+						.on('mouseover', function(){
+							self.controls.find('.'+$(this).data('name')).css('border-color', '#333');
+						}).on('mouseout', function(){
+							self.controls.find('.'+$(this).data('name')).css('border-color', '');
+						});
+						for(var i in item.children) {
+							var child = item.children[i];
+							var attrs = '';
+							if (child.attributes) {
+								var attrs = [];
+								for(var x in child.attributes) {
+									attrs.push(x+':'+child.attributes[x]);
+								}
+								attrs = ' <span class="small">['+ attrs.join(', ') +']</span>';
+							}
+							ctrl.append($('<li>'+ child.name + attrs+'</li>'));
+							tpl.append($('<div>'+ child.name +'<br>'+ attrs+'</div>'))
+						}
+					}
+					
+				},
+				
+				templateChange : function(item){
+					var signal = $('#tplLink').data('link').replace('xxx', $(item).val());
+					$.get(signal, null, function (response){
+						var snip = response.snippets;
+						if (snip) {
+							for (var id in snip)
+								$('#'+id).html(snip[id]);
+						}
+					})
+				}
+			}
+//			$('.tpl_content td, .tpl_content th').click(function(event){
+//				$('.tpl_ctrls').html($(this).text());
+//			});
+			
+//			var tpl = $('#tpl_data').data('tpl');
+//			$('.tpl_ctrls').html(tpl);
+			tplEditor.init($('.tpl_content'), $('.tpl_ctrls'), $('#tpl_data').data('tpl'));
+		})
+	</script>
+{/block}

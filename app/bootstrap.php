@@ -40,11 +40,20 @@ if (isset($_SERVER['REQUEST_URI'])) {
 //if (file_exists($moduleCfg)) $configurator->addConfig($moduleCfg);
 //$moduleCfg = __DIR__ . '/config/'.$module.'/settings.db.neon';
 //if (file_exists($moduleCfg)) $configurator->addConfig($moduleCfg);
-
+//unset($configurator->defaultExtensions['tracy']);
 //$isDevMode = true;
-
-$container = $configurator->createContainer();
+try {
+	$container = $configurator->createContainer();
+} catch (\Exception $ex) {
+	dump($ex);
+}
 //\App\Management\EntityManager::set($container);
 \App\Configs\AppConfig::set($configurator, $container);
+if ($debugMode) {
+	$dp = \Tracy\Debugger::getBar()->addPanel(new \App\Helper\DebugSqlPanel, 'sqlDebug');
+//	$dp->setTemplateFactory($container->getService());
+//	;
+	
+}
 
 return $container; 

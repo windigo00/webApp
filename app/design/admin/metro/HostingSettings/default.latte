@@ -1,0 +1,20 @@
+{block content}
+<div class="row-fluid">
+	<div class="box">
+		<div class="box-header" data-original-title="">
+			<a href="{link add}" class="btn btn-small btn-success btn-add" title="{_'Add new page'}"><i class="halflings-icon white plus-sign"></i></a>
+		</div>
+		<div class="box-content">
+			{control hostingList}
+		</div>
+	</div>
+</div>
+{/block}
+{block head}
+	{include parent}	
+{/block}
+
+{block scripts}
+	{include parent}
+	{include '../components/grid_scripts.latte'}
+{/block}

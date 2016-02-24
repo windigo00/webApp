@@ -49,7 +49,14 @@ class TranslatedForm extends Form {
 		if (is_object($values)) {
 			foreach ($this->getComponents() as $name => $control) {
 				if (isset($values->$name)) {
-					$control->setValue($values->$name);
+					/**
+					 * Will not set referenced objects. that must be done explicitly
+					 */
+					if (!is_object($values->$name)) {
+						$control->setValue($values->$name);
+					} else {
+						$control->setValue(NULL);
+					}
 				} elseif ($erase) {
 					$control->setValue(NULL);
 				}

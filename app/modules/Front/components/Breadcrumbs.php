@@ -9,7 +9,7 @@ namespace App\Modules\Front\Components;
 class Breadcrumbs extends ComponentFront {
 	
 	protected function setTpl($tplFile = '') {
-		return parent::setParent('../navigation/breadcrumbs.latte');
+		return parent::setTpl('navigation/breadcrumbs.latte');
 	}
 	
 	public function render() {

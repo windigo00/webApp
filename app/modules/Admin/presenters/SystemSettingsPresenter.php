@@ -15,6 +15,6 @@ use Nette;
  *
  * @author KuBik
  */
-class SystemSettingsPresenter extends BaseAdminPresenter {
+class SystemSettingsPresenter extends SecureAdminPresenter {
 	
 }

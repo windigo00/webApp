@@ -4,7 +4,7 @@ namespace App\Modules\Shop\Presenters;
 
 use App\Modules\Shop\Components\MenuComponent,
 	App\Modules\Shop\Components\Breadcrumbs,
-	App\Model\Presenters\BasePresenter
+	App\Presenters\BasePresenter
 
 	;
 

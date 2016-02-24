@@ -1,5 +1,6 @@
 <li>
-	<a {if $item->presenter}href="{plink $item->presenter.':'}"{/if} title="{if $item->label}
-							{_$item->label}{else}{_$item->text}{/if}" style="">
+	<a {if $item->presenter}href="{plink $item->presenter.':'.($item->action?$item->action:'')}"{/if} 
+							title="{if $item->label}{_$item->label}{else}{_$item->text}{/if}" 
+							style="">
 		{if $item->icon}<i class="halflings-icon {$item->icon}"></i>{/if} {_$item->text}</a>
 </li>

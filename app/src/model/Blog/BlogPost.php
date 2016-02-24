@@ -5,8 +5,7 @@ namespace App\Model;
  *
  * @author KuBik
  */
-class BlogPost  extends \App\Model\Model {
-	protected static $entityClass = '\App\Model\Entities\BlogPosts';
+class BlogPost  extends AbstractModel {
 	/**
 	 * 
 	 * @param type $count

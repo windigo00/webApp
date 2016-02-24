@@ -14,12 +14,13 @@
 		"nette/nette": "~2.3.0",
 		"doctrine/orm": "~2.3.6",
 		"doctrine/dbal": "~2.3.5",
-		"o5/grido": "dev-master",
-		"phpunit/phpunit": "4.5.*",
-		"phpunit/phpunit-skeleton-generator": "*"
+		"o5/grido": "dev-master"
 	},
 	"require-dev": {
-		"nette/tester": "~1.0"
+		"nette/tester": "~1.0",
+		"phpunit/phpunit": "4.5.*",
+		"phpunit/phpunit-skeleton-generator": "dev-master",
+		"jdorn/sql-formatter": "dev-master"
 	},
 	"minimum-stability": "stable"
 }

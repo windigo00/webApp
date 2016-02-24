@@ -6,7 +6,7 @@ namespace App\Modules\Admin\Presenters;
  *
  * @author KuBik
  */
-class LocaleSettingsPresenter extends BaseAdminPresenter {
+class LocaleSettingsPresenter extends SecureAdminPresenter {
 	public function renderDefault() {
 		
 	}

@@ -15,7 +15,7 @@ class HomepagePresenter extends DocumentPresenter
 	
 	public function renderDefault()
 	{
-		$posts = Document::getRepository()->findAll();
+		$posts = Document::findAll();
 		$this->template->posts = $posts;
 	}
 

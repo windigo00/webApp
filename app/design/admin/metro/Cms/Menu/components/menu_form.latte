@@ -1,0 +1,26 @@
+		<form n:name=editForm class="form-horizontal{ifset $class} {$class}{/ifset}">
+		<ul class="errors" n:if="$form->hasErrors()">
+			<li n:foreach="$form->errors as $error">{$error}</li>
+		</ul>
+		<fieldset>
+			<div class="control-group">
+				{$form['name']->label->class("control-label")}
+				<div class="controls">
+					<input n:name=name type="text" class="input-xlarge" >
+				</div>
+			</div>
+			<div class="control-group">
+				{$form['active']->getLabelPart()->class("control-label")}
+				<div class="controls">
+					{$form['active']->getControlPart()->data('toggle', 'toggle')
+						->data('height', 20)
+						->data('on', $form->getTranslator()->translate('Yes'))
+						->data('off', $form->getTranslator()->translate('No'))}
+				</div>
+			</div>
+			<div class="form-actions">
+					<button n:name=send class="btn btn-primary"/>
+					<button n:name=cancel class="btn"/>
+				</div>
+			</fieldset>
+		</form>

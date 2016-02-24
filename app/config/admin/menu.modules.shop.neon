@@ -3,17 +3,17 @@ parameters:
 		modules:
 			items:
 				ashp :
-					presenter: AdminShop
+					presenter: Shop
 					icon: shopping-cart
 					text: Shops
 					items:
 						cat: 
 							priority: 10
-							presenter: AdminShopCatalog
+							presenter: ShopCatalog
 							icon: file
 							text: Catalog
 						prod: 
 							priority: 20
-							presenter: AdminShopProduct
+							presenter: ShopProduct
 							icon: file
 							text: Products

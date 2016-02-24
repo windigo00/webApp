@@ -15,6 +15,6 @@ use Nette;
  *
  * @author KuBik
  */
-class TaskPresenter extends BaseAdminPresenter {
+class TaskPresenter extends SecureAdminPresenter {
 	
 }

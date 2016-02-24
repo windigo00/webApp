@@ -13,7 +13,6 @@ parameters:
 
 php:
 	date.timezone: Europe/Prague
-
 nette:
 	application:
 		errorPresenter: Error
@@ -33,9 +32,9 @@ services:
 	database: App\Management\EntityManager(%doctrine.connection%, %doctrine.entityDir%, %doctrine.devmode%)
 #tracy:
 #	bar: # panely do Debugger baru
+#		sqlDebug: App\Helper\DebugSqlPanel
 #		- Nette\DI\Diagnostics\ContainerPanel # alias DI Container baru
 #		- IncludePanel
 #		- XDebugHelper('myIdeKey')
-#		- MyPanel(@MyService)
 #	blueScreen: # panely do Laděnky
 #		- DoctrinePanel::renderException

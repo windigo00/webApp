@@ -8,5 +8,5 @@ use App\Model\TranslatedControl;
  * @author KuBik
  */
 abstract class EditableControl extends TranslatedControl {
-	use Traits\CrudHandleTrait;
+	use \App\Presenters\CrudHandleTrait;
 }

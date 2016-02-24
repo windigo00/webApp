@@ -1,4 +1,6 @@
-<a class="btn dropdown-toggle" data-toggle="dropdown" href="#" title="{if $item->label}{_$item->label}{else}{_$item->text}{/if}" {if $item->presenter}href="{plink $item->presenter.':'}"{/if}>
+<a class="btn dropdown-toggle" data-toggle="dropdown" 
+   title="{if $item->label}{_$item->label}{else}{_$item->text}{/if}" 
+   {if $item->presenter}href="{plink $item->presenter.':'.($item->action?$item->action:'')}"{/if}>
 	{if $item->icon}<i class="halflings-icon white {$item->icon}"></i>&nbsp;{/if}
 	{if $item->text}
 		{if strpos($item->text, '.') > 0}

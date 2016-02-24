@@ -1,10 +1,7 @@
-{block #head}
-<style type="text/css">
-	body {
-		background-image: url({$basePath}/img/calm-sea-wallpaper.jpg) !important; 
-		background-position: center;
-	}
-</style>
+{layout ../@layout2.latte}
+{block head}
+	{include parent}
+	{include 'styles.latte'}
 {/block}
 
 {block content}
@@ -26,8 +23,7 @@
 					{form resetForm, class=>"form-horizontal"}
 						<fieldset>
 							
-							<div class="input-prepend" title="{_"Email"}">
-								<span class="add-on"><i class="halflings-icon email"></i></span>
+							<div class="input-prepend" title="{_"Email"}"><span class="add-on"><i class="halflings-icon envelope"></i></span>
 								{input email, class=>'form-control input-large span10'}
 							</div>
 							<div class="clearfix"></div>

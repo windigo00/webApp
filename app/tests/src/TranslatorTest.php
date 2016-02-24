@@ -44,13 +44,19 @@ class TranslatorTest extends \PHPUnit_Framework_TestCase {
 	public function testGet() {
 		$this->assertInstanceOf('\App\Model\Translator', $this->object);
 	}
+	
+	/**
+	 * @covers App\Model\Translator::setLang
+	 */
+	public function testSetLang() {
+		$this->assertTrue($this->object->setLang('cs_CZ'));
+	}
 	/**
 	 * @covers App\Model\Translator::getLang
 	 * @todo   Implement testGetLang().
 	 */
 	public function testGetLang() {
-		$this->object->setLang('cs_CZ');
-		$this->assertTrue($this->object->getLang() === 'cs_CZ');
+		$this->assertTrue($this->object->getLang() == 'cs_CZ');
 	}
 
 	
@@ -62,6 +68,7 @@ class TranslatorTest extends \PHPUnit_Framework_TestCase {
 	{
 		$in = $this->strings['en_GB'];
 		$out = $this->strings['cs_CZ'];
+		$this->assertTrue($this->object->setLang('cs_CZ'));
 		$this->assertEquals($out, $this->object->translate($in));
 	}
 

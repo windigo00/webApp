@@ -34,17 +34,17 @@ class Translator implements Nette\Localization\ITranslator
 		
 		$loc = $env[self::LANG_CONFIG_KEY];
 		$sec = Environment::getContext()->getService('session')->getSection('lang');
-		if ($sec) {
+		if ($sec->lang) {
 			$loc = $sec->lang;
 		}
 		$this->config->locale = $loc;
 		$this->config->path = $env[self::PATH_CONFIG_KEY];
 		
-		$this->initLanguage($this->config->locale);
+		$this->initLanguage($loc);
 	}
 	
 	public function __destruct() {
-//		\Tracy\Debugger::barDump($this);
+//		var_dump($this->notTranslated);
 	}
 
 	/**
@@ -70,13 +70,15 @@ class Translator implements Nette\Localization\ITranslator
 	 * @return boolean Whether the locale files were found.
 	 */
 	protected function initLanguage($newLanguage) {
-		$path = '..'.$this->config->path.$newLanguage;
+		$path = realpath(dirname(__FILE__).'/../..'.$this->config->path.$newLanguage);
+		
 		if (file_exists($path)) {
 			$tmp = glob($path.'/*.csv');
 			$locales = array();
 			foreach ($tmp as $tmpFile) {
 				$file = fopen($tmpFile, "r");
 				while (list($key, $value) = fgetcsv($file)) {
+					
 					$locales[$key] = $value;
 				}
 				fclose($file);
@@ -111,7 +113,7 @@ class Translator implements Nette\Localization\ITranslator
 	 * @return string
 	 */
 	public function getLang() {
-		return self::get()->config->locale;
+		return $this->config->locale;
 	}
 	/**
 	 * Returns translator instance

@@ -20,12 +20,13 @@ class RouterFactory
 	public static  function createRouter($routes = NULL)
 	{
 		$router = new RouteList();
+		$refl = new \ReflectionClass('\Nette\Application\Routers\Route');
 		if ($routes) {
 			foreach ($routes as $module => $matches) {
 				if (count($matches)) {
 					$router[] = $tmpRouter = new RouteList(ucfirst($module));
 					foreach ($matches as $route) {
-						$tmpRouter[] = new Route($route[0], $route[1]);
+						$tmpRouter[] = $refl->newInstanceArgs($route);
 					}
 				}
 			}

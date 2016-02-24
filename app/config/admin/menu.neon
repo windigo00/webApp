@@ -19,6 +19,11 @@ parameters:
 					presenter: SystemSettings
 					text: System
 					icon: wrench
+				webs:
+					presenter: HostingSettings
+					text: Hosting
+					icon: sitemap
+					priority: 1
 				lng:
 					presenter: LocaleSettings
 					text: Locales

@@ -1,0 +1,22 @@
+{* admin module base *}
+{block content}
+<div class="row-fluid list">
+	<div class="box">
+		<div class="box-header" data-original-title="">
+			<a href="{link edit, id => -1}" class="btn btn-small btn-success btn-add" title="{_'Add new document'}"><i class="halflings-icon white plus-sign"></i></a>
+			<!--<a href="#" class="btn-minimize" title="{*_'Minimize'*}"><i class="halflings-icon chevron-up"></i></a>-->
+		</div>
+		<div class="box-content">
+			{control pageList}
+		</div>
+	</div>
+</div>
+{/block}
+{block head}
+	{include parent}
+	{*include '../../components/grid_head.latte'*}
+{/block}
+{block scripts}
+	{include parent}
+	{include '../../components/grid_scripts.latte'}
+{/block}

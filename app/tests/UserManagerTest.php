@@ -2,14 +2,14 @@
 namespace Test;
 
 use Nette;
-
+/*
 class UserManagerTest extends \PHPUnit_Framework_TestCase
 {
 	private $container;
 	/**
 	 *
 	 * @var \App\Model\User
-	 */
+	 *
 	private $user;
 
 	public function __construct()
@@ -32,3 +32,4 @@ class UserManagerTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals(get_class($user), 'App\Model\User');
 	}
 }
+*/

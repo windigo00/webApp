@@ -2,18 +2,61 @@
 namespace App\Model\Eav;
 
 use App\Management\EntityManager,
-	App\Model\Model,
+	App\Model\AbstractModel,
 	App\Model\Eav,
-	App\Model\Entities
-	;
+	App\Model\Entities,
+    Doctrine\ORM\Mapping\Table,
+	Doctrine\ORM\Mapping\Entity,
+	Doctrine\ORM\Mapping\Column,
+	Doctrine\ORM\Mapping\Id,
+	Doctrine\ORM\Mapping\GeneratedValue,
+	Doctrine\ORM\Mapping\ManyToOne,
+	Doctrine\ORM\Mapping\JoinColumn,
+	Doctrine\ORM\Mapping\JoinColumns
+		;
 /**
- * Description of EavAttributeSet
+ * EavAttributeSet
  *
- * @author KuBik
+ * @Table(name="eav_attribute_set")
+ * @Entity
  */
-class EavAttributeSet extends Model {
-	protected static $entityClass = '\App\Model\Entities\EavAttributeSet';
+class EavAttributeSet extends AbstractModel {
+	/**
+     * @var integer
+     *
+     * @Column(name="attribute_set_id", type="smallint", nullable=false)
+     * @Id
+     * @GeneratedValue(strategy="IDENTITY")
+     */
+    protected $attributeSetId;
+
+    /**
+     * @var string
+     *
+     * @Column(name="attribute_set_name", type="string", length=255, nullable=true)
+     */
+    protected $attributeSetName;
+
+    /**
+     * @var integer
+     *
+     * @Column(name="sort_order", type="smallint", nullable=false)
+     */
+    protected $sortOrder;
+
+    /**
+     * @var \EavEntityType
+     *
+     * @ManyToOne(targetEntity="EavEntityType")
+     * @JoinColumns({
+     *   @JoinColumn(name="entity_type_id", referencedColumnName="entity_type_id")
+     * })
+     */
+    protected $entityType;
 	
+	protected $attribute;
+
+
 	public static function getAttributesFor($class, $id) {
 		$qb = EntityManager::get()->createQueryBuilder();
 		$qb->select('atts.value')

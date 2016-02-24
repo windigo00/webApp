@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace App\Model\Component;
+namespace App\Components;
 
 use Nette,
 	App\Model\EditableControl;

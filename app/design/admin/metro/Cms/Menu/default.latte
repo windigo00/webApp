@@ -1,0 +1,102 @@
+{* admin module base *}
+{block content}
+<table width="100%">
+	<tr>
+		<td rowspan="3" style="vertical-align: top;" width="1">
+			<div class="box">
+				<div class="box-header" data-original-title="">
+					<h2><i class="halflings-icon align-justify"></i><span class="break"></span>{_'Menus'}</h2>
+					<div class="box-icon">
+						<a href="{link add}" class="btn-add" title="{_'Add new item'}"><i class="halflings-icon plus-sign"></i></a>
+					</div>
+				</div>
+				<div class="box-content">
+					<div class="btn-group-vertical">
+					{include 'components/menu_list.latte', menus => $menus}
+					</div>
+				</div>
+			</div>
+		</td>
+		<td style="vertical-align: top;" height="1">
+		{ifset $menu}
+			<div class="box">
+				<div class="box-header" data-original-title="">
+					<h2><i class="halflings-icon wrench"></i><span class="break"></span>{_'Menu details'}</h2>
+					<div class="box-icon">
+						<a href="#" class="btn-minimize" title="{_'Minimize'}"><i class="halflings-icon chevron-up"></i></a>
+					</div>
+				</div>
+
+				<div class="box-content menu-form">
+					{include 'components/menu_form.latte'}
+				</div>
+			</div>
+		</td></tr><tr><td style="vertical-align: top;" height="1">
+			{include 'components/menu_items.latte'}
+		</td></tr><tr><td>
+
+		{else}
+			<div class="alert">
+				<h2>{_'Select menu'}</h2>
+			</div>
+		{/ifset}
+		</td>
+	</tr>
+</table>
+{*control pageList*}
+{/block}
+{block head}
+	{include parent}
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+	{include '../../components/tree_head.latte'}
+	<style type="text/css">
+		.btn-group+.btn-group {
+			margin-left: 0px;
+		}
+		.btn-group {
+			white-space: nowrap;
+		}
+		.btn-group-vertical .btn-group>.btn:first-child {
+			width: 89px;
+			text-align: left;
+		}
+	</style>
+	
+{/block}
+{block scripts}
+	{include parent}
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
+	<script type="text/javascript" n:syntax="double">
+		$(function () {
+		$('.btn-add, .btn-edit').click(function(e){
+			e.preventDefault();
+			var button = $(this);
+			$('.menu-form').load(button.attr('href'),function(){
+				$('.menu-form [data-toggle^=toggle]').bootstrapToggle();
+			});
+			$('.menu-items').html('');
+		});
+		$('.btn-add-item, .btn-edit-item').click(function(e){
+			e.preventDefault();
+			var button = $(this);
+//			var modal = $('#myModal').modal();
+//			modal.find('.modal-header .title').html('');
+			$('.menuitem-edit').load(button.attr('href'),function(){
+				$('.menuitem-edit [data-toggle^=toggle]').bootstrapToggle();
+				
+			});
+			
+		});
+		$('.btn-minimize').click(function(e){
+			e.preventDefault();
+			var $target = $(this).parent().parent().next('.box-content');
+			if($target.is(':visible')) $('i',$(this)).removeClass('chevron-up').addClass('chevron-down');
+			else 					   $('i',$(this)).removeClass('chevron-down').addClass('chevron-up');
+			$target.slideToggle();
+		});
+		$('.datepicker').datepicker();
+		
+	});
+	</script>
+	{include '../../components/tree_scripts.latte'}
+{/block}

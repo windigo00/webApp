@@ -5,7 +5,7 @@ parameters:
 		Test:
 			- ['test/', 'Test:default']
 		Admin:
-			- ['admin/<presenter>/<action>/[<id>]', 'Dashboard:default']
+			- ['admin/<presenter>/<action>/[<id>]', 'Dashboard:default', \Nette\Application\Routers\Route::SECURED]
 		Shop:
 			- ['shop/<path [^/\.]+>', 'Cms:document']
 			- ['shop/[<category [^/]+>/]<name [^\.]+>.html', 'Product:detail']
@@ -14,6 +14,6 @@ parameters:
 			- ['shop/<presenter>/<action>/[<id>]', 'Homepage:default']
 		Front:
 			- ['error/<action>', 'Error:default']
-			- ['[<lang [a-z]{2}>[-<sublang>]/][<category>/]<name>[/page-<page=0>]', 'Document:default']
-			- ['<name>[/page-<page=0>]', 'Document:page']
+			- ['[<lang [a-z]{2}>[-<sublang>]/][<category>/]<name>[/page-<page=0>]', 'Page:default']
+			- ['<name>[/page-<page=0>]', 'Page:default']
 			- ['<presenter>/<action>[/<id>]', 'Homepage:default']

@@ -1,2 +1,77 @@
 {block content}
-{control userForm}
+<form n:name=userForm class="form-horizontal{ifset $class} {$class}{/ifset}">
+	<ul class="errors" n:if="$form->hasErrors()">
+		<li n:foreach="$form->errors as $error">{$error}</li>
+	</ul>
+	<div class="row-fluid">
+		<div class="span6 box">
+			<div class="box-header">{_'User'}</div>
+			<div class="box-content">
+				<fieldset>
+					<div class="control-group">
+						{$form['nick']->label->class("control-label")}
+						<div class="controls">
+							<input n:name=nick type="text" class="input-xlarge" >
+						</div>
+					</div>
+					<div class="control-group">
+						{$form['firstname']->label->class("control-label")}
+						<div class="controls">
+							<input n:name=firstname type="text" class="input-xlarge" >
+						</div>
+					</div>
+					<div class="control-group">
+						{$form['lastname']->label->class("control-label")}
+						<div class="controls">
+							<input n:name=lastname type="text" class="input-xlarge" >
+						</div>
+					</div>
+					<div class="control-group">
+						{$form['mail']->label->class("control-label")}
+						<div class="controls">
+							<input n:name=mail type="text" class="input-xlarge" >
+						</div>
+					</div>
+					<div class="control-group">
+						{$form['active']->getLabelPart()->class("control-label")}
+						<div class="controls">
+							{$form['active']->getControlPart()->data('toggle', 'toggle')
+								->data('height', 21)
+								->data('on', $form->getTranslator()->translate('Yes'))
+								->data('off', $form->getTranslator()->translate('No'))}
+						</div>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+		<div class="span6 box">
+			<div class="box-header">{_'Groups'}</div>
+			<div class="box-content">
+				<fieldset>
+					{foreach $groups as $group}
+					<div class="control-group">
+						<label class="control-label">{$group->name}</label>
+						<div class="controls">
+						<input name="groups[{$group->id}]" data-toggle="toggle" data-height="21" data-on="{_'Yes'}" data-off="{_'No'}"
+							 type="checkbox"{if in_array($group, $user->groups->toArray())} checked="checked"{/if}/>
+						</div>
+					</div>
+					{/foreach}
+				</fieldset>
+			</div>
+		</div>
+	</div>
+	<div class="form-actions">
+		<button n:name=save class="btn btn-primary"/>
+		<button n:name=cancel class="btn"/>
+	</div>
+</form>
+{/block}
+{block head}
+	{include parent}
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+{/block}
+{block scripts}
+	{include parent}
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
+{/block}
