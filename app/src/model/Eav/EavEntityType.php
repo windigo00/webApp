@@ -26,14 +26,14 @@ class EavEntityType extends AbstractModel {
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
-    protected $entityTypeId;
+    protected $id;
 
     /**
      * @var string
      *
      * @Column(name="entity_type_code", type="string", length=50, nullable=false)
      */
-    protected $entityTypeCode;
+    protected $code;
 
     /**
      * @var string

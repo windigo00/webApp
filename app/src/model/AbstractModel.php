@@ -22,7 +22,7 @@ abstract class AbstractModel {
 	/**
 	 * 
 	 * @param string $alias
-	 * @return \Doctrine\DBAL\Query\QueryBuilder
+	 * @return \Doctrine\ORM\QueryBuilder
 	 */
 	public static function getQB($alias = 'u') {
 		return EntityManager::get()->getRepository(get_called_class())->createQueryBuilder($alias);

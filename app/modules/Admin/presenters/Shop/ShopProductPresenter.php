@@ -81,7 +81,7 @@ class ShopProductPresenter extends ShopPresenter {
 			if (!empty($pId) && $pId >= 0) {
 				$item = Product::get($pId);
 			} else {
-				$item = new Page;
+				$item = new Product;
 			}
 			
 			
@@ -132,8 +132,12 @@ class ShopProductPresenter extends ShopPresenter {
 	public function renderDefault() {
 		$this['productList']->setModel(Product::getQB('p'));
 	}
-	public function renderProfile() {
-//		$this->template->user = $this->getUser();
+	public function renderEdit($id) {
+		if ($id >= 0) {
+			$p = Product::get($id);
+			$p->getAttributes()->setProduct($p);
+			$this->template->product = $p;
+		}
 	}
 	
 	public function actionDelete($id) {

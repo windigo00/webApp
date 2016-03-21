@@ -35,7 +35,12 @@ class Shop extends AbstractModel {
      * @Column(type="datetime", nullable=false)
      */
 	protected $created;
-	
+	/**
+     * @var boolean
+     *
+     * @Column(name="active", type="boolean", nullable=false)
+     */
+    protected $active;
 	
 	
 }

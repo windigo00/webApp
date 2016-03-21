@@ -95,12 +95,9 @@ class Product extends AbstractModel {
     protected $attributeSet;
 
     /**
-     * @var \EavEntityType
-     *
-     * @Column(name="type_id", type="string", length=64, nullable=true)
-     * })
+     * @var ProductAttributeCollection
      */
-//    protected $type;
+    protected $attributes;
 
     /**
      * Constructor
@@ -108,14 +105,15 @@ class Product extends AbstractModel {
     public function __construct()
     {
         $this->category = new ArrayCollection;
+        $this->attributes = new ProductAttributeCollection($this);
     }
 	
 	/**
 	 * Returns product attributes
-	 * @return array<ProductAttribute>
+	 * @return ProductAttributeCollection
 	 */
 	public function getAttributes() {
-		
+		return $this->attributes;
 	}
 	
 	
